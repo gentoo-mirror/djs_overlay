@@ -11,7 +11,7 @@ inherit cmake lua-single git-r3
 DESCRIPTION="Heroes of Might and Magic III game engine rewrite"
 HOMEPAGE="http://forum.vcmi.eu/index.php"
 EGIT_REPO_URI="https://github.com/vcmi/vcmi.git"
-EGIT_branch="1.5.7"
+EGIT_branch="${PV}"
 
 LICENSE="GPL-2"
 SLOT="0"
