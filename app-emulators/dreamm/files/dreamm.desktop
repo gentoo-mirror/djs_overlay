@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=DREAMM
+GenericName=DREAMM
+Comment=DREAMM is a bespoke emulator for LucasArts games
+Exec=/opt/dreamm/dreamm
+Icon=dreamm
+Type=Application
+Terminal=false
+Categories=Emulator;Game;
+StartupWMClass=DREAMMWindow
