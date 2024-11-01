@@ -1,3 +1,40 @@
-My first try for overlay, only 2 ebuilds now, without no header, so you have to download them and put them into your local overlay, but I promise that it will change in the future. Thanks for understanding.
+DJ Overlay
+==========
 
-Please have patience, I am new to ebuilds.
+Some packages which I am using and ebuild didn't existed at that time. Feel free to use it and report bugs.
+
+I must say, that I am still beginner doing these, so the quality will not be any good, but since I am using them it should work.
+
+## Packages
+
+### acct-group
+- **[keyd](https://github.com/rvaiya/keyd)** - Group for keyd daemon,
+
+### app-editors
+- **[sublime](https://www.sublimetext.com/dev)** - Development builds for version, I am using same name as gentoo overlay (instead of -dev) because when new stable version is present, it will be installed. If its a problem please feel free to tell me, I will repair it,
+
+### app-emulators
+- **[dreamm](https://aarongiles.com/dreamm/)** - I like this simple emulator for old Lucas Arts games. For most of them there is [ScummVM](https://scummvm.org/), which is allready in official Gentoo repository, but some games, e.g. Yoda Storries, Indiana Jones storries which are not so good are playable throught this,
+
+### app-misc
+- **[keyd](https://github.com/rvaiya/keyd)** - Daemon, which is able to remap keys. I am using it on MacBook to map CMD as CTRL as in Mac OS you use CMD most (as on Linux/Windows CTRL key does). The main reason I like this daemon is, that its system wide so regardless of DE or plain CLI interface, keyboard behaves the same,
+
+### dev-libs
+- **dev-libs/fuzzylite** - Dependency for VCMI,
+
+### games-strategy
+- **[vcmi](https://github.com/vcmi/vcmi)** - HOMAM3 game engine. I like HOMMAM games and there was no good ebuild so I had tried to do my own. This one is for the version git tag 1.5.7 and it downloads everything from git and builds. When the branch is updated, it has to be rebuild again. I might try to find way how to do it correctly so it gets self updated. But still more advanced, than my skills are,
+
+### media-video
+- **[bcwc_pcie](https://github.com/wackywendell/bcwc_pcie)** - Prerequisity for Macbook's facetime camera to work,
+- **[facetimehd-firmware](https://github.com/patjak/facetimehd)** - Firmware for Macbook's facetime camera to work,
+
+### www-client
+- **[brave-bin](https://brave.com/)** - Brawe browser,
+
+### x11-misc
+- **[touchegg](https://github.com/JoseExposito/touchegg)** - Gesture library, I was used to MacOS gestures and it seems, that this one works as I want,
+- **[ulauncher](https://ulauncher.io/)** - MacOS Spotlight replacement and pretty good,
+
+### x11-terms
+- **[termius](https://termius.com/)** - Termius SSH/SFTP client,
