@@ -11,7 +11,7 @@ I must say, that I am still beginner doing these, so the quality will not be any
 - **[keyd](https://github.com/rvaiya/keyd)** - Group for keyd daemon,
 
 ### app-editors
-- **[sublime](https://www.sublimetext.com/dev)** - Development builds for version, I am using same name as gentoo overlay (instead of -dev) because when new stable version is present, it will be installed. If its a problem please feel free to tell me, I will repair it,
+- **[sublime-text-dev](https://www.sublimetext.com/dev)** - Only for users with Sublime license. It gets installed in the same location as app-editors/sublime-text so these two packages should not coexist on same system (at the moment). I separated them, because I am using it for python development and needed dev-libs/nodejs with npm flag as dependency so I had finally did half separation (package name, but not install location),
 
 ### app-emulators
 - **[dreamm](https://aarongiles.com/dreamm/)** - I like this simple emulator for old Lucas Arts games. For most of them there is [ScummVM](https://scummvm.org/), which is allready in official Gentoo repository, but some games, e.g. Yoda Storries, Indiana Jones storries which are not so good are playable throught this,

@@ -7,9 +7,11 @@ inherit desktop wrapper xdg
 
 # get the major version from PV
 MY_PV=$(ver_cut 3)
+ORIG_PN=${PN/-dev/}
 MY_PN=${PN/-/_}
+MY_PN=${MY_PN/-dev/}
 
-DESCRIPTION="Sophisticated text editor for code, markup and prose"
+DESCRIPTION="Sophisticated text editor for code, markup and prose."
 HOMEPAGE="https://www.sublimetext.com"
 SRC_URI="
 	amd64? ( https://download.sublimetext.com/sublime_text_build_${MY_PV}_x64.tar.xz )"
@@ -18,10 +20,11 @@ S="${WORKDIR}/${MY_PN}"
 LICENSE="Sublime"
 SLOT="0"
 KEYWORDS="~amd64"
-IUSE="dbus"
+IUSE="dbus npm"
 RESTRICT="bindist mirror strip"
 
 RDEPEND="
+	npm? ( net-libs/nodejs[npm] )
 	dev-libs/glib:2
 	sys-libs/glibc
 	x11-libs/gtk+:3
@@ -29,14 +32,20 @@ RDEPEND="
 	dbus? ( sys-apps/dbus )"
 
 PATCHES=(
-	"${FILESDIR}"/${PN}-4_p4107-remove-deprecated-key-onlyshowin-from-launcher.patch
-	"${FILESDIR}"/${PN}-4_p4107-set-explicit-startupwmclass-in-launcher.patch
+        "${FILESDIR}"/remove-deprecated-key-onlyshowin-from-launcher.patch
+        "${FILESDIR}"/set-explicit-startupwmclass-in-launcher.patch
 )
 
 QA_PREBUILT="*"
 
 # Sublime bundles the kitchen sink, which includes python and other assorted
 # modules. Do not try to unbundle these because you are guaranteed to fail.
+
+#src_unpack() {
+#	default
+#	cd ${WORKDIR} || die "Couldn't cd into ${WORKDIR}"
+#	mv sublime_text ${MY_PN} || die "Couldn't move sublime_text to ${MY_PN}"
+#}
 
 src_install() {
 	insinto /opt/${MY_PN}
@@ -56,7 +65,7 @@ src_install() {
 
 	local size
 	for size in 16 32 48 128 256; do
-		doicon --size ${size} Icon/${size}x${size}/${PN}.png
+		doicon --size ${size} Icon/${size}x${size}/${ORIG_PN}.png
 	done
 }
 
