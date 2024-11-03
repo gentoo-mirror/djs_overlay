@@ -25,6 +25,9 @@ I must say, that I am still beginner doing these, so the quality will not be any
 ### games-strategy
 - **[vcmi](https://github.com/vcmi/vcmi)** - HOMAM3 game engine. I like HOMMAM games and there was no good ebuild so I had tried to do my own. This one is for the version git tag 1.5.7 and it downloads everything from git and builds. When the branch is updated, it has to be rebuild again. I might try to find way how to do it correctly so it gets self updated. But still more advanced, than my skills are,
 
+### mate-base
+- **[mate-panel](https://github.com/mate-desktop/mate-panel)** - I had problems with official version 1.28.1, that sometimes when I was switchin apps it froze. I did version bump and it is better, but TBH, still not skilled enough to update main gentoo repo, maybe in future, 
+
 ### media-video
 - **[bcwc_pcie](https://github.com/wackywendell/bcwc_pcie)** - Prerequisity for Macbook's facetime camera to work,
 - **[facetimehd-firmware](https://github.com/patjak/facetimehd)** - Firmware for Macbook's facetime camera to work,
