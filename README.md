@@ -41,3 +41,4 @@ I must say, that I am still beginner doing these, so the quality will not be any
 
 ### x11-terms
 - **[termius](https://termius.com/)** - Termius SSH/SFTP client,
+- **[tilda](https://github.com/lanoxx/tilda)** - Guake-like terminal, just testing it.
