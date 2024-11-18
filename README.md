@@ -39,8 +39,9 @@ I must say, that I am still beginner doing these, so the quality will not be any
 - **[brave-bin](https://brave.com/)** - Brawe browser,
 
 ### x11-misc
+- **[albert](https://github.com/albertlauncher/albert)** - Another launcher (Qt dependencies)
 - **[touchegg](https://github.com/JoseExposito/touchegg)** - Gesture library, I was used to MacOS gestures and it seems, that this one works as I want,
-- **[ulauncher](https://ulauncher.io/)** - MacOS Spotlight replacement and pretty good,
+- **[ulauncher](https://ulauncher.io/)** - MacOS Spotlight replacement and pretty good (GTK dependencies),
 
 ### x11-terms
 - **[termius](https://termius.com/)** - Termius SSH/SFTP client,
