@@ -35,6 +35,9 @@ I must say, that I am still beginner doing these, so the quality will not be any
 - **[bcwc_pcie](https://github.com/wackywendell/bcwc_pcie)** - Prerequisity for Macbook's facetime camera to work,
 - **[facetimehd-firmware](https://github.com/patjak/facetimehd)** - Firmware for Macbook's facetime camera to work,
 
+### net-wireless
+- **broadcom-wl** - Taken from 4nykey overlay, but had to create patch for 6.12 kernel, seems some includes had changed and it would not compile
+
 ### www-client
 - **[brave-bin](https://brave.com/)** - Brawe browser,
 

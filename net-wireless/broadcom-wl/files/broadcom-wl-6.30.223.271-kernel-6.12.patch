@@ -1,0 +1,33 @@
+diff --git a/src/wl/sys/wl_linux.c b/src/wl/sys/wl_linux.c
+index 9de2cc5..7d6b848 100644
+--- a/src/wl/sys/wl_linux.c
++++ b/src/wl/sys/wl_linux.c
+@@ -47,16 +47,27 @@
+ #include <linux/pci_ids.h>
+ #define WLC_MAXBSSCFG		1	
+ 
+-#if LINUX_VERSION_CODE >= KERNEL_VERSION(3, 4, 0)
++#if LINUX_VERSION_CODE >= KERNEL_VERSION(6, 12, 0)
++#include <asm-generic/switch_to.h>
++#elif LINUX_VERSION_CODE >= KERNEL_VERSION(3, 4, 0)
+ #include <asm/switch_to.h>
+ #else
+ #include <asm/system.h>
+ #endif
++
++#if LINUX_VERSION_CODE >= KERNEL_VERSION(6, 12, 0)
++#include <linux/io.h>
++#include <linux/irq.h>
++#include <linux/pgtable.h>
++#include <linux/uaccess.h>
++#include <linux/unaligned.h>
++#else
+ #include <asm/io.h>
+ #include <asm/irq.h>
+ #include <asm/pgtable.h>
+ #include <asm/uaccess.h>
+ #include <asm/unaligned.h>
++#endif
+ 
+ #include <proto/802.1d.h>
+ 
