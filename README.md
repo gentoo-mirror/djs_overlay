@@ -5,6 +5,10 @@ Some packages which I am using and ebuild didn't existed at that time. Feel free
 
 I must say, that I am still beginner doing these, so the quality will not be any good, but since I am using them it should work.
 
+- **Cinnamon** - I wanted to try new version of Cinnamon so I just coppied all old ebuild with new version, it worked, somehow, but needed some other dependencies. Some are version bumps, others I had to borrow from [pg_overlay](https://github.com/gentoo-mirror/pg_overlay), [Miezhiko](https://github.com/gentoo-mirror/Miezhiko). I hope authors will not get mad (still have to find how this is solved properly, I had added them to be in the same repository, otherwise you would have to add both of them as well but all credits for them are **theirs**, not mine). My changes can make your Gnome unstable so if you want the correct version of Gnome, please go to Miezhiko overlay, add it in into Gentoo by eselect repository and then install Cinnamon from my.
+
+And one more thing I had raised a ticket to be added into eselect repository list, I will add this information how to add me properly using Gentoo's default tools.
+
 ## Packages
 
 ### acct-group
@@ -25,11 +29,37 @@ I must say, that I am still beginner doing these, so the quality will not be any
 ### dev-libs
 - **dev-libs/fuzzylite** - Dependency for VCMI,
 
+### dev-util
+- **sysprof** - Dependency for Cinnamon (just version bump)
+- **sysprof-capture** - Dependency for Cinnamon (just version bump)
+- **sysprof-common** - Dependency for Cinnamon (just version bump)
+
 ### games-strategy
 - **[vcmi](https://github.com/vcmi/vcmi)** - HOMAM3 game engine. I like HOMMAM games and there was no good ebuild so I had tried to do my own. This one is for the version git tag 1.5.7 and it downloads everything from git and builds. When the branch is updated, it has to be rebuild again. I might try to find way how to do it correctly so it gets self updated. But still more advanced, than my skills are,
 
+### gnome-extra
+- **[cinnamon](https://github.com/linuxmint/cinnamon)** - Cinnamon (just version bump)
+- **[cinnamon-control-center](https://github.com/linuxmint/cinnamon-control-center)** - Cinnamon control center (just version bump)
+- **[cinnamon-desktop](https://github.com/linuxmint/cinnamon-desktop)** - Cinnamon desktop (just version bump)
+- **[cinnamon-menus](https://github.com/linuxmint/cinnamon-menus)** - Cinnamon menus (just version bump)
+- **[cinnamon-screensaver](https://github.com/linuxmint/cinnamon-screensaver)** - Cinnamon screensaver (just version bump)
+- **[cinnamon-session](https://github.com/linuxmint/cinnamon-session)** - Cinnamon session (just version bump)
+- **[cinnamon-settings-daemon](https://github.com/linuxmint/cinnamon-settings-daemon)** - Cinnamon settings daemon (just version bump)
+- **[cinnamon-translations](https://github.com/linuxmint/cinnamon-translations)** - Cinnamon translations (just version bump)
+
+### gui-libs
+- **[gtk](https://gitlab.gnome.org/GNOME/gtk/)** - Cinnamon required version, all credits for ebuild goes to [pg_overlay](https://github.com/gentoo-mirror/pg_overlay)
+- **[libadwaita](https://gitlab.gnome.org/GNOME/libadwaita)** - Cinnamon required version, all credits for ebuild goes to [Miezhiko](https://github.com/gentoo-mirror/Miezhiko)
+- **[libpanel](https://github.com/gentoo-mirror/Miezhiko)** - Cinnamon required version (just version bump)
+
 ### mate-base
 - **[mate-panel](https://github.com/mate-desktop/mate-panel)** - I had problems with official version 1.28.1, that sometimes when I was switchin apps it froze. I did version bump and it is better, but TBH, still not skilled enough to update main gentoo repo, maybe in future, **Deleted, mainstream added**
+
+### media-libs
+- All packages are Cinnamon prerequisity, all credits for ebuilds goes to [Miezhiko](https://github.com/gentoo-mirror/Miezhiko)
+
+### media-plugins
+- All packages are Cinnamon prerequisity, all credits for ebuilds goes to [Miezhiko](https://github.com/gentoo-mirror/Miezhiko)
 
 ### media-video
 - **[bcwc_pcie](https://github.com/wackywendell/bcwc_pcie)** - Prerequisity for Macbook's facetime camera to work,
@@ -49,3 +79,6 @@ I must say, that I am still beginner doing these, so the quality will not be any
 ### x11-terms
 - **[termius](https://termius.com/)** - Termius SSH/SFTP client,
 - **[tilda](https://github.com/lanoxx/tilda)** - Guake-like terminal, just testing it.
+
+### X11-wm
+- **[muffin](https://github.com/linuxmint/muffin)** - Cinnamon required version (just version bump)
