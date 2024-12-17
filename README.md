@@ -52,9 +52,6 @@ And one more thing I had raised a ticket to be added into eselect repository lis
 - **[libadwaita](https://gitlab.gnome.org/GNOME/libadwaita)** - Cinnamon required version, all credits for ebuild goes to [Miezhiko](https://github.com/gentoo-mirror/Miezhiko)
 - **[libpanel](https://github.com/gentoo-mirror/Miezhiko)** - Cinnamon required version (just version bump)
 
-### mate-base
-- **[mate-panel](https://github.com/mate-desktop/mate-panel)** - I had problems with official version 1.28.1, that sometimes when I was switchin apps it froze. I did version bump and it is better, but TBH, still not skilled enough to update main gentoo repo, maybe in future, **Deleted, mainstream added**
-
 ### media-libs
 - All packages are Cinnamon prerequisity, all credits for ebuilds goes to [Miezhiko](https://github.com/gentoo-mirror/Miezhiko)
 
