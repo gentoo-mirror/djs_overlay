@@ -27,7 +27,7 @@ And one more thing I had raised a ticket to be added into eselect repository lis
 - **[dbGate](https://dbgate.org/)** - The Smartest SQL+noSQL Database Client,
 
 ### dev-libs
-- **dev-libs/fuzzylite** - Dependency for VCMI,
+- **dev-libs/fuzzylite** - It seems, that this package is not needed in VCMI compilation, GIT version downloads it, for normal version it needs to be downloaded, but I will keep it here, if someone uses it,
 
 ### dev-util
 - **sysprof** - Dependency for Cinnamon (just version bump)
@@ -69,7 +69,7 @@ And one more thing I had raised a ticket to be added into eselect repository lis
 - **broadcom-wl** - Taken from 4nykey overlay, but had to create patch for 6.12 kernel, seems some includes had changed and it would not compile
 
 ### www-client
-- **[brave-bin](https://brave.com/)** - Brave browser,
+- **[brave-bin](https://github.com/brave/brave-browser)** - [Brave](https://brave.com/) browser,
 
 ### x11-misc
 - **[albert](https://github.com/albertlauncher/albert)** - Another launcher (Qt dependencies)
@@ -77,7 +77,7 @@ And one more thing I had raised a ticket to be added into eselect repository lis
 - **[ulauncher](https://ulauncher.io/)** - MacOS Spotlight replacement and pretty good (GTK dependencies),
 
 ### x11-terms
-- **[termius](https://termius.com/)** - Termius SSH/SFTP client,
+- **[termius](https://support.termius.com/hc/en-us/articles/4404036107673-Windows-Linux-Mac)** - [Termius](https://termius.com) SSH/SFTP client,
 - **[tilda](https://github.com/lanoxx/tilda)** - Guake-like terminal, just testing it.
 
 ### X11-wm
