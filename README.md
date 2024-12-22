@@ -49,11 +49,13 @@ And one more thing I had raised a ticket to be added into eselect repository lis
 - **[cinnamon-session](https://github.com/linuxmint/cinnamon-session)** - Cinnamon session (just version bump)
 - **[cinnamon-settings-daemon](https://github.com/linuxmint/cinnamon-settings-daemon)** - Cinnamon settings daemon (just version bump)
 - **[cinnamon-translations](https://github.com/linuxmint/cinnamon-translations)** - Cinnamon translations (just version bump)
+- **[cjs](https://github.com/linuxmint/cjs)** - Linux Mint's fork of gjs for Cinnamon (just version bump)
+- **[nemo](https://github.com/linuxmint/nemo)** - A file manager for Cinnamon, forked from Nautilus (just version bump)
 
 ### gui-libs
 - **[gtk](https://gitlab.gnome.org/GNOME/gtk/)** - Cinnamon required version, all credits for ebuild goes to [pg_overlay](https://github.com/gentoo-mirror/pg_overlay)
 - **[libadwaita](https://gitlab.gnome.org/GNOME/libadwaita)** - Cinnamon required version, all credits for ebuild goes to [Miezhiko](https://github.com/gentoo-mirror/Miezhiko)
-- **[libpanel](https://github.com/gentoo-mirror/Miezhiko)** - Cinnamon required version (just version bump)
+- **[libpanel](https://gitlab.gnome.org/GNOME/libpanel)** - Cinnamon required version (just version bump)
 
 ### media-libs
 - All packages are Cinnamon prerequisity, all credits for ebuilds goes to [Miezhiko](https://github.com/gentoo-mirror/Miezhiko)
