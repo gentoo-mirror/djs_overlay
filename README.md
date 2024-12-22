@@ -35,10 +35,7 @@ And one more thing I had raised a ticket to be added into eselect repository lis
 - **sysprof-common** - Dependency for Cinnamon (just version bump)
 
 ### games-strategy
-  - **[vcmi](https://github.com/vcmi/vcmi)** - HOMAM3 game engine.
-    - Completly redesigned ebuild. Now I am using github/releases page to download version,
-    - Removed fuzzylite dependency from ebuild since it gets downloaded for VCMI to be built,
-    - Because of new Boost version and to apply corresponding patch I had to patch source to day I started to create the patch, you will see it after version \_p
+  - **[vcmi](https://github.com/vcmi/vcmi)** - HOMAM3 game engine. Well, I made my efford just to find, version 1.6.0 was released, so I deleted patches and copied the same ebuild and it seems to compile and VCMI is not segfaulting
 
 ### gnome-extra
 - **[cinnamon](https://github.com/linuxmint/cinnamon)** - Cinnamon (just version bump)
