@@ -1,0 +1,182 @@
+diff --color -urN vcmi-1.5.7/include/vcmi/Entity.h vcmi/include/vcmi/Entity.h
+--- vcmi-1.5.7/include/vcmi/Entity.h	2024-08-25 23:27:47.000000000 +0200
++++ vcmi/include/vcmi/Entity.h	2024-12-19 15:00:22.722140664 +0100
+@@ -26,11 +26,11 @@
+ {
+ public:
+ 	virtual TerrainId getNativeTerrain() const = 0;
+-	virtual FactionID getFaction() const = 0;
++	virtual FactionID getFactionID() const = 0;
+ 	virtual bool isNativeTerrain(TerrainId terrain) const;
+ };
+ 
+-class DLL_LINKAGE Entity
++class DLL_LINKAGE Entity : boost::noncopyable
+ {
+ public:
+ 	using IconRegistar = std::function<void(int32_t index, int32_t group, const std::string & listName, const std::string & imageName)>;
+@@ -40,6 +40,7 @@
+ 	virtual int32_t getIndex() const = 0;
+ 	virtual int32_t getIconIndex() const = 0;
+ 	virtual std::string getJsonKey() const = 0;
++	virtual std::string getModScope() const = 0;
+ 	virtual std::string getNameTranslated() const = 0;
+ 	virtual std::string getNameTextID() const = 0;
+ 
+diff --color -urN vcmi-1.5.7/include/vcmi/events/ApplyDamage.h vcmi/include/vcmi/events/ApplyDamage.h
+--- vcmi-1.5.7/include/vcmi/events/ApplyDamage.h	2024-08-25 23:27:47.000000000 +0200
++++ vcmi/include/vcmi/events/ApplyDamage.h	2024-12-19 15:00:22.730140995 +0100
+@@ -36,7 +36,7 @@
+ 
+ 	static Sub * getRegistry();
+ 
+-	virtual int64_t getInitalDamage() const = 0;
++	virtual int64_t getInitialDamage() const = 0;
+ 	virtual int64_t getDamage() const = 0;
+ 	virtual void setDamage(int64_t value) = 0;
+ 	virtual const battle::Unit * getTarget() const = 0;
+diff --color -urN vcmi-1.5.7/include/vcmi/ServerCallback.h vcmi/include/vcmi/ServerCallback.h
+--- vcmi-1.5.7/include/vcmi/ServerCallback.h	2024-08-25 23:27:47.000000000 +0200
++++ vcmi/include/vcmi/ServerCallback.h	2024-12-19 15:00:22.726140830 +0100
+@@ -36,15 +36,15 @@
+ 
+ 	virtual vstd::RNG * getRNG() = 0;
+ 
+-	virtual void apply(CPackForClient * pack) = 0;
++	virtual void apply(CPackForClient & pack) = 0;
+ 
+-	virtual void apply(BattleLogMessage * pack) = 0;
+-	virtual void apply(BattleStackMoved * pack) = 0;
+-	virtual void apply(BattleUnitsChanged * pack) = 0;
+-	virtual void apply(SetStackEffect * pack) = 0;
+-	virtual void apply(StacksInjured * pack) = 0;
+-	virtual void apply(BattleObstaclesChanged * pack) = 0;
+-	virtual void apply(CatapultAttack * pack) = 0;
++	virtual void apply(BattleLogMessage & pack) = 0;
++	virtual void apply(BattleStackMoved & pack) = 0;
++	virtual void apply(BattleUnitsChanged & pack) = 0;
++	virtual void apply(SetStackEffect & pack) = 0;
++	virtual void apply(StacksInjured & pack) = 0;
++	virtual void apply(BattleObstaclesChanged & pack) = 0;
++	virtual void apply(CatapultAttack & pack) = 0;
+ };
+ 
+ VCMI_LIB_NAMESPACE_END
+diff --color -urN vcmi-1.5.7/include/vcmi/Services.h vcmi/include/vcmi/Services.h
+--- vcmi-1.5.7/include/vcmi/Services.h	2024-08-25 23:27:47.000000000 +0200
++++ vcmi/include/vcmi/Services.h	2024-12-19 15:00:22.728140912 +0100
+@@ -59,9 +59,7 @@
+ 	virtual const SkillService * skills() const = 0;
+ 	virtual const BattleFieldService * battlefields() const = 0;
+ 	virtual const ObstacleService * obstacles() const = 0;
+-	virtual const IGameSettings * settings() const = 0;
+-
+-	virtual void updateEntity(Metatype metatype, int32_t index, const JsonNode & data) = 0;
++	virtual const IGameSettings * engineSettings() const = 0;
+ 
+ 	virtual const spells::effects::Registry * spellEffects() const = 0;
+ 	virtual spells::effects::Registry * spellEffects() = 0;
+diff --color -urN vcmi-1.5.7/include/vcmi/spells/Spell.h vcmi/include/vcmi/spells/Spell.h
+--- vcmi-1.5.7/include/vcmi/spells/Spell.h	2024-08-25 23:27:47.000000000 +0200
++++ vcmi/include/vcmi/spells/Spell.h	2024-12-19 15:00:22.737141284 +0100
+@@ -45,6 +45,8 @@
+ 
+ 	virtual bool hasSchool(SpellSchool school) const = 0;
+ 	virtual bool canCastOnSelf() const = 0;
++	virtual bool canCastOnlyOnSelf() const = 0;
++	virtual bool canCastWithoutSkip() const = 0;
+ 	virtual void forEachSchool(const SchoolCallback & cb) const = 0;
+ 	virtual int32_t getCost(const int32_t skillLevel) const = 0;
+ 
+diff --color -urN vcmi-1.5.7/include/vstd/CLoggerBase.h vcmi/include/vstd/CLoggerBase.h
+--- vcmi-1.5.7/include/vstd/CLoggerBase.h	2024-08-25 23:27:47.000000000 +0200
++++ vcmi/include/vstd/CLoggerBase.h	2024-12-19 15:00:22.738141325 +0100
+@@ -193,5 +193,6 @@
+ extern DLL_LINKAGE vstd::CLoggerBase * logAi;
+ extern DLL_LINKAGE vstd::CLoggerBase * logAnim;
+ extern DLL_LINKAGE vstd::CLoggerBase * logMod;
++extern DLL_LINKAGE vstd::CLoggerBase * logRng;
+ 
+ VCMI_LIB_NAMESPACE_END
+diff --color -urN vcmi-1.5.7/include/vstd/RNG.h vcmi/include/vstd/RNG.h
+--- vcmi-1.5.7/include/vstd/RNG.h	2024-08-25 23:27:47.000000000 +0200
++++ vcmi/include/vstd/RNG.h	2024-12-19 15:00:22.739141367 +0100
+@@ -15,18 +15,36 @@
+ namespace vstd
+ {
+ 
+-using TRandI64 = std::function<int64_t()>;
+-using TRand = std::function<double()>;
+-
+ class DLL_LINKAGE RNG
+ {
+ public:
+-
+ 	virtual ~RNG() = default;
+ 
+-	virtual TRandI64 getInt64Range(int64_t lower, int64_t upper) = 0;
++	/// Returns random number in range [lower, upper]
++	virtual int nextInt(int lower, int upper) = 0;
++
++	/// Returns random number in range [lower, upper]
++	virtual int64_t nextInt64(int64_t lower, int64_t upper) = 0;
++
++	/// Returns random number in range [lower, upper]
++	virtual double nextDouble(double lower, double upper) = 0;
++
++	/// Returns random number in range [0, upper]
++	virtual int nextInt(int upper) = 0;
++
++	/// Returns random number in range [0, upper]
++	virtual int64_t nextInt64(int64_t upper) = 0;
++
++	/// Returns random number in range [0, upper]
++	virtual double nextDouble(double upper) = 0;
++
++	/// Generates an integer between 0 and the maximum value it can hold.
++	/// Should be only used for seeding other generators
++	virtual int nextInt() = 0;
+ 
+-	virtual TRand getDoubleRange(double lower, double upper) = 0;
++	/// Returns integer using binomial distribution
++	/// returned value is number of successfull coin flips with chance 'coinChance' out of 'coinsCount' attempts
++	virtual int nextBinomialInt(int coinsCount, double coinChance) = 0;
+ };
+ 
+ }
+@@ -39,7 +57,7 @@
+ 		if(container.empty())
+ 			throw std::runtime_error("Unable to select random item from empty container!");
+ 
+-		return std::next(container.begin(), rand.getInt64Range(0, container.size() - 1)());
++		return std::next(container.begin(), rand.nextInt64(0, container.size() - 1));
+ 	}
+ 
+ 	template<typename Container>
+@@ -48,7 +66,7 @@
+ 		if(container.empty())
+ 			throw std::runtime_error("Unable to select random item from empty container!");
+ 
+-		return std::next(container.begin(), rand.getInt64Range(0, container.size() - 1)());
++		return std::next(container.begin(), rand.nextInt64(0, container.size() - 1));
+ 	}
+ 
+ 	template<typename Container>
+@@ -59,7 +77,7 @@
+ 		int64_t totalWeight = std::accumulate(container.begin(), container.end(), 0);
+ 		assert(totalWeight > 0);
+ 
+-		int64_t roll = rand.getInt64Range(0, totalWeight - 1)();
++		int64_t roll = rand.nextInt64(0, totalWeight - 1);
+ 
+ 		for (size_t i = 0; i < container.size(); ++i)
+ 		{
+@@ -77,7 +95,7 @@
+ 
+ 		for(int64_t i = n-1; i>0; --i)
+ 		{
+-			std::swap(container.begin()[i],container.begin()[rand.getInt64Range(0, i)()]);
++			std::swap(container.begin()[i],container.begin()[rand.nextInt64(0, i)]);
+ 		}
+ 	}
+ }

@@ -1,0 +1,640 @@
+--- vcmi-1.5.7/CCallback.h	2024-08-25 23:27:47.000000000 +0200
++++ vcmi/CCallback.h	2024-12-19 15:00:22.177118142 +0100
+@@ -34,7 +34,6 @@
+ class IGameEventsReceiver;
+ struct ArtifactLocation;
+ class BattleStateInfoForRetreat;
+-class IMarket;
+ 
+ VCMI_LIB_NAMESPACE_END
+ 
+@@ -69,19 +68,21 @@
+ 	//hero
+ 	virtual void moveHero(const CGHeroInstance *h, const std::vector<int3> & path, bool transit) =0; //moves hero alongside provided path
+ 	virtual void moveHero(const CGHeroInstance *h, const int3 & destination, bool transit) =0; //moves hero alongside provided path
+-	virtual bool dismissHero(const CGHeroInstance * hero)=0; //dismisses given hero; true - successfuly, false - not successfuly
++	virtual bool dismissHero(const CGHeroInstance * hero)=0; //dismisses given hero; true - successfully, false - not successfully
+ 	virtual void dig(const CGObjectInstance *hero)=0;
+ 	virtual void castSpell(const CGHeroInstance *hero, SpellID spellID, const int3 &pos = int3(-1, -1, -1))=0; //cast adventure map spell
+ 
+ 	//town
+ 	virtual void recruitHero(const CGObjectInstance *townOrTavern, const CGHeroInstance *hero, const HeroTypeID & nextHero=HeroTypeID::NONE)=0;
+ 	virtual bool buildBuilding(const CGTownInstance *town, BuildingID buildingID)=0;
++	virtual bool visitTownBuilding(const CGTownInstance *town, BuildingID buildingID)=0;
+ 	virtual void recruitCreatures(const CGDwelling *obj, const CArmedInstance * dst, CreatureID ID, ui32 amount, si32 level=-1)=0;
+ 	virtual bool upgradeCreature(const CArmedInstance *obj, SlotID stackPos, CreatureID newID=CreatureID::NONE)=0; //if newID==-1 then best possible upgrade will be made
++	virtual void spellResearch(const CGTownInstance *town, SpellID spellAtSlot, bool accepted)=0;
+ 	virtual void swapGarrisonHero(const CGTownInstance *town)=0;
+ 
+-	virtual void trade(const IMarket * market, EMarketMode mode, TradeItemSell id1, TradeItemBuy id2, ui32 val1, const CGHeroInstance * hero = nullptr)=0; //mode==0: sell val1 units of id1 resource for id2 resiurce
+-	virtual void trade(const IMarket * market, EMarketMode mode, const std::vector<TradeItemSell> & id1, const std::vector<TradeItemBuy> & id2, const std::vector<ui32> & val1, const CGHeroInstance * hero = nullptr)=0;
++	virtual void trade(const ObjectInstanceID marketId, EMarketMode mode, TradeItemSell id1, TradeItemBuy id2, ui32 val1, const CGHeroInstance * hero)=0; //mode==0: sell val1 units of id1 resource for id2 resiurce
++	virtual void trade(const ObjectInstanceID marketId, EMarketMode mode, const std::vector<TradeItemSell> & id1, const std::vector<TradeItemBuy> & id2, const std::vector<ui32> & val1, const CGHeroInstance * hero)=0;
+ 
+ 	virtual int selectionMade(int selection, QueryID queryID) =0;
+ 	virtual int sendQueryReply(std::optional<int32_t> reply, QueryID queryID) =0;
+@@ -92,10 +93,14 @@
+ 	//virtual bool swapArtifacts(const CGHeroInstance * hero1, ui16 pos1, const CGHeroInstance * hero2, ui16 pos2)=0; //swaps artifacts between two given heroes
+ 	virtual bool swapArtifacts(const ArtifactLocation &l1, const ArtifactLocation &l2)=0;
+ 	virtual void scrollBackpackArtifacts(ObjectInstanceID hero, bool left) = 0;
++	virtual void sortBackpackArtifactsBySlot(const ObjectInstanceID hero) = 0;
++	virtual void sortBackpackArtifactsByCost(const ObjectInstanceID hero) = 0;
++	virtual void sortBackpackArtifactsByClass(const ObjectInstanceID hero) = 0;
+ 	virtual void manageHeroCostume(ObjectInstanceID hero, size_t costumeIndex, bool saveCostume) = 0;
+-	virtual void assembleArtifacts(const CGHeroInstance * hero, ArtifactPosition artifactSlot, bool assemble, ArtifactID assembleTo)=0;
++	virtual void assembleArtifacts(const ObjectInstanceID & heroID, ArtifactPosition artifactSlot, bool assemble, ArtifactID assembleTo)=0;
+ 	virtual void eraseArtifactByClient(const ArtifactLocation & al)=0;
+ 	virtual bool dismissCreature(const CArmedInstance *obj, SlotID stackPos)=0;
++	virtual void saveLocalState(const JsonNode & data)=0;
+ 	virtual void endTurn()=0;
+ 	virtual void buyArtifact(const CGHeroInstance *hero, ArtifactID aid)=0; //used to buy artifacts in towns (including spell book in the guild and war machines in blacksmith)
+ 	virtual void setFormation(const CGHeroInstance * hero, EArmyFormation mode)=0;
+@@ -123,7 +128,7 @@
+ 	std::optional<PlayerColor> player;
+ 
+ protected:
+-	int sendRequest(const CPackForServer * request); //returns requestID (that'll be matched to requestID in PackageApplied)
++	int sendRequest(const CPackForServer & request); //returns requestID (that'll be matched to requestID in PackageApplied)
+ 	CClient *cl;
+ 
+ public:
+@@ -176,20 +181,26 @@
+ 	int bulkMergeStacks(ObjectInstanceID armyId, SlotID srcSlot) override;
+ 	bool dismissHero(const CGHeroInstance * hero) override;
+ 	bool swapArtifacts(const ArtifactLocation &l1, const ArtifactLocation &l2) override;
+-	void assembleArtifacts(const CGHeroInstance * hero, ArtifactPosition artifactSlot, bool assemble, ArtifactID assembleTo) override;
++	void assembleArtifacts(const ObjectInstanceID & heroID, ArtifactPosition artifactSlot, bool assemble, ArtifactID assembleTo) override;
+ 	void bulkMoveArtifacts(ObjectInstanceID srcHero, ObjectInstanceID dstHero, bool swap, bool equipped = true, bool backpack = true) override;
+ 	void scrollBackpackArtifacts(ObjectInstanceID hero, bool left) override;
++	void sortBackpackArtifactsBySlot(const ObjectInstanceID hero) override;
++	void sortBackpackArtifactsByCost(const ObjectInstanceID hero) override;
++	void sortBackpackArtifactsByClass(const ObjectInstanceID hero) override;
+ 	void manageHeroCostume(ObjectInstanceID hero, size_t costumeIdx, bool saveCostume) override;
+ 	void eraseArtifactByClient(const ArtifactLocation & al) override;
+ 	bool buildBuilding(const CGTownInstance *town, BuildingID buildingID) override;
++	bool visitTownBuilding(const CGTownInstance *town, BuildingID buildingID) override;
+ 	void recruitCreatures(const CGDwelling * obj, const CArmedInstance * dst, CreatureID ID, ui32 amount, si32 level=-1) override;
+ 	bool dismissCreature(const CArmedInstance *obj, SlotID stackPos) override;
+ 	bool upgradeCreature(const CArmedInstance *obj, SlotID stackPos, CreatureID newID=CreatureID::NONE) override;
++	void saveLocalState(const JsonNode & data) override;
+ 	void endTurn() override;
++	void spellResearch(const CGTownInstance *town, SpellID spellAtSlot, bool accepted) override;
+ 	void swapGarrisonHero(const CGTownInstance *town) override;
+ 	void buyArtifact(const CGHeroInstance *hero, ArtifactID aid) override;
+-	void trade(const IMarket * market, EMarketMode mode, TradeItemSell id1, TradeItemBuy id2, ui32 val1, const CGHeroInstance * hero = nullptr) override;
+-	void trade(const IMarket * market, EMarketMode mode, const std::vector<TradeItemSell> & id1, const std::vector<TradeItemBuy> & id2, const std::vector<ui32> & val1, const CGHeroInstance * hero = nullptr) override;
++	void trade(const ObjectInstanceID marketId, EMarketMode mode, TradeItemSell id1, TradeItemBuy id2, ui32 val1, const CGHeroInstance * hero = nullptr) override;
++	void trade(const ObjectInstanceID marketId, EMarketMode mode, const std::vector<TradeItemSell> & id1, const std::vector<TradeItemBuy> & id2, const std::vector<ui32> & val1, const CGHeroInstance * hero = nullptr) override;
+ 	void setFormation(const CGHeroInstance * hero, EArmyFormation mode) override;
+ 	void recruitHero(const CGObjectInstance *townOrTavern, const CGHeroInstance *hero, const HeroTypeID & nextHero=HeroTypeID::NONE) override;
+ 	void save(const std::string &fname) override;
+
+--- vcmi-1.5.7/CCallback.cpp	2024-08-25 23:27:47.000000000 +0200
++++ vcmi/CCallback.cpp	2024-12-19 15:00:22.177118142 +0100
+@@ -17,33 +17,32 @@
+ #include "lib/mapping/CMap.h"
+ #include "lib/mapObjects/CGHeroInstance.h"
+ #include "lib/mapObjects/CGTownInstance.h"
+-#include "lib/CBuildingHandler.h"
+-#include "lib/CGeneralTextHandler.h"
+-#include "lib/CHeroHandler.h"
++#include "lib/texts/CGeneralTextHandler.h"
+ #include "lib/CArtHandler.h"
+ #include "lib/GameConstants.h"
+ #include "lib/CPlayerState.h"
+ #include "lib/UnlockGuard.h"
+ #include "lib/battle/BattleInfo.h"
+ #include "lib/networkPacks/PacksForServer.h"
++#include "lib/networkPacks/SaveLocalState.h"
+ 
+ bool CCallback::teleportHero(const CGHeroInstance *who, const CGTownInstance *where)
+ {
+ 	CastleTeleportHero pack(who->id, where->id, 1);
+-	sendRequest(&pack);
++	sendRequest(pack);
+ 	return true;
+ }
+ 
+ void CCallback::moveHero(const CGHeroInstance *h, const int3 & destination, bool transit)
+ {
+ 	MoveHero pack({destination}, h->id, transit);
+-	sendRequest(&pack);
++	sendRequest(pack);
+ }
+ 
+ void CCallback::moveHero(const CGHeroInstance *h, const std::vector<int3> & path, bool transit)
+ {
+ 	MoveHero pack(path, h->id, transit);
+-	sendRequest(&pack);
++	sendRequest(pack);
+ }
+ 
+ int CCallback::selectionMade(int selection, QueryID queryID)
+@@ -62,7 +61,7 @@
+ 
+ 	QueryReply pack(queryID, reply);
+ 	pack.player = *player;
+-	return sendRequest(&pack);
++	return sendRequest(pack);
+ }
+ 
+ void CCallback::recruitCreatures(const CGDwelling * obj, const CArmedInstance * dst, CreatureID ID, ui32 amount, si32 level)
+@@ -72,7 +71,7 @@
+ 		return;
+ 
+ 	RecruitCreatures pack(obj->id, dst->id, ID, amount, level);
+-	sendRequest(&pack);
++	sendRequest(pack);
+ }
+ 
+ bool CCallback::dismissCreature(const CArmedInstance *obj, SlotID stackPos)
+@@ -81,14 +80,14 @@
+ 		return false;
+ 
+ 	DisbandCreature pack(stackPos,obj->id);
+-	sendRequest(&pack);
++	sendRequest(pack);
+ 	return true;
+ }
+ 
+ bool CCallback::upgradeCreature(const CArmedInstance *obj, SlotID stackPos, CreatureID newID)
+ {
+ 	UpgradeCreature pack(stackPos,obj->id,newID);
+-	sendRequest(&pack);
++	sendRequest(pack);
+ 	return false;
+ }
+ 
+@@ -96,54 +95,54 @@
+ {
+ 	logGlobal->trace("Player %d ended his turn.", player->getNum());
+ 	EndTurn pack;
+-	sendRequest(&pack);
++	sendRequest(pack);
+ }
+ int CCallback::swapCreatures(const CArmedInstance *s1, const CArmedInstance *s2, SlotID p1, SlotID p2)
+ {
+ 	ArrangeStacks pack(1,p1,p2,s1->id,s2->id,0);
+-	sendRequest(&pack);
++	sendRequest(pack);
+ 	return 0;
+ }
+ 
+ int CCallback::mergeStacks(const CArmedInstance *s1, const CArmedInstance *s2, SlotID p1, SlotID p2)
+ {
+ 	ArrangeStacks pack(2,p1,p2,s1->id,s2->id,0);
+-	sendRequest(&pack);
++	sendRequest(pack);
+ 	return 0;
+ }
+ 
+ int CCallback::splitStack(const CArmedInstance *s1, const CArmedInstance *s2, SlotID p1, SlotID p2, int val)
+ {
+ 	ArrangeStacks pack(3,p1,p2,s1->id,s2->id,val);
+-	sendRequest(&pack);
++	sendRequest(pack);
+ 	return 0;
+ }
+ 
+ int CCallback::bulkMoveArmy(ObjectInstanceID srcArmy, ObjectInstanceID destArmy, SlotID srcSlot)
+ {
+ 	BulkMoveArmy pack(srcArmy, destArmy, srcSlot);
+-	sendRequest(&pack);
++	sendRequest(pack);
+ 	return 0;
+ }
+ 
+ int CCallback::bulkSplitStack(ObjectInstanceID armyId, SlotID srcSlot, int howMany)
+ {
+ 	BulkSplitStack pack(armyId, srcSlot, howMany);
+-	sendRequest(&pack);
++	sendRequest(pack);
+ 	return 0;
+ }
+ 
+ int CCallback::bulkSmartSplitStack(ObjectInstanceID armyId, SlotID srcSlot)
+ {
+ 	BulkSmartSplitStack pack(armyId, srcSlot);
+-	sendRequest(&pack);
++	sendRequest(pack);
+ 	return 0;
+ }
+ 
+ int CCallback::bulkMergeStacks(ObjectInstanceID armyId, SlotID srcSlot)
+ {
+ 	BulkMergeStacks pack(armyId, srcSlot);
+-	sendRequest(&pack);
++	sendRequest(pack);
+ 	return 0;
+ }
+ 
+@@ -152,7 +151,7 @@
+ 	if(player!=hero->tempOwner) return false;
+ 
+ 	DismissHero pack(hero->id);
+-	sendRequest(&pack);
++	sendRequest(pack);
+ 	return true;
+ }
+ 
+@@ -161,7 +160,7 @@
+ 	ExchangeArtifacts ea;
+ 	ea.src = l1;
+ 	ea.dst = l2;
+-	sendRequest(&ea);
++	sendRequest(ea);
+ 	return true;
+ }
+ 
+@@ -173,16 +172,16 @@
+  * @param assembleTo If assemble is true, this represents the artifact ID of the combination
+  * artifact to assemble to. Otherwise it's not used.
+  */
+-void CCallback::assembleArtifacts(const CGHeroInstance * hero, ArtifactPosition artifactSlot, bool assemble, ArtifactID assembleTo)
++void CCallback::assembleArtifacts(const ObjectInstanceID & heroID, ArtifactPosition artifactSlot, bool assemble, ArtifactID assembleTo)
+ {
+-	AssembleArtifacts aa(hero->id, artifactSlot, assemble, assembleTo);
+-	sendRequest(&aa);
++	AssembleArtifacts aa(heroID, artifactSlot, assemble, assembleTo);
++	sendRequest(aa);
+ }
+ 
+ void CCallback::bulkMoveArtifacts(ObjectInstanceID srcHero, ObjectInstanceID dstHero, bool swap, bool equipped, bool backpack)
+ {
+ 	BulkExchangeArtifacts bma(srcHero, dstHero, swap, equipped, backpack);
+-	sendRequest(&bma);
++	sendRequest(bma);
+ }
+ 
+ void CCallback::scrollBackpackArtifacts(ObjectInstanceID hero, bool left)
+@@ -190,19 +189,37 @@
+ 	ManageBackpackArtifacts mba(hero, ManageBackpackArtifacts::ManageCmd::SCROLL_RIGHT);
+ 	if(left)
+ 		mba.cmd = ManageBackpackArtifacts::ManageCmd::SCROLL_LEFT;
+-	sendRequest(&mba);
++	sendRequest(mba);
++}
++
++void CCallback::sortBackpackArtifactsBySlot(const ObjectInstanceID hero)
++{
++	ManageBackpackArtifacts mba(hero, ManageBackpackArtifacts::ManageCmd::SORT_BY_SLOT);
++	sendRequest(mba);
++}
++
++void CCallback::sortBackpackArtifactsByCost(const ObjectInstanceID hero)
++{
++	ManageBackpackArtifacts mba(hero, ManageBackpackArtifacts::ManageCmd::SORT_BY_COST);
++	sendRequest(mba);
++}
++
++void CCallback::sortBackpackArtifactsByClass(const ObjectInstanceID hero)
++{
++	ManageBackpackArtifacts mba(hero, ManageBackpackArtifacts::ManageCmd::SORT_BY_CLASS);
++	sendRequest(mba);
+ }
+ 
+ void CCallback::manageHeroCostume(ObjectInstanceID hero, size_t costumeIndex, bool saveCostume)
+ {
+ 	ManageEquippedArtifacts mea(hero, costumeIndex, saveCostume);
+-	sendRequest(&mea);
++	sendRequest(mea);
+ }
+ 
+ void CCallback::eraseArtifactByClient(const ArtifactLocation & al)
+ {
+ 	EraseArtifactByClient ea(al);
+-	sendRequest(&ea);
++	sendRequest(ea);
+ }
+ 
+ bool CCallback::buildBuilding(const CGTownInstance *town, BuildingID buildingID)
+@@ -214,7 +231,17 @@
+ 		return false;
+ 
+ 	BuildStructure pack(town->id,buildingID);
+-	sendRequest(&pack);
++	sendRequest(pack);
++	return true;
++}
++
++bool CCallback::visitTownBuilding(const CGTownInstance *town, BuildingID buildingID)
++{
++	if(town->tempOwner!=player)
++		return false;
++
++	VisitTownBuilding pack(town->id, buildingID);
++	sendRequest(pack);
+ 	return true;
+ }
+ 
+@@ -223,10 +250,10 @@
+ 	assert(action.actionType == EActionType::HERO_SPELL);
+ 	MakeAction mca(action);
+ 	mca.battleID = battleID;
+-	sendRequest(&mca);
++	sendRequest(mca);
+ }
+ 
+-int CBattleCallback::sendRequest(const CPackForServer * request)
++int CBattleCallback::sendRequest(const CPackForServer & request)
+ {
+ 	int requestID = cl->sendRequest(request, *getPlayerID());
+ 	if(waitTillRealize)
+@@ -240,12 +267,18 @@
+ 	return requestID;
+ }
+ 
++void CCallback::spellResearch( const CGTownInstance *town, SpellID spellAtSlot, bool accepted )
++{
++	SpellResearch pack(town->id, spellAtSlot, accepted);
++	sendRequest(pack);
++}
++
+ void CCallback::swapGarrisonHero( const CGTownInstance *town )
+ {
+ 	if(town->tempOwner == *player || (town->garrisonHero && town->garrisonHero->tempOwner == *player ))
+ 	{
+ 		GarrisonHeroSwap pack(town->id);
+-		sendRequest(&pack);
++		sendRequest(pack);
+ 	}
+ }
+ 
+@@ -254,30 +287,30 @@
+ 	if(hero->tempOwner != *player) return;
+ 
+ 	BuyArtifact pack(hero->id,aid);
+-	sendRequest(&pack);
++	sendRequest(pack);
+ }
+ 
+-void CCallback::trade(const IMarket * market, EMarketMode mode, TradeItemSell id1, TradeItemBuy id2, ui32 val1, const CGHeroInstance * hero)
++void CCallback::trade(const ObjectInstanceID marketId, EMarketMode mode, TradeItemSell id1, TradeItemBuy id2, ui32 val1, const CGHeroInstance * hero)
+ {
+-	trade(market, mode, std::vector(1, id1), std::vector(1, id2), std::vector(1, val1), hero);
++	trade(marketId, mode, std::vector(1, id1), std::vector(1, id2), std::vector(1, val1), hero);
+ }
+ 
+-void CCallback::trade(const IMarket * market, EMarketMode mode, const std::vector<TradeItemSell> & id1, const std::vector<TradeItemBuy> & id2, const std::vector<ui32> & val1, const CGHeroInstance * hero)
++void CCallback::trade(const ObjectInstanceID marketId, EMarketMode mode, const std::vector<TradeItemSell> & id1, const std::vector<TradeItemBuy> & id2, const std::vector<ui32> & val1, const CGHeroInstance * hero)
+ {
+ 	TradeOnMarketplace pack;
+-	pack.marketId = dynamic_cast<const CGObjectInstance *>(market)->id;
++	pack.marketId = marketId;
+ 	pack.heroId = hero ? hero->id : ObjectInstanceID();
+ 	pack.mode = mode;
+ 	pack.r1 = id1;
+ 	pack.r2 = id2;
+ 	pack.val = val1;
+-	sendRequest(&pack);
++	sendRequest(pack);
+ }
+ 
+ void CCallback::setFormation(const CGHeroInstance * hero, EArmyFormation mode)
+ {
+ 	SetFormation pack(hero->id, mode);
+-	sendRequest(&pack);
++	sendRequest(pack);
+ }
+ 
+ void CCallback::recruitHero(const CGObjectInstance *townOrTavern, const CGHeroInstance *hero, const HeroTypeID & nextHero)
+@@ -285,9 +318,18 @@
+ 	assert(townOrTavern);
+ 	assert(hero);
+ 
+-	HireHero pack(hero->getHeroType(), townOrTavern->id, nextHero);
++	HireHero pack(hero->getHeroTypeID(), townOrTavern->id, nextHero);
+ 	pack.player = *player;
+-	sendRequest(&pack);
++	sendRequest(pack);
++}
++
++void CCallback::saveLocalState(const JsonNode & data)
++{
++	SaveLocalState state;
++	state.data = data;
++	state.player = *player;
++
++	sendRequest(state);
+ }
+ 
+ void CCallback::save( const std::string &fname )
+@@ -301,7 +343,7 @@
+ 	{
+ 		GamePause pack;
+ 		pack.player = *player;
+-		sendRequest(&pack);
++		sendRequest(pack);
+ 	}
+ 	else
+ 	{
+@@ -315,14 +357,14 @@
+ 	PlayerMessage pm(mess, currentObject? currentObject->id : ObjectInstanceID(-1));
+ 	if(player)
+ 		pm.player = *player;
+-	sendRequest(&pm);
++	sendRequest(pm);
+ }
+ 
+ void CCallback::buildBoat( const IShipyard *obj )
+ {
+ 	BuildBoat bb;
+ 	bb.objid = dynamic_cast<const CGObjectInstance*>(obj)->id;
+-	sendRequest(&bb);
++	sendRequest(bb);
+ }
+ 
+ CCallback::CCallback(CGameState * GS, std::optional<PlayerColor> Player, CClient * C)
+@@ -364,7 +406,7 @@
+ {
+ 	DigWithHero dwh;
+ 	dwh.id = hero->id;
+-	sendRequest(&dwh);
++	sendRequest(dwh);
+ }
+ 
+ void CCallback::castSpell(const CGHeroInstance *hero, SpellID spellID, const int3 &pos)
+@@ -373,7 +415,7 @@
+ 	cas.hid = hero->id;
+ 	cas.sid = spellID;
+ 	cas.pos = pos;
+-	sendRequest(&cas);
++	sendRequest(cas);
+ }
+ 
+ int CCallback::mergeOrSwapStacks(const CArmedInstance *s1, const CArmedInstance *s2, SlotID p1, SlotID p2)
+@@ -406,7 +448,7 @@
+ 	MakeAction ma;
+ 	ma.ba = action;
+ 	ma.battleID = battleID;
+-	sendRequest(&ma);
++	sendRequest(ma);
+ }
+ 
+ void CBattleCallback::battleMakeTacticAction(const BattleID & battleID, const BattleAction & action )
+@@ -415,7 +457,7 @@
+ 	MakeAction ma;
+ 	ma.ba = action;
+ 	ma.battleID = battleID;
+-	sendRequest(&ma);
++	sendRequest(ma);
+ }
+ 
+ std::optional<BattleAction> CBattleCallback::makeSurrenderRetreatDecision(const BattleID & battleID, const BattleStateInfoForRetreat & battleState)
+
+--- vcmi-1.5.7/CMakeLists.txt	2024-08-25 23:27:47.000000000 +0200
++++ vcmi/CMakeLists.txt	2024-12-19 15:00:22.180118266 +0100
+@@ -1,6 +1,6 @@
+ # Minimum required version greatly affect CMake behavior
+ # So cmake_minimum_required must be called before the project()
+-# 3.16.0 is used since it's used by our currently oldest suppored system: Ubuntu-20.04
++# 3.16.0 is used since it's used by our currently oldest supported system: Ubuntu-20.04
+ cmake_minimum_required(VERSION 3.16.0)
+ 
+ project(VCMI)
+@@ -180,11 +180,6 @@
+ 	add_definitions(-DVCMI_NO_EXTRA_VERSION)
+ endif(ENABLE_GITVERSION)
+ 
+-# Precompiled header configuration
+-if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU" AND CMAKE_CXX_COMPILER_VERSION VERSION_LESS 6.0 )
+-	set(ENABLE_PCH OFF) # broken
+-endif()
+-
+ if(ENABLE_PCH)
+ 	macro(enable_pch name)
+ 		target_precompile_headers(${name} PRIVATE $<$<COMPILE_LANGUAGE:CXX>:<StdInc.h$<ANGLE-R>>)
+@@ -328,7 +323,6 @@
+ 		set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /wd4244") # 4244: conversion from 'xxx' to 'yyy', possible loss of data
+ 		set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /wd4267") # 4267: conversion from 'xxx' to 'yyy', possible loss of data
+ 		set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /wd4275") # 4275: non dll-interface class 'xxx' used as base for dll-interface class
+-		#set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /wd4800") # 4800: implicit conversion from 'xxx' to bool. Possible information loss
+ 
+ 		if(ENABLE_STRICT_COMPILATION)
+ 			set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /WX") # Treats all compiler warnings as errors
+@@ -361,13 +355,6 @@
+ 		if(ICONV_FOUND)
+ 			set(SYSTEM_LIBS ${SYSTEM_LIBS} iconv)
+ 		endif()
+-
+-		# Prevent compiler issues when building Debug
+-		# Assembler might fail with "too many sections"
+-		# With big-obj or 64-bit build will take hours
+-		if(CMAKE_BUILD_TYPE STREQUAL "Debug")
+-			set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Og")
+-		endif()
+ 	endif(MINGW)
+ endif(MINGW OR MSVC)
+ 
+@@ -403,7 +390,10 @@
+ 	if(CMAKE_BUILD_TYPE STREQUAL "Debug")
+ 		if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU" AND NOT WIN32)
+ 			# For gcc 14+ we can use -fhardened instead
+-			set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -D_GLIBCXX_ASSERTIONS -fstack-protector-strong -fstack-clash-protection -fcf-protection=full")
++			set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -D_GLIBCXX_ASSERTIONS -fstack-protector-strong -fstack-clash-protection")
++			if (CMAKE_SYSTEM_PROCESSOR STREQUAL "AMD64" OR CMAKE_SYSTEM_PROCESSOR STREQUAL "x86_64")
++				set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fcf-protection=full")
++			endif()
+ 		endif()
+ 	endif()
+ 
+@@ -483,25 +473,30 @@
+ endif()
+ 
+ if (ENABLE_CLIENT)
+-	set(FFMPEG_COMPONENTS avutil swscale avformat avcodec)
+-	if(APPLE_IOS AND NOT USING_CONAN)
+-		list(APPEND FFMPEG_COMPONENTS swresample)
+-	endif()
+-	find_package(ffmpeg COMPONENTS ${FFMPEG_COMPONENTS})
++	find_package(ffmpeg COMPONENTS avutil swscale avformat avcodec swresample)
+ 
+ 	find_package(SDL2 REQUIRED)
+ 	find_package(SDL2_image REQUIRED)
+ 	if(TARGET SDL2_image::SDL2_image)
+ 		add_library(SDL2::Image ALIAS SDL2_image::SDL2_image)
+ 	endif()
++	if(TARGET SDL2_image::SDL2_image-static)
++		add_library(SDL2::Image ALIAS SDL2_image::SDL2_image-static)
++	endif()
+ 	find_package(SDL2_mixer REQUIRED)
+ 	if(TARGET SDL2_mixer::SDL2_mixer)
+ 		add_library(SDL2::Mixer ALIAS SDL2_mixer::SDL2_mixer)
+ 	endif()
++	if(TARGET SDL2_mixer::SDL2_mixer-static)
++		add_library(SDL2::Mixer ALIAS SDL2_mixer::SDL2_mixer-static)
++	endif()
+ 	find_package(SDL2_ttf REQUIRED)
+ 	if(TARGET SDL2_ttf::SDL2_ttf)
+ 		add_library(SDL2::TTF ALIAS SDL2_ttf::SDL2_ttf)
+ 	endif()
++	if(TARGET SDL2_ttf::SDL2_ttf-static)
++		add_library(SDL2::TTF ALIAS SDL2_ttf::SDL2_ttf-static)
++	endif()
+ endif()
+ 
+ if(ENABLE_LOBBY)
+@@ -519,7 +514,7 @@
+ 	endif()
+ endif()
+ 
+-if(ENABLE_CLIENT)
++if(NOT ENABLE_MINIMAL_LIB)
+ 	find_package(TBB REQUIRED)
+ endif()
+ 
+@@ -663,6 +658,10 @@
+ 	add_library(minizip::minizip ALIAS minizip)
+ endif()
+ 
++if(ENABLE_LAUNCHER OR ENABLE_EDITOR)
++	add_subdirectory(vcmiqt)
++endif()
++
+ if(ENABLE_LAUNCHER)
+ 	add_subdirectory(launcher)
+ endif()
+@@ -677,6 +676,7 @@
+ 
+ if (ENABLE_CLIENT)
+ 	add_subdirectory(client)
++	add_subdirectory(clientapp)
+ endif()
+ 
+ if(ENABLE_SERVER)
+@@ -722,6 +722,10 @@
+ 
+ 
+ if(WIN32)
++	if(TBB_FOUND AND MSVC)
++		install_vcpkg_imported_tgt(TBB::tbb)
++	endif()
++
+ 	if(USING_CONAN)
+ 		#Conan imports enabled
+ 		vcmi_install_conan_deps("\${CMAKE_INSTALL_PREFIX}")
+@@ -729,7 +733,9 @@
+ 				${dep_files}
+ 				"${CMAKE_SYSROOT}/bin/*.dll" 
+ 				"${CMAKE_SYSROOT}/lib/*.dll" 
+-				"${CONAN_SYSTEM_LIBRARY_LOCATION}/*.dll")
++				"${CONAN_SYSTEM_LIBRARY_LOCATION}/libgcc_s_dw2-1.dll" # for 32-bit only?
++				"${CONAN_SYSTEM_LIBRARY_LOCATION}/libgcc_s_seh-1.dll" # for 64-bit only?
++				"${CONAN_SYSTEM_LIBRARY_LOCATION}/libstdc++-6.dll")
+ 	else()
+ 		file(GLOB dep_files
+ 				${dep_files}
+@@ -839,10 +845,10 @@
+ 	endif()
+ 	# set the install/unistall icon used for the installer itself
+ 	# There is a bug in NSI that does not handle full unix paths properly.
+-	set(CPACK_NSIS_MUI_ICON "${CMAKE_CURRENT_SOURCE_DIR}/client\\\\vcmi.ico")
+-	set(CPACK_NSIS_MUI_UNIICON "${CMAKE_CURRENT_SOURCE_DIR}/client\\\\vcmi.ico")
++	set(CPACK_NSIS_MUI_ICON "${CMAKE_CURRENT_SOURCE_DIR}/clientapp/icons\\\\vcmi.ico")
++	set(CPACK_NSIS_MUI_UNIICON "${CMAKE_CURRENT_SOURCE_DIR}/clientapp/icons\\\\vcmi.ico")
+ 	# set the package header icon for MUI
+-	set(CPACK_PACKAGE_ICON "${CMAKE_SOURCE_DIR}/client\\\\vcmi.ico")
++	set(CPACK_PACKAGE_ICON "${CMAKE_SOURCE_DIR}/clientapp/icons\\\\vcmi.ico")
+ 
+ 	set(CPACK_NSIS_MENU_LINKS "http://vcmi.eu/" "VCMI Web Site")
+ 

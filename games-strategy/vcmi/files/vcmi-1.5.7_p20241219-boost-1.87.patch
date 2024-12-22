@@ -1,0 +1,42 @@
+From 1517dcca6cbfe4ac01c5defa4f7d8b1544d47663 Mon Sep 17 00:00:00 2001
+From: Laserlicht <13953785+Laserlicht@users.noreply.github.com>
+Date: Sat, 14 Dec 2024 22:26:26 +0100
+Subject: [PATCH] boost 1.87
+
+---
+ lib/network/NetworkConnection.cpp | 4 ++++
+ lib/network/NetworkDefines.h      | 4 ++++
+ 2 files changed, 8 insertions(+)
+
+diff --git a/lib/network/NetworkConnection.cpp b/lib/network/NetworkConnection.cpp
+index 73e1ed47b69..024a0214fdf 100644
+--- a/lib/network/NetworkConnection.cpp
++++ b/lib/network/NetworkConnection.cpp
+@@ -199,7 +199,11 @@ void NetworkConnection::close()
+ {
+ 	boost::system::error_code ec;
+ 	socket->close(ec);
++#if BOOST_VERSION >= 108700
++	timer->cancel();
++#else
+ 	timer->cancel(ec);
++#endif
+ 
+ 	//NOTE: ignoring error code, intended
+ }
+diff --git a/lib/network/NetworkDefines.h b/lib/network/NetworkDefines.h
+index 6b86ff23ac7..22e90e89994 100644
+--- a/lib/network/NetworkDefines.h
++++ b/lib/network/NetworkDefines.h
+@@ -15,7 +15,11 @@
+ 
+ VCMI_LIB_NAMESPACE_BEGIN
+ 
++#if BOOST_VERSION >= 108700
++using NetworkContext = boost::asio::io_context;
++#else
+ using NetworkContext = boost::asio::io_service;
++#endif
+ using NetworkSocket = boost::asio::ip::tcp::socket;
+ using NetworkAcceptor = boost::asio::ip::tcp::acceptor;
+ using NetworkBuffer = boost::asio::streambuf;

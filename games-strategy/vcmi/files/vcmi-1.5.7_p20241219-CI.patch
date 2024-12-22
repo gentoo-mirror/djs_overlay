@@ -1,0 +1,793 @@
+diff --color -urN vcmi-1.5.7/CI/android/before_install.sh vcmi/CI/android/before_install.sh
+--- vcmi-1.5.7/CI/android/before_install.sh	2024-08-25 23:27:47.000000000 +0200
++++ vcmi/CI/android/before_install.sh	1970-01-01 01:00:00.000000000 +0100
+@@ -1,9 +0,0 @@
+-#!/usr/bin/env bash
+-
+-echo "ANDROID_NDK_ROOT=$ANDROID_HOME/ndk/25.2.9519653" >> $GITHUB_ENV
+-
+-brew install ninja
+-
+-mkdir ~/.conan ; cd ~/.conan
+-curl -L "https://github.com/vcmi/vcmi-dependencies/releases/download/android-1.1/$DEPS_FILENAME.txz" \
+-	| tar -xf - --xz
+diff --color -urN vcmi-1.5.7/CI/android-32/before_install.sh vcmi/CI/android-32/before_install.sh
+--- vcmi-1.5.7/CI/android-32/before_install.sh	2024-08-25 23:27:47.000000000 +0200
++++ vcmi/CI/android-32/before_install.sh	1970-01-01 01:00:00.000000000 +0100
+@@ -1,4 +0,0 @@
+-#!/usr/bin/env bash
+-
+-DEPS_FILENAME=armeabi-v7a
+-. CI/android/before_install.sh
+diff --color -urN vcmi-1.5.7/CI/android-64/before_install.sh vcmi/CI/android-64/before_install.sh
+--- vcmi-1.5.7/CI/android-64/before_install.sh	2024-08-25 23:27:47.000000000 +0200
++++ vcmi/CI/android-64/before_install.sh	1970-01-01 01:00:00.000000000 +0100
+@@ -1,4 +0,0 @@
+-#!/usr/bin/env bash
+-
+-DEPS_FILENAME=aarch64-v8a
+-. CI/android/before_install.sh
+diff --color -urN vcmi-1.5.7/CI/before_install/android.sh vcmi/CI/before_install/android.sh
+--- vcmi-1.5.7/CI/before_install/android.sh	1970-01-01 01:00:00.000000000 +0100
++++ vcmi/CI/before_install/android.sh	2024-12-19 15:00:22.178118183 +0100
+@@ -0,0 +1,4 @@
++#!/bin/sh
++
++sudo apt-get update
++sudo apt-get install ninja-build
+diff --color -urN vcmi-1.5.7/CI/before_install/linux_qt5.sh vcmi/CI/before_install/linux_qt5.sh
+--- vcmi-1.5.7/CI/before_install/linux_qt5.sh	1970-01-01 01:00:00.000000000 +0100
++++ vcmi/CI/before_install/linux_qt5.sh	2024-12-19 15:00:22.178118183 +0100
+@@ -0,0 +1,13 @@
++#!/bin/sh
++
++sudo apt-get update
++
++# Dependencies
++# In case of change in dependencies list please also update:
++# - developer docs at docs/developer/Building_Linux.md
++# - debian build settings at debian/control
++sudo apt-get install libboost-dev libboost-filesystem-dev libboost-system-dev libboost-thread-dev libboost-program-options-dev libboost-locale-dev libboost-iostreams-dev \
++libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev libsdl2-ttf-dev \
++qtbase5-dev qttools5-dev \
++ninja-build zlib1g-dev libavformat-dev libswscale-dev libtbb-dev libluajit-5.1-dev \
++libminizip-dev libfuzzylite-dev libsqlite3-dev # Optional dependencies
+diff --color -urN vcmi-1.5.7/CI/before_install/linux_qt6.sh vcmi/CI/before_install/linux_qt6.sh
+--- vcmi-1.5.7/CI/before_install/linux_qt6.sh	1970-01-01 01:00:00.000000000 +0100
++++ vcmi/CI/before_install/linux_qt6.sh	2024-12-19 15:00:22.178118183 +0100
+@@ -0,0 +1,13 @@
++#!/bin/sh
++
++sudo apt-get update
++
++# Dependencies
++# In case of change in dependencies list please also update:
++# - developer docs at docs/developer/Building_Linux.md
++# - debian build settings at debian/control
++sudo apt-get install libboost-dev libboost-filesystem-dev libboost-system-dev libboost-thread-dev libboost-program-options-dev libboost-locale-dev libboost-iostreams-dev \
++libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev libsdl2-ttf-dev \
++qt6-base-dev qt6-base-dev-tools qt6-tools-dev qt6-tools-dev-tools qt6-l10n-tools \
++ninja-build zlib1g-dev libavformat-dev libswscale-dev libtbb-dev libluajit-5.1-dev \
++libminizip-dev libfuzzylite-dev libsqlite3-dev # Optional dependencies
+diff --color -urN vcmi-1.5.7/CI/before_install/macos.sh vcmi/CI/before_install/macos.sh
+--- vcmi-1.5.7/CI/before_install/macos.sh	1970-01-01 01:00:00.000000000 +0100
++++ vcmi/CI/before_install/macos.sh	2024-12-19 15:00:22.178118183 +0100
+@@ -0,0 +1,5 @@
++#!/usr/bin/env bash
++
++echo DEVELOPER_DIR=/Applications/Xcode_14.2.app >> $GITHUB_ENV
++
++brew install ninja
+diff --color -urN vcmi-1.5.7/CI/before_install/mingw.sh vcmi/CI/before_install/mingw.sh
+--- vcmi-1.5.7/CI/before_install/mingw.sh	1970-01-01 01:00:00.000000000 +0100
++++ vcmi/CI/before_install/mingw.sh	2024-12-19 15:00:22.178118183 +0100
+@@ -0,0 +1,7 @@
++#!/usr/bin/env bash
++
++sudo apt-get update
++sudo apt-get install ninja-build mingw-w64 nsis
++
++sudo update-alternatives --set i686-w64-mingw32-g++ /usr/bin/i686-w64-mingw32-g++-posix
++sudo update-alternatives --set x86_64-w64-mingw32-g++ /usr/bin/x86_64-w64-mingw32-g++-posix
+diff --color -urN vcmi-1.5.7/CI/before_install/msvc.sh vcmi/CI/before_install/msvc.sh
+--- vcmi-1.5.7/CI/before_install/msvc.sh	1970-01-01 01:00:00.000000000 +0100
++++ vcmi/CI/before_install/msvc.sh	2024-12-19 15:00:22.178118183 +0100
+@@ -0,0 +1,17 @@
++#!/usr/bin/env bash
++
++MSVC_INSTALL_PATH=$(vswhere -latest -property installationPath)
++echo "MSVC_INSTALL_PATH = $MSVC_INSTALL_PATH"
++echo "Installed toolset versions:"
++ls -vr "$MSVC_INSTALL_PATH/VC/Tools/MSVC"
++
++TOOLS_DIR=$(ls -vr "$MSVC_INSTALL_PATH/VC/Tools/MSVC/" | head -1)
++DUMPBIN_PATH="$MSVC_INSTALL_PATH/VC/Tools/MSVC/$TOOLS_DIR/bin/Hostx64/x64/dumpbin.exe"
++
++# This command should work as well, but for some reason it is *extremely* slow on the Github CI (~7 minutes)
++#DUMPBIN_PATH=$(vswhere -latest -find **/dumpbin.exe | head -n 1)
++
++echo "TOOLS_DIR = $TOOLS_DIR"
++echo "DUMPBIN_PATH = $DUMPBIN_PATH"
++
++dirname "$DUMPBIN_PATH" > "$GITHUB_PATH"
+diff --color -urN vcmi-1.5.7/CI/conan/base/cross-macro.j2 vcmi/CI/conan/base/cross-macro.j2
+--- vcmi-1.5.7/CI/conan/base/cross-macro.j2	2024-08-25 23:27:47.000000000 +0200
++++ vcmi/CI/conan/base/cross-macro.j2	2024-12-19 15:00:22.179118224 +0100
+@@ -10,7 +10,7 @@
+ {%- endmacro -%}
+ 
+ {% macro generate_env_win32(target_host) -%}
+-CONAN_SYSTEM_LIBRARY_LOCATION=/usr/lib/gcc/{{ target_host }}/10-posix/
++CONAN_SYSTEM_LIBRARY_LOCATION=/usr/lib/gcc/{{ target_host }}/13-posix/
+ RC={{ target_host }}-windres
+ {%- endmacro -%}
+ 
+diff --color -urN vcmi-1.5.7/CI/example.markdownlint-cli2.jsonc vcmi/CI/example.markdownlint-cli2.jsonc
+--- vcmi-1.5.7/CI/example.markdownlint-cli2.jsonc	1970-01-01 01:00:00.000000000 +0100
++++ vcmi/CI/example.markdownlint-cli2.jsonc	2024-12-19 15:00:22.179118224 +0100
+@@ -0,0 +1,278 @@
++{
++	"config" : {
++		"default" : true,
++
++		// MD001/heading-increment : Heading levels should only increment by one level at a time : https://github.com/DavidAnson/markdownlint/blob/v0.32.1/doc/md001.md
++		"MD001": false,
++
++		// MD003/heading-style : Heading style : https://github.com/DavidAnson/markdownlint/blob/v0.32.1/doc/md003.md
++		"MD003": {
++			"style": "atx"
++		},
++
++		// MD004/ul-style : Unordered list style : https://github.com/DavidAnson/markdownlint/blob/v0.32.1/doc/md004.md
++		"MD004": false,
++		// FIXME: enable and consider fixing
++		//{
++		//	"style": "consistent"
++		//},
++
++		// MD005/list-indent : Inconsistent indentation for list items at the same level : https://github.com/DavidAnson/markdownlint/blob/v0.32.1/doc/md005.md
++		"MD005": true,
++
++		// MD007/ul-indent : Unordered list indentation : https://github.com/DavidAnson/markdownlint/blob/v0.32.1/doc/md007.md
++		"MD007": {
++			// Spaces for indent
++			"indent": 2,
++			// Whether to indent the first level of the list
++			"start_indented": false,
++			// Spaces for first level indent (when start_indented is set)
++			"start_indent": 0
++		},
++
++		// MD009/no-trailing-spaces : Trailing spaces : https://github.com/DavidAnson/markdownlint/blob/v0.32.1/doc/md009.md
++		"MD009": {
++			// Spaces for line break
++			"br_spaces": 2,
++			// Allow spaces for empty lines in list items
++			"list_item_empty_lines": false,
++			// Include unnecessary breaks
++			"strict": false
++		},
++
++		// MD010/no-hard-tabs : Hard tabs : https://github.com/DavidAnson/markdownlint/blob/v0.32.1/doc/md010.md
++		"MD010": {
++			// Include code blocks
++			"code_blocks": false,
++			// Fenced code languages to ignore
++			"ignore_code_languages": [],
++			// Number of spaces for each hard tab
++			"spaces_per_tab": 4
++		},
++		
++		// MD011/no-reversed-links : Reversed link syntax : https://github.com/DavidAnson/markdownlint/blob/v0.32.1/doc/md011.md
++		"MD011": true,
++		
++		// MD012/no-multiple-blanks : Multiple consecutive blank lines : https://github.com/DavidAnson/markdownlint/blob/v0.32.1/doc/md012.md
++		"MD012": {
++			// Consecutive blank lines
++			"maximum": 1
++		},
++
++		// MD013/line-length : Line length : https://github.com/DavidAnson/markdownlint/blob/v0.32.1/doc/md013.md
++		"MD013": false,
++		
++		// MD014/commands-show-output : Dollar signs used before commands without showing output : https://github.com/DavidAnson/markdownlint/blob/v0.32.1/doc/md014.md
++		"MD014": true,
++
++		// MD018/no-missing-space-atx : No space after hash on atx style heading : https://github.com/DavidAnson/markdownlint/blob/v0.32.1/doc/md018.md
++		"MD018": true,
++
++		// MD019/no-multiple-space-atx : Multiple spaces after hash on atx style heading : https://github.com/DavidAnson/markdownlint/blob/v0.32.1/doc/md019.md
++		"MD019": true,
++
++		// MD020/no-missing-space-closed-atx : No space inside hashes on closed atx style heading : https://github.com/DavidAnson/markdownlint/blob/v0.32.1/doc/md020.md
++		"MD020": true,
++
++		// MD021/no-multiple-space-closed-atx : Multiple spaces inside hashes on closed atx style heading : https://github.com/DavidAnson/markdownlint/blob/v0.32.1/doc/md021.md
++		"MD021": true,
++
++		// MD022/blanks-around-headings : Headings should be surrounded by blank lines : https://github.com/DavidAnson/markdownlint/blob/v0.32.1/doc/md022.md
++		"MD022": {
++			// Blank lines above heading
++			"lines_above": 1,
++			// Blank lines below heading
++			"lines_below": 1
++		},
++
++		// MD023/heading-start-left : Headings must start at the beginning of the line : https://github.com/DavidAnson/markdownlint/blob/v0.32.1/doc/md023.md
++		"MD023": true,
++
++		// MD024/no-duplicate-heading : Multiple headings with the same content : https://github.com/DavidAnson/markdownlint/blob/v0.32.1/doc/md024.md
++		"MD024": false,
++		// FIXME: false positives?
++		//{
++		//	// Only check sibling headings
++		//	"allow_different_nesting": true,
++		//	// Only check sibling headings
++		//	"siblings_only": true
++		//},
++
++		// MD025/single-title/single-h1 : Multiple top-level headings in the same document : https://github.com/DavidAnson/markdownlint/blob/v0.32.1/doc/md025.md
++		"MD025": {
++			// Heading level
++			"level": 1,
++			// RegExp for matching title in front matter
++			"front_matter_title": "^\\s*title\\s*[:=]"
++		},
++
++		// MD026/no-trailing-punctuation : Trailing punctuation in heading : https://github.com/DavidAnson/markdownlint/blob/v0.32.1/doc/md026.md
++		"MD026": {
++			// Punctuation characters
++			"punctuation": ".,;:!。，；：！"
++		},
++
++		// MD027/no-multiple-space-blockquote : Multiple spaces after blockquote symbol : https://github.com/DavidAnson/markdownlint/blob/v0.32.1/doc/md027.md
++		"MD027": true,
++
++		// MD028/no-blanks-blockquote : Blank line inside blockquote : https://github.com/DavidAnson/markdownlint/blob/v0.32.1/doc/md028.md
++		"MD028": true,
++
++		// MD029/ol-prefix : Ordered list item prefix : https://github.com/DavidAnson/markdownlint/blob/v0.32.1/doc/md029.md
++		"MD029": false,
++		// FIXME: false positives or broken formatting
++		//{
++		//	// List style
++		//	"style": "ordered"
++		//},
++
++		// MD030/list-marker-space : Spaces after list markers : https://github.com/DavidAnson/markdownlint/blob/v0.32.1/doc/md030.md
++		"MD030": {
++			// Spaces for single-line unordered list items
++			"ul_single": 1,
++			// Spaces for single-line ordered list items
++			"ol_single": 1,
++			// Spaces for multi-line unordered list items
++			"ul_multi": 1,
++			// Spaces for multi-line ordered list items
++			"ol_multi": 1
++		},
++
++		// MD031/blanks-around-fences : Fenced code blocks should be surrounded by blank lines : https://github.com/DavidAnson/markdownlint/blob/v0.32.1/doc/md031.md
++		"MD031": {
++			// Include list items
++			"list_items": false
++		},
++
++		// MD032/blanks-around-lists : Lists should be surrounded by blank lines : https://github.com/DavidAnson/markdownlint/blob/v0.32.1/doc/md032.md
++		"MD032": true,
++
++		// MD033/no-inline-html : Inline HTML : https://github.com/DavidAnson/markdownlint/blob/v0.32.1/doc/md033.md
++		"MD033": false,
++		// FIXME: enable and consider fixing
++		//{
++		//	// Allowed elements
++		//	"allowed_elements": []
++		//},
++
++		// MD034/no-bare-urls : Bare URL used : https://github.com/DavidAnson/markdownlint/blob/v0.32.1/doc/md034.md
++		"MD034": true,
++
++		// MD035/hr-style : Horizontal rule style : https://github.com/DavidAnson/markdownlint/blob/v0.32.1/doc/md035.md
++		"MD035": {
++			// Horizontal rule style
++			"style": "consistent"
++		},
++
++		// MD036/no-emphasis-as-heading : Emphasis used instead of a heading : https://github.com/DavidAnson/markdownlint/blob/v0.32.1/doc/md036.md
++		"MD036": false,
++		// FIXME: enable and consider fixing
++		// {
++		// 	// Punctuation characters
++		// 	"punctuation": ".,;:!?。，；：！？"
++		// },
++
++		// MD037/no-space-in-emphasis : Spaces inside emphasis markers : https://github.com/DavidAnson/markdownlint/blob/v0.32.1/doc/md037.md
++		"MD037": true,
++
++		// MD038/no-space-in-code : Spaces inside code span elements : https://github.com/DavidAnson/markdownlint/blob/v0.32.1/doc/md038.md
++		"MD038": true,
++
++		// MD039/no-space-in-links : Spaces inside link text : https://github.com/DavidAnson/markdownlint/blob/v0.32.1/doc/md039.md
++		"MD039": true,
++
++		// MD040/fenced-code-language : Fenced code blocks should have a language specified : https://github.com/DavidAnson/markdownlint/blob/v0.32.1/doc/md040.md
++		"MD040": {
++		// List of languages
++			"allowed_languages": [ "cpp", "json", "sh", "text", "nix", "powershell", "lua" ],
++		// Require language only
++			"language_only": true
++		},
++
++		// MD041/first-line-heading/first-line-h1 : First line in a file should be a top-level heading : https://github.com/DavidAnson/markdownlint/blob/v0.32.1/doc/md041.md
++		"MD041": {
++			// Heading level
++			"level": 1,
++			// RegExp for matching title in front matter
++			"front_matter_title": "^\\s*title\\s*[:=]"
++		},
++
++		// MD042/no-empty-links : No empty links : https://github.com/DavidAnson/markdownlint/blob/v0.32.1/doc/md042.md
++		"MD042": true,
++
++		// MD043/required-headings : Required heading structure : https://github.com/DavidAnson/markdownlint/blob/v0.32.1/doc/md043.md
++		"MD043": false,
++
++		// MD044/proper-names : Proper names should have the correct capitalization : https://github.com/DavidAnson/markdownlint/blob/v0.32.1/doc/md044.md
++		"MD044": false,
++
++		// MD045/no-alt-text : Images should have alternate text (alt text) : https://github.com/DavidAnson/markdownlint/blob/v0.32.1/doc/md045.md
++		"MD045": false,
++
++		// MD046/code-block-style : Code block style : https://github.com/DavidAnson/markdownlint/blob/v0.32.1/doc/md046.md
++		"MD046": {
++			// Block style
++			"style": "fenced"
++		},
++
++		// MD047/single-trailing-newline : Files should end with a single newline character : https://github.com/DavidAnson/markdownlint/blob/v0.32.1/doc/md047.md
++		"MD047": true,
++		
++		// MD048/code-fence-style : Code fence style : https://github.com/DavidAnson/markdownlint/blob/v0.32.1/doc/md048.md
++		"MD048": {
++			// Code fence style
++			"style": "backtick"
++		},
++
++		// MD049/emphasis-style : Emphasis style : https://github.com/DavidAnson/markdownlint/blob/v0.32.1/doc/md049.md
++		"MD049": {
++			// Emphasis style
++			"style": "asterisk"
++		},
++
++		// MD050/strong-style : Strong style : https://github.com/DavidAnson/markdownlint/blob/v0.32.1/doc/md050.md
++		"MD050": {
++			// Strong style
++			"style": "asterisk"
++		},
++		
++
++
++		// MD051/link-fragments : Link fragments should be valid : https://github.com/DavidAnson/markdownlint/blob/v0.32.1/doc/md051.md
++		"MD051": true,
++
++		// MD052/reference-links-images : Reference links and images should use a label that is defined : https://github.com/DavidAnson/markdownlint/blob/v0.32.1/doc/md052.md
++		"MD052": {
++			// Include shortcut syntax
++			"shortcut_syntax": false
++		},
++
++		// MD053/link-image-reference-definitions : Link and image reference definitions should be needed : https://github.com/DavidAnson/markdownlint/blob/v0.32.1/doc/md053.md
++		"MD053": {
++			// Ignored definitions
++			"ignored_definitions": [
++			  "//"
++			]
++		},
++
++		// MD054/link-image-style : Link and image style : https://github.com/DavidAnson/markdownlint/blob/v0.32.1/doc/md054.md
++		"MD054": {
++			// Allow autolinks
++			"autolink": true,
++			// Allow inline links and images
++			"inline": true,
++			// Allow full reference links and images
++			"full": true,
++			// Allow collapsed reference links and images
++			"collapsed": true,
++			// Allow shortcut reference links and images
++			"shortcut": true,
++			// Allow URLs as inline links
++			"url_inline": true
++		},
++		
++		// MD058 - Tables should be surrounded by blank lines
++		"MD058" : true
++
++	}
++}
+\ No newline at end of file
+diff --color -urN vcmi-1.5.7/CI/install_conan_dependencies.sh vcmi/CI/install_conan_dependencies.sh
+--- vcmi-1.5.7/CI/install_conan_dependencies.sh	1970-01-01 01:00:00.000000000 +0100
++++ vcmi/CI/install_conan_dependencies.sh	2024-12-19 15:00:22.179118224 +0100
+@@ -0,0 +1,9 @@
++#!/usr/bin/env bash
++
++RELEASE_TAG="1.3"
++FILENAME="$1"
++DOWNLOAD_URL="https://github.com/vcmi/vcmi-dependencies/releases/download/$RELEASE_TAG/$FILENAME.txz"
++
++mkdir ~/.conan
++cd ~/.conan
++curl -L "$DOWNLOAD_URL" | tar -xf - --xz
+diff --color -urN vcmi-1.5.7/CI/install_vcpkg_dependencies.sh vcmi/CI/install_vcpkg_dependencies.sh
+--- vcmi-1.5.7/CI/install_vcpkg_dependencies.sh	1970-01-01 01:00:00.000000000 +0100
++++ vcmi/CI/install_vcpkg_dependencies.sh	2024-12-19 15:00:22.179118224 +0100
+@@ -0,0 +1,7 @@
++#!/usr/bin/env bash
++
++RELEASE_TAG="v1.8"
++FILENAME="dependencies-$1"
++DOWNLOAD_URL="https://github.com/vcmi/vcmi-deps-windows/releases/download/$RELEASE_TAG/$FILENAME.txz"
++
++curl -L "$DOWNLOAD_URL" | tar -xf - --xz
+diff --color -urN vcmi-1.5.7/CI/ios/before_install.sh vcmi/CI/ios/before_install.sh
+--- vcmi-1.5.7/CI/ios/before_install.sh	2024-08-25 23:27:47.000000000 +0200
++++ vcmi/CI/ios/before_install.sh	1970-01-01 01:00:00.000000000 +0100
+@@ -1,7 +0,0 @@
+-#!/usr/bin/env bash
+-
+-echo DEVELOPER_DIR=/Applications/Xcode_14.2.app >> $GITHUB_ENV
+-
+-mkdir ~/.conan ; cd ~/.conan
+-curl -L 'https://github.com/vcmi/vcmi-ios-deps/releases/download/1.2.1/ios-arm64.txz' \
+-	| tar -xf -
+diff --color -urN vcmi-1.5.7/CI/linux/before_install.sh vcmi/CI/linux/before_install.sh
+--- vcmi-1.5.7/CI/linux/before_install.sh	2024-08-25 23:27:47.000000000 +0200
++++ vcmi/CI/linux/before_install.sh	1970-01-01 01:00:00.000000000 +0100
+@@ -1,14 +0,0 @@
+-#!/bin/sh
+-
+-sudo apt remove needrestart
+-sudo apt-get update
+-
+-# Dependencies
+-# In case of change in dependencies list please also update:
+-# - developer docs at docs/developer/Building_Linux.md
+-# - debian build settings at debian/control
+-sudo apt-get install libboost-dev libboost-filesystem-dev libboost-system-dev libboost-thread-dev libboost-program-options-dev libboost-locale-dev libboost-iostreams-dev \
+-libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev libsdl2-ttf-dev \
+-qtbase5-dev \
+-ninja-build zlib1g-dev libavformat-dev libswscale-dev libtbb-dev libluajit-5.1-dev \
+-libminizip-dev libfuzzylite-dev qttools5-dev libsqlite3-dev # Optional dependencies
+diff --color -urN vcmi-1.5.7/CI/linux/upload_package.sh vcmi/CI/linux/upload_package.sh
+--- vcmi-1.5.7/CI/linux/upload_package.sh	2024-08-25 23:27:47.000000000 +0200
++++ vcmi/CI/linux/upload_package.sh	1970-01-01 01:00:00.000000000 +0100
+@@ -1 +0,0 @@
+-#!/bin/sh
+diff --color -urN vcmi-1.5.7/CI/linux-qt6/before_install.sh vcmi/CI/linux-qt6/before_install.sh
+--- vcmi-1.5.7/CI/linux-qt6/before_install.sh	2024-08-25 23:27:47.000000000 +0200
++++ vcmi/CI/linux-qt6/before_install.sh	1970-01-01 01:00:00.000000000 +0100
+@@ -1,11 +0,0 @@
+-#!/bin/sh
+-
+-sudo apt remove needrestart
+-sudo apt-get update
+-
+-# Dependencies
+-sudo apt-get install libboost-dev libboost-filesystem-dev libboost-system-dev libboost-thread-dev libboost-program-options-dev libboost-locale-dev libboost-iostreams-dev \
+-libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev libsdl2-ttf-dev \
+-qt6-base-dev qt6-base-dev-tools qt6-tools-dev qt6-tools-dev-tools qt6-l10n-tools \
+-ninja-build zlib1g-dev libavformat-dev libswscale-dev libtbb-dev libluajit-5.1-dev \
+-libminizip-dev libfuzzylite-dev libsqlite3-dev # Optional dependencies
+diff --color -urN vcmi-1.5.7/CI/linux-qt6/upload_package.sh vcmi/CI/linux-qt6/upload_package.sh
+--- vcmi-1.5.7/CI/linux-qt6/upload_package.sh	2024-08-25 23:27:47.000000000 +0200
++++ vcmi/CI/linux-qt6/upload_package.sh	1970-01-01 01:00:00.000000000 +0100
+@@ -1 +0,0 @@
+-#!/bin/sh
+diff --color -urN vcmi-1.5.7/CI/linux-qt6/validate_json.py vcmi/CI/linux-qt6/validate_json.py
+--- vcmi-1.5.7/CI/linux-qt6/validate_json.py	2024-08-25 23:27:47.000000000 +0200
++++ vcmi/CI/linux-qt6/validate_json.py	1970-01-01 01:00:00.000000000 +0100
+@@ -1,28 +0,0 @@
+-#!/usr/bin/env python3
+-
+-import re
+-import sys
+-from pathlib import Path
+-from pprint import pprint
+-
+-# VCMI supports JSON with comments, but not JSON5
+-import jstyleson 
+-
+-validation_failed = False
+-
+-for path in sorted(Path(".").glob("**/*.json"), key=lambda path: str(path).lower()):
+-    # because path is an object and not a string
+-    path_str = str(path)
+-    if path_str.startswith("."):
+-        continue
+-
+-    try:
+-        with open(path_str, "r") as file:
+-            jstyleson.load(file)
+-        print(f"✅ {path_str}")
+-    except Exception as exc:
+-        print(f"❌ {path_str}: {exc}")
+-        validation_failed = True
+-
+-if validation_failed:
+-    sys.exit(1)
+diff --color -urN vcmi-1.5.7/CI/mac/before_install.sh vcmi/CI/mac/before_install.sh
+--- vcmi-1.5.7/CI/mac/before_install.sh	2024-08-25 23:27:47.000000000 +0200
++++ vcmi/CI/mac/before_install.sh	1970-01-01 01:00:00.000000000 +0100
+@@ -1,9 +0,0 @@
+-#!/usr/bin/env bash
+-
+-echo DEVELOPER_DIR=/Applications/Xcode_14.2.app >> $GITHUB_ENV
+-
+-brew install ninja
+-
+-mkdir ~/.conan ; cd ~/.conan
+-curl -L "https://github.com/vcmi/vcmi-deps-macos/releases/download/1.2.1/$DEPS_FILENAME.txz" \
+-	| tar -xf -
+diff --color -urN vcmi-1.5.7/CI/mac-arm/before_install.sh vcmi/CI/mac-arm/before_install.sh
+--- vcmi-1.5.7/CI/mac-arm/before_install.sh	2024-08-25 23:27:47.000000000 +0200
++++ vcmi/CI/mac-arm/before_install.sh	1970-01-01 01:00:00.000000000 +0100
+@@ -1,4 +0,0 @@
+-#!/usr/bin/env bash
+-
+-DEPS_FILENAME=intel-cross-arm
+-. CI/mac/before_install.sh
+diff --color -urN vcmi-1.5.7/CI/mac-intel/before_install.sh vcmi/CI/mac-intel/before_install.sh
+--- vcmi-1.5.7/CI/mac-intel/before_install.sh	2024-08-25 23:27:47.000000000 +0200
++++ vcmi/CI/mac-intel/before_install.sh	1970-01-01 01:00:00.000000000 +0100
+@@ -1,4 +0,0 @@
+-#!/usr/bin/env bash
+-
+-DEPS_FILENAME=intel
+-. CI/mac/before_install.sh
+diff --color -urN vcmi-1.5.7/CI/mingw/before_install.sh vcmi/CI/mingw/before_install.sh
+--- vcmi-1.5.7/CI/mingw/before_install.sh	2024-08-25 23:27:47.000000000 +0200
++++ vcmi/CI/mingw/before_install.sh	1970-01-01 01:00:00.000000000 +0100
+@@ -1,16 +0,0 @@
+-#!/usr/bin/env bash
+-
+-sudo apt-get update
+-sudo apt-get install ninja-build mingw-w64 nsis
+-sudo update-alternatives --set x86_64-w64-mingw32-g++ /usr/bin/x86_64-w64-mingw32-g++-posix
+-
+-# Workaround for getting new MinGW headers on Ubuntu 22.04.
+-# Remove it once MinGW headers version in repository will be 10.0 at least
+-curl -O -L http://mirrors.kernel.org/ubuntu/pool/universe/m/mingw-w64/mingw-w64-common_10.0.0-3_all.deb \
+-  && sudo dpkg -i mingw-w64-common_10.0.0-3_all.deb;
+-curl -O -L http://mirrors.kernel.org/ubuntu/pool/universe/m/mingw-w64/mingw-w64-x86-64-dev_10.0.0-3_all.deb \
+-  && sudo dpkg -i mingw-w64-x86-64-dev_10.0.0-3_all.deb;
+-
+-mkdir ~/.conan ; cd ~/.conan
+-curl -L "https://github.com/vcmi/vcmi-deps-windows-conan/releases/download/1.2/vcmi-deps-windows-conan-w64.tgz" \
+-	| tar -xzf -
+diff --color -urN vcmi-1.5.7/CI/mingw-32/before_install.sh vcmi/CI/mingw-32/before_install.sh
+--- vcmi-1.5.7/CI/mingw-32/before_install.sh	2024-08-25 23:27:47.000000000 +0200
++++ vcmi/CI/mingw-32/before_install.sh	1970-01-01 01:00:00.000000000 +0100
+@@ -1,16 +0,0 @@
+-#!/usr/bin/env bash
+-
+-sudo apt-get update
+-sudo apt-get install ninja-build mingw-w64 nsis
+-sudo update-alternatives --set i686-w64-mingw32-g++ /usr/bin/i686-w64-mingw32-g++-posix
+-
+-# Workaround for getting new MinGW headers on Ubuntu 22.04.
+-# Remove it once MinGW headers version in repository will be 10.0 at least
+-curl -O -L http://mirrors.kernel.org/ubuntu/pool/universe/m/mingw-w64/mingw-w64-common_10.0.0-3_all.deb \
+-  && sudo dpkg -i mingw-w64-common_10.0.0-3_all.deb;
+-curl -O -L http://mirrors.kernel.org/ubuntu/pool/universe/m/mingw-w64/mingw-w64-i686-dev_10.0.0-3_all.deb \
+-  && sudo dpkg -i mingw-w64-i686-dev_10.0.0-3_all.deb;
+-
+-mkdir ~/.conan ; cd ~/.conan
+-curl -L "https://github.com/vcmi/vcmi-deps-windows-conan/releases/download/1.2/vcmi-deps-windows-conan-w32.tgz" \
+-	| tar -xzf -
+diff --color -urN vcmi-1.5.7/CI/msvc/before_install.sh vcmi/CI/msvc/before_install.sh
+--- vcmi-1.5.7/CI/msvc/before_install.sh	2024-08-25 23:27:47.000000000 +0200
++++ vcmi/CI/msvc/before_install.sh	1970-01-01 01:00:00.000000000 +0100
+@@ -1,10 +0,0 @@
+-curl -LfsS -o "vcpkg-export-${VCMI_BUILD_PLATFORM}-windows-v143.7z" \
+-	"https://github.com/vcmi/vcmi-deps-windows/releases/download/v1.7/vcpkg-export-${VCMI_BUILD_PLATFORM}-windows-v143.7z"
+-7z x "vcpkg-export-${VCMI_BUILD_PLATFORM}-windows-v143.7z"
+-
+-#rm -r -f vcpkg/installed/${VCMI_BUILD_PLATFORM}-windows/debug
+-#mkdir -p vcpkg/installed/${VCMI_BUILD_PLATFORM}-windows/debug/bin
+-#cp vcpkg/installed/${VCMI_BUILD_PLATFORM}-windows/bin/* vcpkg/installed/${VCMI_BUILD_PLATFORM}-windows/debug/bin
+-
+-DUMPBIN_DIR=$(vswhere -latest -find **/dumpbin.exe | head -n 1)
+-dirname "$DUMPBIN_DIR" > $GITHUB_PATH
+diff --color -urN vcmi-1.5.7/CI/msvc/build_script.bat vcmi/CI/msvc/build_script.bat
+--- vcmi-1.5.7/CI/msvc/build_script.bat	2024-08-25 23:27:47.000000000 +0200
++++ vcmi/CI/msvc/build_script.bat	1970-01-01 01:00:00.000000000 +0100
+@@ -1,6 +0,0 @@
+-cd %APPVEYOR_BUILD_FOLDER%
+-cd build_%VCMI_BUILD_PLATFORM%
+-
+-cmake --build . --config %VCMI_BUILD_CONFIGURATION% -- /maxcpucount:2
+-
+-cpack
+diff --color -urN vcmi-1.5.7/CI/msvc/coverity_build_script.bat vcmi/CI/msvc/coverity_build_script.bat
+--- vcmi-1.5.7/CI/msvc/coverity_build_script.bat	2024-08-25 23:27:47.000000000 +0200
++++ vcmi/CI/msvc/coverity_build_script.bat	1970-01-01 01:00:00.000000000 +0100
+@@ -1,5 +0,0 @@
+-cd %APPVEYOR_BUILD_FOLDER%
+-cd build_%VCMI_BUILD_PLATFORM%
+-
+-echo Building with coverity...
+-cov-build.exe --dir cov-int cmake --build . --config %VCMI_BUILD_CONFIGURATION% -- /maxcpucount:2
+diff --color -urN vcmi-1.5.7/CI/msvc/coverity_upload_script.ps vcmi/CI/msvc/coverity_upload_script.ps
+--- vcmi-1.5.7/CI/msvc/coverity_upload_script.ps	2024-08-25 23:27:47.000000000 +0200
++++ vcmi/CI/msvc/coverity_upload_script.ps	1970-01-01 01:00:00.000000000 +0100
+@@ -1,17 +0,0 @@
+-7z a "$Env:APPVEYOR_BUILD_FOLDER\$Env:APPVEYOR_PROJECT_NAME.zip" "$Env:APPVEYOR_BUILD_FOLDER\build_$Env:VCMI_BUILD_PLATFORM\cov-int\"
+-
+-# cf. http://stackoverflow.com/a/25045154/335418
+-Remove-item alias:curl
+-
+-Write-Host "Uploading Coverity analysis result..." -ForegroundColor "Green"
+-
+-curl --silent --show-error `
+-     --output curl-out.txt `
+-     --form token="$Env:coverity_token" `
+-     --form email="$Env:coverity_email" `
+-     --form "file=@$Env:APPVEYOR_BUILD_FOLDER\$Env:APPVEYOR_PROJECT_NAME.zip" `
+-     --form version="$Env:APPVEYOR_REPO_COMMIT" `
+-     --form description="CI server scheduled build." `
+-     https://scan.coverity.com/builds?project=vcmi%2Fvcmi
+-
+-cat .\curl-out.txt
+diff --color -urN vcmi-1.5.7/CI/NSIS.template.in vcmi/CI/NSIS.template.in
+--- vcmi-1.5.7/CI/NSIS.template.in	2024-08-25 23:27:47.000000000 +0200
++++ vcmi/CI/NSIS.template.in	2024-12-19 15:00:22.178118183 +0100
+@@ -486,15 +486,15 @@
+ 	Exch $R1
+ FunctionEnd
+ 
+-Function ConditionalAddToRegisty
++Function ConditionalAddToRegistry
+   Pop $0
+   Pop $1
+-  StrCmp "$0" "" ConditionalAddToRegisty_EmptyString
++  StrCmp "$0" "" ConditionalAddToRegistry_EmptyString
+     WriteRegStr SHCTX "Software\Microsoft\Windows\CurrentVersion\Uninstall\@CPACK_PACKAGE_INSTALL_REGISTRY_KEY@" \
+     "$1" "$0"
+     ;MessageBox MB_OK "Set Registry: '$1' to '$0'"
+     DetailPrint "Set install registry entry: '$1' to '$0'"
+-  ConditionalAddToRegisty_EmptyString:
++  ConditionalAddToRegistry_EmptyString:
+ FunctionEnd
+ 
+ ;--------------------------------
+@@ -646,44 +646,44 @@
+   WriteUninstaller "$INSTDIR\Uninstall.exe"
+   Push "DisplayName"
+   Push "@CPACK_NSIS_DISPLAY_NAME@"
+-  Call ConditionalAddToRegisty
++  Call ConditionalAddToRegistry
+   Push "DisplayVersion"
+   Push "@CPACK_PACKAGE_VERSION@"
+-  Call ConditionalAddToRegisty
++  Call ConditionalAddToRegistry
+   Push "Publisher"
+   Push "@CPACK_PACKAGE_VENDOR@"
+-  Call ConditionalAddToRegisty
++  Call ConditionalAddToRegistry
+   Push "UninstallString"
+   Push "$INSTDIR\Uninstall.exe"
+-  Call ConditionalAddToRegisty
++  Call ConditionalAddToRegistry
+   Push "NoRepair"
+   Push "1"
+-  Call ConditionalAddToRegisty
++  Call ConditionalAddToRegistry
+ 
+   !ifdef CPACK_NSIS_ADD_REMOVE
+   ;Create add/remove functionality
+   Push "ModifyPath"
+   Push "$INSTDIR\AddRemove.exe"
+-  Call ConditionalAddToRegisty
++  Call ConditionalAddToRegistry
+   !else
+   Push "NoModify"
+   Push "1"
+-  Call ConditionalAddToRegisty
++  Call ConditionalAddToRegistry
+   !endif
+ 
+   ; Optional registration
+   Push "DisplayIcon"
+   Push "$INSTDIR\@CPACK_NSIS_INSTALLED_ICON_NAME@"
+-  Call ConditionalAddToRegisty
++  Call ConditionalAddToRegistry
+   Push "HelpLink"
+   Push "@CPACK_NSIS_HELP_LINK@"
+-  Call ConditionalAddToRegisty
++  Call ConditionalAddToRegistry
+   Push "URLInfoAbout"
+   Push "@CPACK_NSIS_URL_INFO_ABOUT@"
+-  Call ConditionalAddToRegisty
++  Call ConditionalAddToRegistry
+   Push "Contact"
+   Push "@CPACK_NSIS_CONTACT@"
+-  Call ConditionalAddToRegisty
++  Call ConditionalAddToRegistry
+   !insertmacro MUI_INSTALLOPTIONS_READ $INSTALL_DESKTOP "NSIS.InstallOptions.ini" "Field 5" "State"
+   !insertmacro MUI_STARTMENU_WRITE_BEGIN Application
+ 
+@@ -701,19 +701,19 @@
+   ; Write special uninstall registry entries
+   Push "StartMenu"
+   Push "$STARTMENU_FOLDER"
+-  Call ConditionalAddToRegisty
++  Call ConditionalAddToRegistry
+   Push "DoNotAddToPath"
+   Push "$DO_NOT_ADD_TO_PATH"
+-  Call ConditionalAddToRegisty
++  Call ConditionalAddToRegistry
+   Push "AddToPathAllUsers"
+   Push "$ADD_TO_PATH_ALL_USERS"
+-  Call ConditionalAddToRegisty
++  Call ConditionalAddToRegistry
+   Push "AddToPathCurrentUser"
+   Push "$ADD_TO_PATH_CURRENT_USER"
+-  Call ConditionalAddToRegisty
++  Call ConditionalAddToRegistry
+   Push "InstallToDesktop"
+   Push "$INSTALL_DESKTOP"
+-  Call ConditionalAddToRegisty
++  Call ConditionalAddToRegistry
+ 
+   !insertmacro MUI_STARTMENU_WRITE_END
+ 
+@@ -848,7 +848,7 @@
+ @CPACK_NSIS_DELETE_ICONS@
+ @CPACK_NSIS_DELETE_ICONS_EXTRA@
+ 
+-  ;Delete empty start menu parent diretories
++  ;Delete empty start menu parent directories
+   StrCpy $MUI_TEMP "$SMPROGRAMS\$MUI_TEMP"
+ 
+   startMenuDeleteLoop:
+@@ -867,7 +867,7 @@
+   Delete "$SMPROGRAMS\$MUI_TEMP\Uninstall.lnk"
+ @CPACK_NSIS_DELETE_ICONS_EXTRA@
+ 
+-  ;Delete empty start menu parent diretories
++  ;Delete empty start menu parent directories
+   StrCpy $MUI_TEMP "$SMPROGRAMS\$MUI_TEMP"
+ 
+   secondStartMenuDeleteLoop:
+diff --color -urN vcmi-1.5.7/CI/validate_json.py vcmi/CI/validate_json.py
+--- vcmi-1.5.7/CI/validate_json.py	1970-01-01 01:00:00.000000000 +0100
++++ vcmi/CI/validate_json.py	2024-12-19 15:00:22.179118224 +0100
+@@ -0,0 +1,28 @@
++#!/usr/bin/env python3
++
++import re
++import sys
++from pathlib import Path
++from pprint import pprint
++
++# VCMI supports JSON with comments, but not JSON5
++import jstyleson 
++
++validation_failed = False
++
++for path in sorted(Path(".").glob("**/*.json"), key=lambda path: str(path).lower()):
++    # because path is an object and not a string
++    path_str = str(path)
++    if path_str.startswith("."):
++        continue
++
++    try:
++        with open(path_str, "r") as file:
++            jstyleson.load(file)
++        print(f"✅ {path_str}")
++    except Exception as exc:
++        print(f"❌ {path_str}: {exc}")
++        validation_failed = True
++
++if validation_failed:
++    sys.exit(1)

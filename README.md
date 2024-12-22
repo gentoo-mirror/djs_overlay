@@ -35,7 +35,10 @@ And one more thing I had raised a ticket to be added into eselect repository lis
 - **sysprof-common** - Dependency for Cinnamon (just version bump)
 
 ### games-strategy
-- **[vcmi](https://github.com/vcmi/vcmi)** - HOMAM3 game engine. I like HOMMAM games and there was no good ebuild so I had tried to do my own. This one is for the version git tag 1.5.7 and it downloads everything from git and builds. When the branch is updated, it has to be rebuild again. I might try to find way how to do it correctly so it gets self updated. But still more advanced, than my skills are,
+  - **[vcmi](https://github.com/vcmi/vcmi)** - HOMAM3 game engine.
+    - Completly redesigned ebuild. Now I am using github/releases page to download version,
+    - Removed fuzzylite dependency from ebuild since it gets downloaded for VCMI to be built,
+    - Because of new Boost version and to apply corresponding patch I had to patch source to day I started to create the patch, you will see it after version \_p
 
 ### gnome-extra
 - **[cinnamon](https://github.com/linuxmint/cinnamon)** - Cinnamon (just version bump)
