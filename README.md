@@ -1,6 +1,12 @@
 DJ Overlay
 ==========
 
+Good news everyone, I was added between Gentoo repositories, so all you need to do is:
+```sh
+sudo eselect repository enable djs_overlay
+sudo emaint sync -r djs_overlay
+```
+
 Some packages which I am using and ebuild didn't existed at that time. Feel free to use it and report bugs.
 
 I must say, that I am still beginner doing these, so the quality will not be any good, but since I am using them it should work.
