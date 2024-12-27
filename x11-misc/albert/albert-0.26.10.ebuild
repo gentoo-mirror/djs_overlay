@@ -3,28 +3,22 @@
 
 EAPI=8
 
-PYTHON_COMPAT=( python3_{10..13} )
+PYTHON_COMPAT=( python3_{11..13} )
 
-inherit cmake python-single-r1 xdg
+inherit cmake python-single-r1 xdg git-r3
 
 DESCRIPTION="A fast and flexible keyboard launcher"
 HOMEPAGE="https://albertlauncher.github.io/"
 
-I18N_COMMIT="79cb6054aaa616bfc1949d8bc2817b08117f7486"
-PLUGINS_COMMIT="7a7434b6ed867279c5544e68f068738b61f5af12"
-PYTHON_EXTENSIONS_COMMIT="e4af117f9adeee0a935c663f2be082debd7e9399"
-PYBIND11_COMMIT="a2e59f0e7065404b44dfe92a28aca47ba1378dc4"
-QHOTKEY_COMMIT="34330d6ff5d2ca111c376f6d7da66be9d1817430"
-QNOTIFICATION_COMMIT="5370789111dadf97119ef7a42d64ef9aff3d79d7"
+I18N_URL="https://github.com/albertlauncher/i18n.git"
+PLUGINS_URL="https://github.com/albertlauncher/plugins.git"
+QNOTIFICATION_URL="https://github.com/QtCommunity/QNotification.git"
+QHOTKEY_URL="https://github.com/Skycoder42/QHotkey.git"
+PYTHON_PLUGINS_URL="https://github.com/albertlauncher/python.git"
+PYBIND11_URL="https://github.com/pybind/pybind11.git"
 
 SRC_URI="
 	https://github.com/albertlauncher/${PN}/archive/v${PV}.tar.gz -> ${P}.tar.gz
-	https://github.com/albertlauncher/i18n/archive/${I18N_COMMIT}.tar.gz -> ${PN}-i18n-${I18N_COMMIT}.tar.gz
-	https://github.com/albertlauncher/plugins/archive/${PLUGINS_COMMIT}.tar.gz -> ${PN}-plugins-${PLUGINS_COMMIT}.tar.gz
-	https://codeload.github.com/QtCommunity/QNotification/tar.gz/${QNOTIFICATION_COMMIT} -> ${PN}-qnotification-${QNOTIFICATION_COMMIT}.tar.gz
-	https://codeload.github.com/Skycoder42/QHotkey/tar.gz/${QHOTKEY_COMMIT} -> ${PN}-qhotkey-${QHOTKEY_COMMIT}.tar.gz
-	python? ( https://codeload.github.com/pybind/pybind11/tar.gz/${PYBIND11_COMMIT} -> ${PN}-pybind11-${PYBIND11_COMMIT}.tar.gz )
-	python-extensions? ( https://github.com/albertlauncher/python/archive/${PYTHON_EXTENSIONS_COMMIT}.tar.gz -> ${PN}-python-extensions-${PYTHON_EXTENSIONS_COMMIT}.tar.gz )
 "
 
 LICENSE="all-rights-reserved"	# unclear licensing #766129
@@ -59,19 +53,36 @@ RDEPEND="
 	)
 "
 
-src_prepare() {
-	mv "${WORKDIR}"/i18n-${I18N_COMMIT}/* "${S}"/i18n || die
-	mv "${WORKDIR}"/plugins-${PLUGINS_COMMIT}/* "${S}"/plugins || die
-	mv "${WORKDIR}"/QHotkey-${QHOTKEY_COMMIT}/* "${S}"/lib/QHotkey || die
-	mv "${WORKDIR}"/QNotification-${QNOTIFICATION_COMMIT}/* "${S}"/lib/QNotification || die
+src_unpack() {
+	# Unpack Albert
+	unpack ${A}
+	
+	# Unpack I18N
+	git-r3_fetch "${I18N_URL}" refs/heads/main || die "Fetch of ${I18N_URL} failed!"
+	git-r3_checkout "${I18N_URL}" "${S}/i18n" || die "Checkout of ${I18N_URL} failed!"
+	
+	# Unpack plugins
+	git-r3_fetch "${PLUGINS_URL}" refs/heads/main || die "Fetch of ${PLUGINS_URL} failed!"
+	git-r3_checkout "${PLUGINS_URL}" "${S}/plugins" || die "Checkout of ${PLUGINS_URL} failed!"
+	
+	# Unpack QNotification
+	git-r3_fetch "${QNOTIFICATION_URL}" refs/heads/main || die "Fetch of ${QNOTIFICATION_URL} failed!"
+	git-r3_checkout "${QNOTIFICATION_URL}" "${S}/lib/QNotification" || die "Checkout of ${QNOTIFICATION_URL} failed!"
+
+
+	# Unpack QHotkey
+	git-r3_fetch "${QHOTKEY_URL}"	refs/heads/master || die "Fetch of ${QHOTKEY_URL} failed!"
+	git-r3_checkout "${QHOTKEY_URL}" "${S}/lib/QHotkey" || die "Checkout of ${QHOTKEY_URL} failed!"
+
 	if use python; then
-		mv "${WORKDIR}"/pybind11-${PYBIND11_COMMIT}/* "${S}"/plugins/python/pybind11 || die
-	fi
-	if use python-extensions; then
-		mv "${WORKDIR}"/python-${PYTHON_EXTENSIONS_COMMIT}/* "${S}"/plugins/python/plugins || die
+		git-r3_fetch "${PYBIND11_URL}" refs/heads/master || die "Fetch of ${PYBIND11_URL} failed!"
+		git-r3_checkout "${PYBIND11_URL}" "${S}/plugins/python/pybind11" || die "Checkout of ${PYBIND11_URL} failed!"
 	fi
 
-	cmake_src_prepare
+	if use python-extensions; then
+		git-r3_fetch "${PYTHON_PLUGINS_URL}" refs/heads/main || die "Fetch of ${PYTHON_PLUGINS_URL} failed!"
+		git-r3_checkout "${PYTHON_PLUGINS_URL}" "${S}/plugins/python/plugins" || die "Checkout of ${PYTHON_PLUGINS_URL} failed!"
+	fi
 }
 
 src_configure() {
