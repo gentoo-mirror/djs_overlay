@@ -1,0 +1,2 @@
+# 2024-12-27, DJ - Masked because of compile error
+=gui-libs/gtk-4.17.2
