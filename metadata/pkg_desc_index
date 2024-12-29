@@ -1,6 +1,6 @@
 acct-group/keyd 0: System group: keyd
 app-editors/sublime-text-dev 4_p4188 4_p4190: Sophisticated text editor for code, markup and prose.
-app-misc/keyd 2.4.2 2.4.3: A key remapping daemon for linux
+app-misc/keyd 2.4.2 2.4.3 2.5.0: A key remapping daemon for linux
 dev-db/dbgate-bin 5.5.6 6.0.0 6.1.0 6.1.1 6.1.2: Database manager for MySQL, PostgreSQL, SQL Server and MongoDB
 dev-libs/fuzzylite 6.0: A Fuzzy Logic Control Library in C++
 dev-util/sysprof 47.2: System-wide Linux Profiler
