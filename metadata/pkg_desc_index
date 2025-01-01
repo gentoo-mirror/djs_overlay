@@ -107,7 +107,7 @@ media-video/bcwc_pcie 9999: Reverse engineered Linux driver for the Broadcom 157
 media-video/facetimehd-firmware 9999: Firmware for the Broadcom 1570 PCIe webcam
 net-wireless/broadcom-wl 6.30.223.271_p20221106 9999: Broadcom Linux hybrid wireless driver
 www-client/brave-bin 1.73.101 1.73.104: Brave Web Browser
-x11-misc/albert 0.26.7 0.26.8 0.26.10: A fast and flexible keyboard launcher
+x11-misc/albert 0.26.7 0.26.8 0.26.10 0.26.11: A fast and flexible keyboard launcher
 x11-misc/touchegg 2.0.17: Linux multi-touch gesture recognizer
 x11-misc/ulauncher 5.15.7: Application launcher for Linux
 x11-terms/termius 9.10.0: Termius client
