@@ -9,7 +9,7 @@ inherit unpacker
 
 DESCRIPTION="Termius client"
 HOMEPAGE="https://www.termius.com"
-SRC_URI="https://www.termius.com/download/linux/Termius.deb"
+SRC_URI="https://www.termius.com/download/linux/Termius.deb -> ${P}.deb"
 S="${WORKDIR}"
 
 LICENSE="GPL-3"
