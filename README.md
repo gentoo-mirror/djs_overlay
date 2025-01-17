@@ -40,6 +40,9 @@ And one more thing I had raised a ticket to be added into eselect repository lis
 - **sysprof-capture** - Dependency for Cinnamon (just version bump)
 - **sysprof-common** - Dependency for Cinnamon (just version bump)
 
+### games-engines
+- **[TheForceEngine](https://github.com/luciusDXL/TheForceEngine)** - The force engine which is able to run [Dark Forces (1995)](https://www.gog.com/en/game/star_wars_dark_forces), and [Outlaws (1997)](https://www.gog.com/en/game/outlaws_a_handful_of_missions). You need original game to use this engine. Also DREAMM is able to run these games, but this is engine recreation, which might have some additional options (e.g. like OpenTTD, I haven't tried it yet)
+
 ### games-strategy
   - **[vcmi](https://github.com/vcmi/vcmi)** - HOMAM3 game engine. Well, I made my efford just to find, version 1.6.0 was released, so I deleted patches and copied the same ebuild and it seems to compile and VCMI is not segfaulting
 
