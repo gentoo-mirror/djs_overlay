@@ -6,6 +6,7 @@ dev-libs/fuzzylite 6.0: A Fuzzy Logic Control Library in C++
 dev-util/sysprof 47.2: System-wide Linux Profiler
 dev-util/sysprof-capture 47.2: Static library for sysprof capture data generation
 dev-util/sysprof-common 47.2: Static library for sysprof capture data generation
+games-engines/TheForceEngine 1.10.000: Modern "Jedi Engine" replacement supporting Dark Forces and the mods.
 games-strategy/vcmi 1.5.7 1.5.7_p20241219 1.6.0 1.6.1 1.6.2 1.6.3: Heroes of Might and Magic III game engine rewrite
 gnome-extra/cinnamon 6.4.2 6.4.3 6.4.4 6.4.5 6.4.6: A fork of GNOME Shell with layout similar to GNOME 2
 gnome-extra/cinnamon-control-center 6.4.1: Cinnamons's main interface to configure various aspects of the desktop
