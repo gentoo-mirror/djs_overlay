@@ -1,2 +1,2 @@
-# gtk is not compiling
 >=gui-libs/gtk-4.17.2
+=x11-libs/pango-1.56.0
