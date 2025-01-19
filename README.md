@@ -77,7 +77,10 @@ And one more thing I had raised a ticket to be added into eselect repository lis
 - **broadcom-wl** - Taken from 4nykey overlay, but had to create patch for 6.12 kernel, seems some includes had changed and it would not compile
 
 ### www-client
-- **[brave-bin](https://github.com/brave/brave-browser)** - [Brave](https://brave.com/) browser,
+- **[brave-bin](https://github.com/brave/brave-browser)** - [Brave](https://brave.com/) browser
+
+### x11-libs
+- **[pango](https://gitlab.gnome.org/GNOME/pango)** - Dependency for GTK 4.17.3, version bump from Gentoo overlay
 
 ### x11-misc
 - **[albert](https://github.com/albertlauncher/albert)** - Another launcher (Qt dependencies)
