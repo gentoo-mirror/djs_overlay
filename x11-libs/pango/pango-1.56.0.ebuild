@@ -90,4 +90,6 @@ pkg_postinst() {
 		ewarn "media-libs/freetype is installed without harfbuzz support. This may"
 		ewarn "lead to minor font rendering problems, see bug 712374."
 	fi
+
+	ewarn "When you got everything messed up (fonts), you need to run: fc-cache -f -v"
 }

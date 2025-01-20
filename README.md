@@ -80,7 +80,7 @@ And one more thing I had raised a ticket to be added into eselect repository lis
 - **[brave-bin](https://github.com/brave/brave-browser)** - [Brave](https://brave.com/) browser
 
 ### x11-libs
-- **[pango](https://gitlab.gnome.org/GNOME/pango)** - Dependency for GTK 4.17.3, version bump from Gentoo overlay
+- **[pango](https://gitlab.gnome.org/GNOME/pango)** - Dependency for GTK 4.17.3, version bump from Gentoo overlay **IF SYSTEM IS GARBLED, missing fonts / boxes, etc. run: fc-cache -f -v**
 
 ### x11-misc
 - **[albert](https://github.com/albertlauncher/albert)** - Another launcher (Qt dependencies)
