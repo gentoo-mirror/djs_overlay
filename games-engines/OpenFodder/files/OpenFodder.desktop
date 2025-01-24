@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=OpenFodder
+Comment=An open source port of Cannon Fodder
+Exec=/usr/local/bin/openfodder
+Icon=openfodder
+Terminal=false
+Categories=Game;
+
