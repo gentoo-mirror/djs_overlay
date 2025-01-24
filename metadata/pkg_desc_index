@@ -6,7 +6,9 @@ dev-libs/fuzzylite 6.0: A Fuzzy Logic Control Library in C++
 dev-util/sysprof 47.2: System-wide Linux Profiler
 dev-util/sysprof-capture 47.2: Static library for sysprof capture data generation
 dev-util/sysprof-common 47.2: Static library for sysprof capture data generation
+games-engines/OpenFodder 1.9.2: An open source port of Cannon Fodder
 games-engines/TheForceEngine 1.10.000: Modern "Jedi Engine" replacement supporting Dark Forces and the mods.
+games-engines/fheroes2 1.1.5: Recreation of HoMM2 game engine
 games-strategy/vcmi 1.5.7 1.5.7_p20241219 1.6.0 1.6.1 1.6.2 1.6.3: Heroes of Might and Magic III game engine rewrite
 gnome-extra/cinnamon 6.4.2 6.4.3 6.4.4 6.4.5 6.4.6: A fork of GNOME Shell with layout similar to GNOME 2
 gnome-extra/cinnamon-control-center 6.4.1: Cinnamons's main interface to configure various aspects of the desktop
@@ -18,7 +20,7 @@ gnome-extra/cinnamon-settings-daemon 6.4.2 6.4.3: Cinnamon's settings daemon
 gnome-extra/cinnamon-translations 6.4.1 6.4.2: Translation data for Cinnamon
 gnome-extra/cjs 6.4.0: Linux Mint's fork of gjs for Cinnamon
 gnome-extra/nemo 6.4.3: A file manager for Cinnamon, forked from Nautilus
-gui-libs/gtk 4.16.7 4.17.1 4.17.2 4.17.3: GTK is a multi-platform toolkit for creating graphical user interfaces
+gui-libs/gtk 4.17.3: GTK is a multi-platform toolkit for creating graphical user interfaces
 gui-libs/libadwaita 1.6.0: Building blocks for modern GNOME applications
 gui-libs/libpanel 1.8.0: A dock/panel library for GTK 4
 media-libs/gst-plugins-bad 1.24.8: Less plugins for GStreamer
@@ -107,7 +109,7 @@ media-plugins/gst-plugins-zbar 1.24.8: Bar codes detection in video streams for 
 media-video/bcwc_pcie 9999: Reverse engineered Linux driver for the Broadcom 1570 PCIe webcam
 media-video/facetimehd-firmware 9999: Firmware for the Broadcom 1570 PCIe webcam
 net-wireless/broadcom-wl 6.30.223.271_p20221106 9999: Broadcom Linux hybrid wireless driver
-www-client/brave-bin 1.73.101 1.73.104 1.73.105 1.74.48: Brave Web Browser
+www-client/brave-bin 1.74.48 1.74.50: Brave Web Browser
 x11-libs/pango 1.56.0: Internationalized text layout and rendering library
 x11-misc/albert 0.26.11 0.26.13: A fast and flexible keyboard launcher
 x11-misc/touchegg 2.0.17: Linux multi-touch gesture recognizer
