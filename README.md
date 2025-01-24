@@ -41,6 +41,7 @@ And one more thing I had raised a ticket to be added into eselect repository lis
 - **sysprof-common** - Dependency for Cinnamon (just version bump)
 
 ### games-engines
+- **[fheroes2](https://github.com/ihhub/fheroes2/releases)** - HOMAM2 game engine
 - **[TheForceEngine](https://github.com/luciusDXL/TheForceEngine)** - The force engine which is able to run [Dark Forces (1995)](https://www.gog.com/en/game/star_wars_dark_forces), and [Outlaws (1997)](https://www.gog.com/en/game/outlaws_a_handful_of_missions). You need original game to use this engine. Also DREAMM is able to run these games, but this is engine recreation, which might have some additional options (e.g. like OpenTTD, I haven't tried it yet)
 
 ### games-strategy
