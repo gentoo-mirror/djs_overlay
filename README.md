@@ -26,6 +26,9 @@ And one more thing I had raised a ticket to be added into eselect repository lis
 ### app-emulators
 - **[dreamm](https://aarongiles.com/dreamm/)** - I like this simple emulator for old Lucas Arts games. For most of them there is [ScummVM](https://scummvm.org/), which is allready in official Gentoo repository, but some games, e.g. Yoda Storries, Indiana Jones storries which are not so good are playable throught this,
 
+### app-office
+- **[drawio-bin](https://github.com/jgraph/drawio-desktop/releases)** - Flowchart creation software
+
 ### app-misc
 - **[keyd](https://github.com/rvaiya/keyd)** - Daemon, which is able to remap keys. I am using it on MacBook to map CMD as CTRL as in Mac OS you use CMD most (as on Linux/Windows CTRL key does). The main reason I like this daemon is, that its system wide so regardless of DE or plain CLI interface, keyboard behaves the same,
 
