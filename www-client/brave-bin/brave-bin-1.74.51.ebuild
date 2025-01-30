@@ -1,14 +1,14 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2025 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
 BRAVE_PN="${PN/-bin/}"
 
 CHROMIUM_LANGS="
-	am ar bg bn ca cs da de el en-GB en-US es es-419 et fa fi fil fr gu he hi
+	af am ar bg bn ca cs da de el en-GB en-US es es-419 et fa fi fil fr gu he hi
 	hr hu id it ja kn ko lt lv ml mr ms nb nl pl pt-BR pt-PT ro ru sk sl sr sv
-	sw ta te th tr uk vi zh-CN zh-TW
+	sw ta te th tr uk ur vi zh-CN zh-TW
 "
 
 inherit chromium-2 xdg-utils desktop
@@ -101,14 +101,14 @@ src_install() (
 
 		insinto ${BRAVE_HOME}
 			doins -r *
-    # Brave has a bug in 1.27.105 where it needs crashpad_handler chmodded
-    # Delete crashpad_handler when https://github.com/brave/brave-browser/issues/16985 is resolved.
+	# Brave has a bug in 1.27.105 where it needs crashpad_handler chmodded
+	# Delete crashpad_handler when https://github.com/brave/brave-browser/issues/16985 is resolved.
 			exeinto ${BRAVE_HOME}
 				doexe brave chrome_crashpad_handler
 
 		dosym ${BRAVE_HOME}/brave /usr/bin/${PN} || die
 
-	# Install Icons for Brave. 
+	# Install Icons for Brave.
 		newicon "${FILESDIR}/braveAbout.png" "${PN}.png" || die
 		newicon -s 128 "${FILESDIR}/braveAbout.png" "${PN}.png" || die
 
@@ -120,6 +120,7 @@ src_install() (
 pkg_postinst() {
 	xdg_desktop_database_update
 	xdg_mimeinfo_database_update
+	xdg_icon_cache_update
 	elog "If upgrading from 1.50.x release or earlier, note that Brave has changed the format of the"
 	elog "password file, and ALL YOUR OLD PASSWORDS WILL NOT WORK."
 	elog "YOUR BRAVE REWARDS WILL NOT WORK EITHER."
@@ -127,9 +128,4 @@ pkg_postinst() {
 	elog "so you can export passwords from Brave's Password Manager."
 	elog "once you're back in a newer build, import passwords from inside Brave's Password Manager,"
 	elog "and select the file you saved."
-}
-
-pkg_postrm() {
-	xdg_desktop_database_update
-	xdg_mimeinfo_database_update
 }
