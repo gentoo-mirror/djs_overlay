@@ -10,7 +10,7 @@ dev-util/sysprof-common 47.2: Static library for sysprof capture data generation
 games-engines/OpenFodder 1.9.2: An open source port of Cannon Fodder
 games-engines/TheForceEngine 1.10.000: Modern "Jedi Engine" replacement supporting Dark Forces and the mods.
 games-engines/fheroes2 1.1.5: Recreation of HoMM2 game engine
-games-strategy/vcmi 1.5.7 1.5.7_p20241219 1.6.0 1.6.1 1.6.2 1.6.3: Heroes of Might and Magic III game engine rewrite
+games-strategy/vcmi 1.6.2 1.6.3 1.6.4: Heroes of Might and Magic III game engine rewrite
 gnome-extra/cinnamon 6.4.2 6.4.3 6.4.4 6.4.5 6.4.6: A fork of GNOME Shell with layout similar to GNOME 2
 gnome-extra/cinnamon-control-center 6.4.1: Cinnamons's main interface to configure various aspects of the desktop
 gnome-extra/cinnamon-desktop 6.4.1: A collection of libraries and utilites used by Cinnamon
