@@ -1,5 +1,5 @@
 acct-group/keyd 0: System group: keyd
-app-editors/sublime-text-dev 4_p4188 4_p4190 4_p4191: Sophisticated text editor for code, markup and prose.
+app-editors/sublime-text-dev 4_p4191 4_p4192: Sophisticated text editor for code, markup and prose.
 app-misc/keyd 2.4.2 2.4.3 2.5.0: A key remapping daemon for linux
 app-office/drawio-desktop-bin 26.0.9: draw.io diagramming and whiteboarding desktop app
 dev-db/dbgate-bin 6.1.1 6.1.2 6.1.3 6.1.4 6.1.6: Database manager for MySQL, PostgreSQL, SQL Server and MongoDB
