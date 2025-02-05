@@ -1,0 +1,39 @@
+diff --git a/src/include/linuxver.h b/src/include/linuxver.h
+index b05bc32..6d62077 100644
+--- a/src/include/linuxver.h
++++ b/src/include/linuxver.h
+@@ -147,17 +147,6 @@ typedef irqreturn_t(*FN_ISR) (int irq, void *dev_id, struct pt_regs *ptregs);
+ #include <linux/sched.h>
+ #endif
+ 
+-#if LINUX_VERSION_CODE >= KERNEL_VERSION(2, 6, 29)
+-#include <net/lib80211.h>
+-#endif
+-#if LINUX_VERSION_CODE >= KERNEL_VERSION(2, 6, 29)
+-#include <linux/ieee80211.h>
+-#else
+-#if LINUX_VERSION_CODE >= KERNEL_VERSION(2, 6, 14)
+-#include <net/ieee80211.h>
+-#endif
+-#endif 
+-
+ #ifdef CUSTOMER_HW4
+ #include <linux/kthread.h>
+ #endif
+diff --git a/src/wl/sys/wl_linux.h b/src/wl/sys/wl_linux.h
+index 5b1048e..163ebe2 100644
+--- a/src/wl/sys/wl_linux.h
++++ b/src/wl/sys/wl_linux.h
+@@ -106,11 +106,7 @@ struct wl_info {
+ 	uint32		pci_psstate[16];	
+ #if LINUX_VERSION_CODE >= KERNEL_VERSION(2, 6, 14)
+ #define NUM_GROUP_KEYS 4
+-#if LINUX_VERSION_CODE >= KERNEL_VERSION(2, 6, 29)
+-	struct lib80211_crypto_ops *tkipmodops;
+-#else
+-	struct ieee80211_crypto_ops *tkipmodops;	
+-#endif
++	void *tkipmodops; /* unused in source */
+ 	struct ieee80211_tkip_data  *tkip_ucast_data;
+ 	struct ieee80211_tkip_data  *tkip_bcast_data[NUM_GROUP_KEYS];
+ #endif 

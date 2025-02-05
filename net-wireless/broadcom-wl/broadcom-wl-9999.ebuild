@@ -30,26 +30,26 @@ MODULE_NAMES="wl(net/wireless)"
 MODULESD_WL_ALIASES=("wlan0 wl")
 
 pkg_setup() {
-	CONFIG_CHECK="~!B43 ~!BCMA ~!SSB"
-	CONFIG_CHECK2="LIB80211 ~!MAC80211 ~LIB80211_CRYPT_TKIP"
-	ERROR_B43="B43: If you insist on building this, you must blacklist it!"
-	ERROR_BCMA="BCMA: If you insist on building this, you must blacklist it!"
-	ERROR_SSB="SSB: If you insist on building this, you must blacklist it!"
-	ERROR_LIB80211="LIB80211: Please enable it. If you can't find it: enabling the driver for \"Intel PRO/Wireless 2100\" or \"Intel PRO/Wireless 2200BG\" (IPW2100 or IPW2200) should suffice."
-	ERROR_MAC80211="MAC80211: If you insist on building this, you must blacklist it!"
-	ERROR_PREEMPT_RCU="PREEMPT_RCU: Please do not set the Preemption Model to \"Preemptible Kernel\"; choose something else."
-	ERROR_LIB80211_CRYPT_TKIP="LIB80211_CRYPT_TKIP: You will need this for WPA."
-	if kernel_is ge 3 8 8; then
-		CONFIG_CHECK="${CONFIG_CHECK} ${CONFIG_CHECK2} CFG80211 ~!PREEMPT_RCU ~!PREEMPT"
-	elif kernel_is ge 2 6 32; then
-		CONFIG_CHECK="${CONFIG_CHECK} ${CONFIG_CHECK2} CFG80211"
-	elif kernel_is ge 2 6 31; then
-		CONFIG_CHECK="${CONFIG_CHECK} ${CONFIG_CHECK2} WIRELESS_EXT ~!MAC80211"
-	elif kernel_is ge 2 6 29; then
-		CONFIG_CHECK="${CONFIG_CHECK} ${CONFIG_CHECK2} WIRELESS_EXT COMPAT_NET_DEV_OPS"
-	else
-		CONFIG_CHECK="${CONFIG_CHECK} IEEE80211 IEEE80211_CRYPT_TKIP"
-	fi
+#	CONFIG_CHECK="~!B43 ~!BCMA ~!SSB"
+#	CONFIG_CHECK2="LIB80211 ~!MAC80211 ~LIB80211_CRYPT_TKIP"
+#	ERROR_B43="B43: If you insist on building this, you must blacklist it!"
+#	ERROR_BCMA="BCMA: If you insist on building this, you must blacklist it!"
+#	ERROR_SSB="SSB: If you insist on building this, you must blacklist it!"
+#	ERROR_LIB80211="LIB80211: Please enable it. If you can't find it: enabling the driver for \"Intel PRO/Wireless 2100\" or \"Intel PRO/Wireless 2200BG\" (IPW2100 or IPW2200) should suffice."
+#	ERROR_MAC80211="MAC80211: If you insist on building this, you must blacklist it!"
+#	ERROR_PREEMPT_RCU="PREEMPT_RCU: Please do not set the Preemption Model to \"Preemptible Kernel\"; choose something else."
+#	ERROR_LIB80211_CRYPT_TKIP="LIB80211_CRYPT_TKIP: You will need this for WPA."
+#	if kernel_is ge 3 8 8; then
+#		CONFIG_CHECK="${CONFIG_CHECK} ${CONFIG_CHECK2} CFG80211 ~!PREEMPT_RCU ~!PREEMPT"
+#	elif kernel_is ge 2 6 32; then
+#		CONFIG_CHECK="${CONFIG_CHECK} ${CONFIG_CHECK2} CFG80211"
+#	elif kernel_is ge 2 6 31; then
+#		CONFIG_CHECK="${CONFIG_CHECK} ${CONFIG_CHECK2} WIRELESS_EXT ~!MAC80211"
+#	elif kernel_is ge 2 6 29; then
+#		CONFIG_CHECK="${CONFIG_CHECK} ${CONFIG_CHECK2} WIRELESS_EXT COMPAT_NET_DEV_OPS"
+#	else
+#		CONFIG_CHECK="${CONFIG_CHECK} IEEE80211 IEEE80211_CRYPT_TKIP"
+#	fi
 
 	linux-mod_pkg_setup
 
@@ -59,15 +59,28 @@ pkg_setup() {
 }
 
 src_prepare() {
+	# Initialize kernel info
+	get_version || die "Failed to get kernel version"
+
 	local PATCHES=(
 		"${FILESDIR}/${PN}-6.30.223.141-makefile.patch"
 		"${FILESDIR}/${PN}-6.30.223.141-gcc.patch"
 		"${FILESDIR}/${PN}-6.30.223.271-r4-linux-4.7.patch"
-		"${FILESDIR}/${PN}-6.30.223.271-kernel-6.12.patch"
 	)
 
 	if linux_chkconfig_present PAX_CONSTIFY_PLUGIN; then
 		PATCHES+=( "${FILESDIR}"/${PN}-6.30.223.271-pax-no-const.patch )
 	fi
+
+	# This is relevant for kernel 6.12 and on
+	if kernel_is ge 6 12; then
+		eapply "${FILESDIR}/${PN}-6.30.223.271-kernel-6.12.patch"
+	fi
+
+	# This is relevant for kernel 6.12 and on
+	if kernel_is ge 6 13; then
+		eapply "${FILESDIR}/${PN}-6.30.223.271-kernel-6.13.patch"
+	fi
+
 	default
 }
