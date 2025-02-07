@@ -5,7 +5,7 @@
 # https://github.com/BlueManCZ/automatic-ebuild-maker
 
 EAPI=8
-inherit unpacker
+inherit unpacker xdg
 
 DESCRIPTION="Termius client"
 HOMEPAGE="https://www.termius.com"
@@ -27,10 +27,19 @@ QA_PREBUILT="*"
 
 src_unpack() {
 	unpack_deb ${A} || die "Unpack error!"
+
+	# Unzip changelog
+	find "${WORKDIR}" -type f -name '*.gz' -exec gunzip {} +
 }
 
 src_install() {
 	cp -R "${S}"/* "${D}" || die "Installing binary files failed!"
 	mv "${D}/usr/share/doc/termius-app" "${D}/usr/share/doc/termius-${PV}"
-	#dodoc "${D}/usr/share/doc/termius-${PV}/changelog.gz" || die "docdoc failes"
+}
+
+pkg_postinst() {
+	# Update icon cache
+	xdg_icon_cache_update
+	# Update mimeinfo cache
+	xdg_desktop_database_update
 }
