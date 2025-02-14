@@ -110,7 +110,7 @@ media-plugins/gst-plugins-zbar 1.24.8: Bar codes detection in video streams for 
 media-video/bcwc_pcie 9999: Reverse engineered Linux driver for the Broadcom 1570 PCIe webcam
 media-video/facetimehd-firmware 9999: Firmware for the Broadcom 1570 PCIe webcam
 net-wireless/broadcom-wl 9999: Broadcom Linux hybrid wireless driver
-www-client/brave-bin 1.74.48 1.74.50 1.74.51 1.75.175: Brave Web Browser
+www-client/brave-bin 1.74.48 1.74.50 1.74.51 1.75.175 1.75.178: Brave Web Browser
 x11-libs/pango 1.56.0: Internationalized text layout and rendering library
 x11-misc/albert 0.26.11 0.26.13: A fast and flexible keyboard launcher
 x11-misc/touchegg 2.0.17: Linux multi-touch gesture recognizer
