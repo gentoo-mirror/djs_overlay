@@ -1,16 +1,16 @@
 acct-group/keyd 0: System group: keyd
 app-editors/sublime-text-dev 4_p4191 4_p4192: Sophisticated text editor for code, markup and prose.
 app-misc/keyd 2.4.2 2.4.3 2.5.0: A key remapping daemon for linux
-app-office/drawio-desktop-bin 26.0.9: draw.io diagramming and whiteboarding desktop app
+app-office/drawio-desktop-bin 26.0.9 26.0.15: draw.io diagramming and whiteboarding desktop app
 dev-db/dbgate-bin 6.1.6 6.2.0: Database manager for MySQL, PostgreSQL, SQL Server and MongoDB
 dev-libs/fuzzylite 6.0: A Fuzzy Logic Control Library in C++
 dev-util/sysprof 47.2: System-wide Linux Profiler
 dev-util/sysprof-capture 47.2: Static library for sysprof capture data generation
 dev-util/sysprof-common 47.2: Static library for sysprof capture data generation
 games-engines/OpenFodder 1.9.2: An open source port of Cannon Fodder
-games-engines/TheForceEngine 1.10.000: Modern "Jedi Engine" replacement supporting Dark Forces and the mods.
+games-engines/TheForceEngine 1.10.000 1.15.000: Modern "Jedi Engine" replacement supporting Dark Forces and the mods.
 games-engines/fheroes2 1.1.5 1.1.6: Recreation of HoMM2 game engine
-games-strategy/vcmi 1.6.2 1.6.3 1.6.4 1.6.5: Heroes of Might and Magic III game engine rewrite
+games-strategy/vcmi 1.6.5 1.6.6: Heroes of Might and Magic III game engine rewrite
 gnome-extra/cinnamon 6.4.2 6.4.3 6.4.4 6.4.5 6.4.6: A fork of GNOME Shell with layout similar to GNOME 2
 gnome-extra/cinnamon-control-center 6.4.1: Cinnamons's main interface to configure various aspects of the desktop
 gnome-extra/cinnamon-desktop 6.4.1: A collection of libraries and utilites used by Cinnamon
@@ -21,7 +21,7 @@ gnome-extra/cinnamon-settings-daemon 6.4.2 6.4.3: Cinnamon's settings daemon
 gnome-extra/cinnamon-translations 6.4.1 6.4.2: Translation data for Cinnamon
 gnome-extra/cjs 6.4.0: Linux Mint's fork of gjs for Cinnamon
 gnome-extra/nemo 6.4.3 6.4.4: A file manager for Cinnamon, forked from Nautilus
-gui-libs/gtk 4.17.3 4.17.4: GTK is a multi-platform toolkit for creating graphical user interfaces
+gui-libs/gtk 4.17.3 4.17.4 4.17.5: GTK is a multi-platform toolkit for creating graphical user interfaces
 gui-libs/libadwaita 1.6.0: Building blocks for modern GNOME applications
 gui-libs/libpanel 1.8.0 1.9.0: A dock/panel library for GTK 4
 media-libs/gst-plugins-bad 1.24.8: Less plugins for GStreamer
@@ -115,6 +115,6 @@ x11-libs/pango 1.56.0: Internationalized text layout and rendering library
 x11-misc/albert 0.26.11 0.26.13: A fast and flexible keyboard launcher
 x11-misc/touchegg 2.0.17: Linux multi-touch gesture recognizer
 x11-misc/ulauncher 5.15.7: Application launcher for Linux
-x11-terms/termius 9.15.1: Termius client
+x11-terms/termius 9.15.2: Termius client
 x11-terms/tilda 2.0.0: A drop down terminal, similar to the consoles found in first person shooters
 x11-wm/muffin 6.4.1: Compositing window manager forked from Mutter for use with Cinnamon
