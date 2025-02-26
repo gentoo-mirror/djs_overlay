@@ -13,7 +13,7 @@ LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64"
 
-IUSE="+midi"
+IUSE="editor +midi"
 
 DEPEND="
 	>=media-libs/libsdl2-2.24
@@ -27,6 +27,12 @@ RDEPEND="${DEPEND}
 BDEPEND=""
 
 src_configure() {
+	local mycmakeargs=(
+		-DCMAKE_BUILD_TYPE=Release
+		-DENABLE_EDITOR=$(usex editor)
+		-DENABLE_FORCE_SCRIPT=ON
+	)
+
 	cmake_src_configure
 }
 
