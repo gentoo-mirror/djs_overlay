@@ -2,7 +2,7 @@ acct-group/keyd 0: System group: keyd
 app-editors/sublime-text-dev 4_p4191 4_p4192 4_p4194: Sophisticated text editor for code, markup and prose.
 app-misc/keyd 2.4.2 2.4.3 2.5.0: A key remapping daemon for linux
 app-office/drawio-desktop-bin 26.0.9 26.0.15 26.0.16: draw.io diagramming and whiteboarding desktop app
-dev-db/dbgate-bin 6.1.6 6.2.0: Database manager for MySQL, PostgreSQL, SQL Server and MongoDB
+dev-db/dbgate-bin 6.2.0 6.2.1: Database manager for MySQL, PostgreSQL, SQL Server and MongoDB
 dev-libs/fuzzylite 6.0: A Fuzzy Logic Control Library in C++
 dev-util/sysprof 47.2: System-wide Linux Profiler
 dev-util/sysprof-capture 47.2: Static library for sysprof capture data generation
@@ -10,7 +10,7 @@ dev-util/sysprof-common 47.2: Static library for sysprof capture data generation
 games-engines/OpenFodder 1.9.2: An open source port of Cannon Fodder
 games-engines/TheForceEngine 1.10.000 1.15.000: Modern "Jedi Engine" replacement supporting Dark Forces and the mods.
 games-engines/fheroes2 1.1.5 1.1.6: Recreation of HoMM2 game engine
-games-strategy/vcmi 1.6.5 1.6.6: Heroes of Might and Magic III game engine rewrite
+games-strategy/vcmi 1.6.5 1.6.6 1.6.7: Heroes of Might and Magic III game engine rewrite
 gnome-extra/cinnamon 6.4.2 6.4.3 6.4.4 6.4.5 6.4.6: A fork of GNOME Shell with layout similar to GNOME 2
 gnome-extra/cinnamon-control-center 6.4.1: Cinnamons's main interface to configure various aspects of the desktop
 gnome-extra/cinnamon-desktop 6.4.1: A collection of libraries and utilites used by Cinnamon
@@ -110,9 +110,9 @@ media-plugins/gst-plugins-zbar 1.24.8: Bar codes detection in video streams for 
 media-video/bcwc_pcie 9999: Reverse engineered Linux driver for the Broadcom 1570 PCIe webcam
 media-video/facetimehd-firmware 9999: Firmware for the Broadcom 1570 PCIe webcam
 net-wireless/broadcom-wl 9999: Broadcom Linux hybrid wireless driver
-www-client/brave-bin 1.75.178 1.75.180: Brave Web Browser
+www-client/brave-bin 1.75.178 1.75.180 1.75.181: Brave Web Browser
 x11-libs/pango 1.56.0: Internationalized text layout and rendering library
-x11-misc/albert 0.26.11 0.26.13: A fast and flexible keyboard launcher
+x11-misc/albert 0.26.11 0.26.13 0.27.1 0.27.3: A fast and flexible keyboard launcher
 x11-misc/touchegg 2.0.17: Linux multi-touch gesture recognizer
 x11-misc/ulauncher 5.15.7: Application launcher for Linux
 x11-terms/termius 9.15.2: Termius client

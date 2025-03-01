@@ -1,0 +1,17 @@
+BDEPEND=app-alternatives/ninja >=dev-build/cmake-3.20.5 >=dev-vcs/git-1.8.2.1[curl]
+DEFINED_PHASES=compile configure install postinst prepare setup test unpack
+DEPEND=nullkiller-ai? ( dev-cpp/tbb ) dev-lang/luajit >=dev-libs/boost-1.70:= launcher? ( dev-qt/qtcore:= dev-qt/qtgui:= dev-qt/qtnetwork:= dev-qt/qtwidgets:= translations? ( dev-qt/linguist-tools ) ) editor? ( dev-qt/qtcore:= dev-qt/qtgui:= dev-qt/qtnetwork:= dev-qt/qtwidgets translations? ( dev-qt/linguist-tools ) ) sys-libs/zlib:=[minizip] media-video/ffmpeg:= media-libs/libsdl2:=[X] media-libs/sdl2-image:= media-libs/sdl2-mixer:= media-libs/sdl2-ttf:=
+DESCRIPTION=Heroes of Might and Magic III game engine rewrite
+EAPI=8
+HOMEPAGE=http://forum.vcmi.eu/index.php
+INHERIT=cmake lua-single git-r3
+IUSE=+editor debug erm +launcher lua +nullkiller-ai +translations +lua_single_target_luajit
+KEYWORDS=~amd64
+LICENSE=GPL-2
+PROPERTIES=live
+RDEPEND=nullkiller-ai? ( dev-cpp/tbb ) dev-lang/luajit >=dev-libs/boost-1.70:= launcher? ( dev-qt/qtcore:= dev-qt/qtgui:= dev-qt/qtnetwork:= dev-qt/qtwidgets:= translations? ( dev-qt/linguist-tools ) ) editor? ( dev-qt/qtcore:= dev-qt/qtgui:= dev-qt/qtnetwork:= dev-qt/qtwidgets translations? ( dev-qt/linguist-tools ) ) sys-libs/zlib:=[minizip] media-video/ffmpeg:= media-libs/libsdl2:=[X] media-libs/sdl2-image:= media-libs/sdl2-mixer:= media-libs/sdl2-ttf:=
+REQUIRED_USE=erm? ( lua ) lua? ( ^^ ( lua_single_target_luajit ) )
+SLOT=0
+SRC_URI=https://github.com/vcmi/vcmi/archive/refs/tags/1.6.7.tar.gz -> vcmi-1.6.7.tar.gz https://github.com/fuzzylite/fuzzylite/archive/refs/tags/v6.0.tar.gz -> fuzzylite.tar.gz https://github.com/google/googletest/archive/refs/tags/v1.15.2.tar.gz -> googletest.tar.gz
+_eclasses_=toolchain-funcs	6afdb6107430c1832ca7e16aacbf8fa1	multilib	b2a329026f2e404e9e371097dda47f96	flag-o-matic	357f1a896fbedcd06e5ce55419c49eb9	multiprocessing	1e32df7deee68372153dca65f4a7c21f	ninja-utils	2df4e452cea39a9ec8fb543ce059f8d6	xdg-utils	42869b3c8d86a70ef3cf75165a395e09	cmake	10a50dfaf728b802fcfd37f8d0da9056	lua-utils	7c89927eda6f21c4c48136247077ab37	lua-single	75fe955a36b18e199213c8739eaebdbb	git-r3	875eb471682d3e1f18da124be97dcc81
+_md5_=cc744c58c23b763ea106d31b041ff691
