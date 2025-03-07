@@ -56,15 +56,15 @@ RDEPEND="
 src_unpack() {
 	# Unpack Albert
 	unpack ${A}
-	
+
 	# Unpack I18N
 	git-r3_fetch "${I18N_URL}" refs/heads/main || die "Fetch of ${I18N_URL} failed!"
 	git-r3_checkout "${I18N_URL}" "${S}/i18n" || die "Checkout of ${I18N_URL} failed!"
-	
+
 	# Unpack plugins
 	git-r3_fetch "${PLUGINS_URL}" refs/heads/main || die "Fetch of ${PLUGINS_URL} failed!"
 	git-r3_checkout "${PLUGINS_URL}" "${S}/plugins" || die "Checkout of ${PLUGINS_URL} failed!"
-	
+
 	# Unpack QNotification
 	git-r3_fetch "${QNOTIFICATION_URL}" refs/heads/main || die "Fetch of ${QNOTIFICATION_URL} failed!"
 	git-r3_checkout "${QNOTIFICATION_URL}" "${S}/lib/QNotification" || die "Checkout of ${QNOTIFICATION_URL} failed!"
@@ -75,7 +75,7 @@ src_unpack() {
 	git-r3_checkout "${QHOTKEY_URL}" "${S}/lib/QHotkey" || die "Checkout of ${QHOTKEY_URL} failed!"
 
 	if use python; then
-		git-r3_fetch "${PYBIND11_URL}" refs/heads/master || die "Fetch of ${PYBIND11_URL} failed!"
+		git-r3_fetch "${PYBIND11_URL}" refs/heads/v2.13 || die "Fetch of ${PYBIND11_URL} failed!"
 		git-r3_checkout "${PYBIND11_URL}" "${S}/plugins/python/pybind11" || die "Checkout of ${PYBIND11_URL} failed!"
 	fi
 
