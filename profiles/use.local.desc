@@ -2,7 +2,6 @@
 # Please add your descriptions to your package's metadata.xml ONLY.
 # * generated automatically using pmaint *
 
-app-editors/sublime-text-dev:npm - When using packages, that depend on Node.js npm package manager, this will enable correct prerequisity.
 dev-util/sysprof:unwind - Use sys-libs/libunwind to unwind the stack
 games-engines/fheroes2:tools - Install development tools like 82m2wav and xmi2midi.
 gnome-extra/cinnamon:internal-polkit - Use Cinnamon's internal polkit agent instead of gnome-extra/polkit-gnome. This does not currently support multi-user fast switching.
