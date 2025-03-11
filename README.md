@@ -24,6 +24,7 @@ And one more thing I had raised a ticket to be added into eselect repository lis
 - **[sublime-text-dev](https://www.sublimetext.com/dev)** - Only for users with Sublime license. It gets installed in the same location as app-editors/sublime-text so these two packages should not coexist on same system (at the moment). I separated them, because I am using it for python development and needed dev-libs/nodejs with npm flag as dependency so I had finally did half separation (package name, but not install location),
 
 ### app-emulators
+- [crossover-bin](https://www.codeweavers.com/products/crossover-linux) - Crossover wine implementation,
 - **[dreamm](https://aarongiles.com/dreamm/)** - I like this simple emulator for old Lucas Arts games. For most of them there is [ScummVM](https://scummvm.org/), which is allready in official Gentoo repository, but some games, e.g. Yoda Storries, Indiana Jones storries which are not so good are playable throught this,
 
 ### app-office
