@@ -31,6 +31,7 @@ BDEPEND="
 	dev-util/glib-utils
 	sys-devel/gettext
 	virtual/pkgconfig
+	dev-libs/gmime[doc]
 "
 
 src_prepare() {
