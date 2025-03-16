@@ -31,7 +31,7 @@ BDEPEND="
 	dev-util/glib-utils
 	sys-devel/gettext
 	virtual/pkgconfig
-	dev-libs/gmime[doc]
+	dev-libs/gobject-introspection[doctool]
 "
 
 src_prepare() {
