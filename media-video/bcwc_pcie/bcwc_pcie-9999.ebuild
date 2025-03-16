@@ -29,10 +29,5 @@ src_prepare() {
 	# init kernel info
 	get_version || die "Failed to get kernel version"
 
-	# Apply patch only if kernel is 6.13 and newer
-	if kernel_is ge 6 13; then
-		eapply "${FILESDIR}/kernel-6.13-update.patch"
-	fi
-
 	default
 }
