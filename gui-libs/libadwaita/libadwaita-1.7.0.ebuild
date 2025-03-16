@@ -34,6 +34,10 @@ BDEPEND="
 	dev-libs/gobject-introspection[doctool]
 "
 
+PATCHES="
+	${FILESDIR}/${P}-gir-patch.patch
+"
+
 src_prepare() {
 	default
 	use vala && vala_setup
@@ -63,5 +67,5 @@ src_install() {
 
 	insinto /usr/share/gtk-doc/html
 	# This will install libadwaita API docs unconditionally, but this is intentional
-	doins -r "${S}"/doc/libadwaita-1
+	doins -r "${S}"/doc
 }

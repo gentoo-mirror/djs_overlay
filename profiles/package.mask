@@ -1,3 +1,0 @@
-# DJManas: Libadwaita won't compile, because g-ir-scanner doesn't have a
-# --doc-format option, but has --format option, working on fix
-=gui-libs/libadwaita-1.7.0
