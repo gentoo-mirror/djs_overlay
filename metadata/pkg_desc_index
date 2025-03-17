@@ -1,6 +1,6 @@
 acct-group/keyd 0: System group: keyd
 app-misc/keyd 2.4.2 2.4.3 2.5.0: A key remapping daemon for linux
-app-office/drawio-desktop-bin 26.0.9 26.0.15 26.0.16: draw.io diagramming and whiteboarding desktop app
+app-office/drawio-desktop-bin 26.0.16 26.1.1: draw.io diagramming and whiteboarding desktop app
 dev-db/dbgate-bin 6.2.0 6.2.1: Database manager for MySQL, PostgreSQL, SQL Server and MongoDB
 dev-libs/fuzzylite 6.0: A Fuzzy Logic Control Library in C++
 dev-util/sysprof 47.2: System-wide Linux Profiler
@@ -110,7 +110,7 @@ media-video/bcwc_pcie 9999: Reverse engineered Linux driver for the Broadcom 157
 media-video/facetimehd-firmware 9999: Firmware for the Broadcom 1570 PCIe webcam
 net-wireless/broadcom-wl 9999: Broadcom Linux hybrid wireless driver
 www-client/brave-bin 1.76.74: Brave Web Browser
-x11-libs/pango 1.56.0 1.56.1 1.56.2: Internationalized text layout and rendering library
+x11-libs/pango 1.56.2 1.56.3: Internationalized text layout and rendering library
 x11-misc/albert 0.27.3 0.27.4 0.27.5: A fast and flexible keyboard launcher
 x11-misc/touchegg 2.0.17: Linux multi-touch gesture recognizer
 x11-misc/ulauncher 5.15.7: Application launcher for Linux
