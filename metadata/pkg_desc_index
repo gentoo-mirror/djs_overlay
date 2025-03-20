@@ -1,7 +1,7 @@
 acct-group/keyd 0: System group: keyd
 app-misc/keyd 2.4.2 2.4.3 2.5.0: A key remapping daemon for linux
 app-office/drawio-desktop-bin 26.0.16 26.1.1: draw.io diagramming and whiteboarding desktop app
-dev-db/dbgate-bin 6.2.0 6.2.1: Database manager for MySQL, PostgreSQL, SQL Server and MongoDB
+dev-db/dbgate-bin 6.2.0 6.2.1 6.3.0: Database manager for MySQL, PostgreSQL, SQL Server and MongoDB
 dev-libs/fuzzylite 6.0: A Fuzzy Logic Control Library in C++
 dev-util/sysprof 47.2: System-wide Linux Profiler
 dev-util/sysprof-capture 47.2: Static library for sysprof capture data generation
@@ -20,7 +20,7 @@ gnome-extra/cinnamon-settings-daemon 6.4.2 6.4.3: Cinnamon's settings daemon
 gnome-extra/cinnamon-translations 6.4.1 6.4.2: Translation data for Cinnamon
 gnome-extra/cjs 6.4.0: Linux Mint's fork of gjs for Cinnamon
 gnome-extra/nemo 6.4.3 6.4.4 6.4.5: A file manager for Cinnamon, forked from Nautilus
-gui-libs/gtk 4.17.6 4.18.1: GTK is a multi-platform toolkit for creating graphical user interfaces
+gui-libs/gtk 4.17.6 4.18.1 4.18.2: GTK is a multi-platform toolkit for creating graphical user interfaces
 gui-libs/libadwaita 1.6.0 1.7.0: Building blocks for modern GNOME applications
 gui-libs/libpanel 1.8.0 1.9.0 1.10.0: A dock/panel library for GTK 4
 media-libs/gst-plugins-bad 1.24.8: Less plugins for GStreamer
@@ -109,7 +109,7 @@ media-plugins/gst-plugins-zbar 1.24.8: Bar codes detection in video streams for 
 media-video/bcwc_pcie 9999: Reverse engineered Linux driver for the Broadcom 1570 PCIe webcam
 media-video/facetimehd-firmware 9999: Firmware for the Broadcom 1570 PCIe webcam
 net-wireless/broadcom-wl 9999: Broadcom Linux hybrid wireless driver
-www-client/brave-bin 1.76.74: Brave Web Browser
+www-client/brave-bin 1.76.74 1.76.80: Brave Web Browser
 x11-libs/pango 1.56.2 1.56.3: Internationalized text layout and rendering library
 x11-misc/albert 0.27.3 0.27.4 0.27.5: A fast and flexible keyboard launcher
 x11-misc/touchegg 2.0.17: Linux multi-touch gesture recognizer
