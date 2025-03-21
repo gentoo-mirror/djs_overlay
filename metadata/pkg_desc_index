@@ -1,8 +1,13 @@
 acct-group/keyd 0: System group: keyd
+app-editors/neovim 0.10.4: Vim-fork focused on extensibility and agility
 app-misc/keyd 2.4.2 2.4.3 2.5.0: A key remapping daemon for linux
 app-office/drawio-desktop-bin 26.0.16 26.1.1: draw.io diagramming and whiteboarding desktop app
 dev-db/dbgate-bin 6.2.0 6.2.1 6.3.0: Database manager for MySQL, PostgreSQL, SQL Server and MongoDB
 dev-libs/fuzzylite 6.0: A Fuzzy Logic Control Library in C++
+dev-libs/hyprgraphics 0.1.2: Hyprland graphics / resource utilities
+dev-libs/hyprland-protocols 0.6.2: Wayland protocol extensions for Hyprland
+dev-libs/hyprlang 0.6.0: Official implementation library for the hypr config language
+dev-util/hyprwayland-scanner 0.4.4: A Hyprland implementation of wayland-scanner, in and for C++
 dev-util/sysprof 47.2: System-wide Linux Profiler
 dev-util/sysprof-capture 47.2: Static library for sysprof capture data generation
 dev-util/sysprof-common 47.2: Static library for sysprof capture data generation
@@ -20,9 +25,28 @@ gnome-extra/cinnamon-settings-daemon 6.4.2 6.4.3: Cinnamon's settings daemon
 gnome-extra/cinnamon-translations 6.4.1 6.4.2: Translation data for Cinnamon
 gnome-extra/cjs 6.4.0: Linux Mint's fork of gjs for Cinnamon
 gnome-extra/nemo 6.4.3 6.4.4 6.4.5: A file manager for Cinnamon, forked from Nautilus
+gui-apps/hypridle 0.1.5-r2: Hyprland's idle daemon
+gui-apps/hyprlock 0.7.0: Hyprland's GPU-accelerated screen locking utility
+gui-apps/hyprpaper 0.7.4: A blazing fast wayland wallpaper utility
+gui-apps/hyprpicker 0.4.2: A wlroots-compatible Wayland color picker that does not suck
+gui-apps/hyprsunset 0.1.0-r1: An application to enable a blue-light filter on Hyprland
+gui-apps/hyprswitch 3.3.2: A CLI/GUI that allows switching between windows in Hyprland
+gui-apps/hyprsysteminfo 0.1.3: Hyprland's system information GUI application
+gui-apps/uwsm 0.21.2: Universal Wayland Session Manager
+gui-apps/waybar 0.12.0: Highly customizable Wayland bar for Sway and Wlroots based compositors
+gui-apps/wev 1.0.0: Wayland event viewer
+gui-libs/aquamarine 0.7.2 0.8.0: Aquamarine is a very light linux rendering backend library
 gui-libs/gtk 4.17.6 4.18.1 4.18.2: GTK is a multi-platform toolkit for creating graphical user interfaces
+gui-libs/hyprcursor 0.1.11 0.1.12: The hyprland cursor format, library and utilities
+gui-libs/hyprland-qt-support 0.1.0: Qt6 Qml style provider for hypr* apps
+gui-libs/hyprland-qtutils 0.1.3: Hyprland QT/qml utility apps
+gui-libs/hyprutils 0.5.1 0.5.2: Hyprland utilities library used across the ecosystem
 gui-libs/libadwaita 1.6.0 1.7.0: Building blocks for modern GNOME applications
 gui-libs/libpanel 1.8.0 1.9.0 1.10.0: A dock/panel library for GTK 4
+gui-libs/xdg-desktop-portal-hyprland 1.3.9: xdg-desktop-portal backend for hyprland
+gui-wm/gamescope 3.16.2: Efficient micro-compositor for running games
+gui-wm/hyprland 0.47.2: A dynamic tiling Wayland compositor that doesn't sacrifice on its looks
+gui-wm/hyprland-contrib 0.1-r1 9999: Community-maintained extensions for hyprland
 media-libs/gst-plugins-bad 1.24.8: Less plugins for GStreamer
 media-libs/gst-plugins-base 1.24.8: Basepack of plugins for gstreamer
 media-libs/gst-plugins-good 1.24.8: Basepack of plugins for GStreamer
@@ -109,6 +133,7 @@ media-plugins/gst-plugins-zbar 1.24.8: Bar codes detection in video streams for 
 media-video/bcwc_pcie 9999: Reverse engineered Linux driver for the Broadcom 1570 PCIe webcam
 media-video/facetimehd-firmware 9999: Firmware for the Broadcom 1570 PCIe webcam
 net-wireless/broadcom-wl 9999: Broadcom Linux hybrid wireless driver
+sys-auth/hyprpolkitagent 0.1.2: Polkit authentication agent for Hyprland, written in Qt/QML
 www-client/brave-bin 1.76.74 1.76.80: Brave Web Browser
 x11-libs/pango 1.56.2 1.56.3: Internationalized text layout and rendering library
 x11-misc/albert 0.27.3 0.27.4 0.27.5: A fast and flexible keyboard launcher
