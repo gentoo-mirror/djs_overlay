@@ -7,13 +7,13 @@ inherit cmake
 
 DESCRIPTION="Modern \"Jedi Engine\" replacement supporting Dark Forces and the mods."
 HOMEPAGE="https://theforceengine.github.io/"
-SRC_URI="https://github.com/luciusDXL/TheForceEngine/archive/refs/tags/v${PV}.tar.gz"
+SRC_URI="https://github.com/luciusDXL/TheForceEngine/archive/refs/tags/v${PV}.tar.gz -> ${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64"
 
-IUSE="+midi"
+IUSE="editor +midi"
 
 DEPEND="
 	>=media-libs/libsdl2-2.24
@@ -27,6 +27,11 @@ RDEPEND="${DEPEND}
 BDEPEND=""
 
 src_configure() {
+	local mycmakeargs=(
+		-DCMAKE_BUILD_TYPE=Release
+		-DENABLE_EDITOR=$(usex editor)
+	)
+
 	cmake_src_configure
 }
 
