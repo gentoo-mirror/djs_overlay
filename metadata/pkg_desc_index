@@ -12,8 +12,8 @@ dev-util/sysprof 47.2: System-wide Linux Profiler
 dev-util/sysprof-capture 47.2: Static library for sysprof capture data generation
 dev-util/sysprof-common 47.2: Static library for sysprof capture data generation
 games-engines/OpenFodder 1.9.2: An open source port of Cannon Fodder
-games-engines/TheForceEngine 1.10.000 1.15.000: Modern "Jedi Engine" replacement supporting Dark Forces and the mods.
-games-engines/fheroes2 1.1.5 1.1.6: Recreation of HoMM2 game engine
+games-engines/TheForceEngine 1.15.000 1.22.000: Modern "Jedi Engine" replacement supporting Dark Forces and the mods.
+games-engines/fheroes2 1.1.5 1.1.6 1.1.7: Recreation of HoMM2 game engine
 games-strategy/vcmi 1.6.5 1.6.6 1.6.7: Heroes of Might and Magic III game engine rewrite
 gnome-extra/cinnamon 6.4.6 6.4.8: A fork of GNOME Shell with layout similar to GNOME 2
 gnome-extra/cinnamon-control-center 6.4.1: Cinnamons's main interface to configure various aspects of the desktop
@@ -32,7 +32,7 @@ gui-apps/hyprpicker 0.4.2: A wlroots-compatible Wayland color picker that does n
 gui-apps/hyprsunset 0.1.0-r1: An application to enable a blue-light filter on Hyprland
 gui-apps/hyprswitch 3.3.2: A CLI/GUI that allows switching between windows in Hyprland
 gui-apps/hyprsysteminfo 0.1.3: Hyprland's system information GUI application
-gui-apps/uwsm 0.21.2: Universal Wayland Session Manager
+gui-apps/uwsm 0.21.2 0.21.3: Universal Wayland Session Manager
 gui-apps/waybar 0.12.0: Highly customizable Wayland bar for Sway and Wlroots based compositors
 gui-apps/wev 1.0.0: Wayland event viewer
 gui-libs/aquamarine 0.7.2 0.8.0: Aquamarine is a very light linux rendering backend library
@@ -45,7 +45,7 @@ gui-libs/libadwaita 1.6.0 1.7.0: Building blocks for modern GNOME applications
 gui-libs/libpanel 1.8.0 1.9.0 1.10.0: A dock/panel library for GTK 4
 gui-libs/xdg-desktop-portal-hyprland 1.3.9: xdg-desktop-portal backend for hyprland
 gui-wm/gamescope 3.16.2: Efficient micro-compositor for running games
-gui-wm/hyprland 0.47.2: A dynamic tiling Wayland compositor that doesn't sacrifice on its looks
+gui-wm/hyprland 0.47.2 0.48.0: A dynamic tiling Wayland compositor that doesn't sacrifice on its looks
 gui-wm/hyprland-contrib 0.1-r1 9999: Community-maintained extensions for hyprland
 media-libs/gst-plugins-bad 1.24.8: Less plugins for GStreamer
 media-libs/gst-plugins-base 1.24.8: Basepack of plugins for gstreamer
