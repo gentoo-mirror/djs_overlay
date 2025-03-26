@@ -1,5 +1,5 @@
 acct-group/keyd 0: System group: keyd
-app-editors/neovim 0.10.4: Vim-fork focused on extensibility and agility
+app-editors/neovim 0.10.4 0.11.0: Vim-fork focused on extensibility and agility
 app-misc/keyd 2.4.2 2.4.3 2.5.0: A key remapping daemon for linux
 app-office/drawio-desktop-bin 26.0.16 26.1.1: draw.io diagramming and whiteboarding desktop app
 dev-db/dbgate-bin 6.2.0 6.2.1 6.3.0: Database manager for MySQL, PostgreSQL, SQL Server and MongoDB
@@ -134,7 +134,7 @@ media-video/bcwc_pcie 9999: Reverse engineered Linux driver for the Broadcom 157
 media-video/facetimehd-firmware 9999: Firmware for the Broadcom 1570 PCIe webcam
 net-wireless/broadcom-wl 9999: Broadcom Linux hybrid wireless driver
 sys-auth/hyprpolkitagent 0.1.2: Polkit authentication agent for Hyprland, written in Qt/QML
-www-client/brave-bin 1.76.74 1.76.80 1.76.81: Brave Web Browser
+www-client/brave-bin 1.76.74 1.76.80 1.76.81 1.76.82: Brave Web Browser
 x11-libs/pango 1.56.2 1.56.3: Internationalized text layout and rendering library
 x11-misc/albert 0.27.3 0.27.4 0.27.5: A fast and flexible keyboard launcher
 x11-misc/touchegg 2.0.17: Linux multi-touch gesture recognizer
