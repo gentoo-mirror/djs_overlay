@@ -15,7 +15,7 @@ games-engines/OpenFodder 1.9.2: An open source port of Cannon Fodder
 games-engines/TheForceEngine 1.15.000 1.22.000 1.22.100 1.22.200: Modern "Jedi Engine" replacement supporting Dark Forces and the mods.
 games-engines/fheroes2 1.1.5 1.1.6 1.1.7: Recreation of HoMM2 game engine
 games-strategy/vcmi 1.6.5 1.6.6 1.6.7: Heroes of Might and Magic III game engine rewrite
-gnome-extra/cinnamon 6.4.6 6.4.8: A fork of GNOME Shell with layout similar to GNOME 2
+gnome-extra/cinnamon 6.4.6 6.4.8 6.4.9: A fork of GNOME Shell with layout similar to GNOME 2
 gnome-extra/cinnamon-control-center 6.4.1: Cinnamons's main interface to configure various aspects of the desktop
 gnome-extra/cinnamon-desktop 6.4.1: A collection of libraries and utilites used by Cinnamon
 gnome-extra/cinnamon-menus 6.4.0: Cinnamon's library for the Desktop Menu fd.o specification
@@ -25,7 +25,7 @@ gnome-extra/cinnamon-settings-daemon 6.4.2 6.4.3: Cinnamon's settings daemon
 gnome-extra/cinnamon-translations 6.4.1 6.4.2: Translation data for Cinnamon
 gnome-extra/cjs 6.4.0: Linux Mint's fork of gjs for Cinnamon
 gnome-extra/nemo 6.4.3 6.4.4 6.4.5: A file manager for Cinnamon, forked from Nautilus
-gui-apps/hypridle 0.1.5-r2: Hyprland's idle daemon
+gui-apps/hypridle 0.1.5-r2 0.1.6: Hyprland's idle daemon
 gui-apps/hyprlock 0.7.0: Hyprland's GPU-accelerated screen locking utility
 gui-apps/hyprpaper 0.7.4: A blazing fast wayland wallpaper utility
 gui-apps/hyprpicker 0.4.2 0.4.3: A wlroots-compatible Wayland color picker that does not suck
@@ -45,7 +45,7 @@ gui-libs/libadwaita 1.6.0 1.7.0: Building blocks for modern GNOME applications
 gui-libs/libpanel 1.8.0 1.9.0 1.10.0: A dock/panel library for GTK 4
 gui-libs/xdg-desktop-portal-hyprland 1.3.9: xdg-desktop-portal backend for hyprland
 gui-wm/gamescope 3.16.2: Efficient micro-compositor for running games
-gui-wm/hyprland 0.47.2 0.48.0: A dynamic tiling Wayland compositor that doesn't sacrifice on its looks
+gui-wm/hyprland 0.47.2 0.48.0 0.48.1: A dynamic tiling Wayland compositor that doesn't sacrifice on its looks
 gui-wm/hyprland-contrib 0.1-r1 9999: Community-maintained extensions for hyprland
 media-libs/gst-plugins-bad 1.24.8: Less plugins for GStreamer
 media-libs/gst-plugins-base 1.24.8: Basepack of plugins for gstreamer
