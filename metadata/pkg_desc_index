@@ -12,7 +12,7 @@ dev-util/sysprof 47.2: System-wide Linux Profiler
 dev-util/sysprof-capture 47.2: Static library for sysprof capture data generation
 dev-util/sysprof-common 47.2: Static library for sysprof capture data generation
 games-engines/OpenFodder 1.9.2: An open source port of Cannon Fodder
-games-engines/TheForceEngine 1.15.000 1.22.000 1.22.100 1.22.200: Modern "Jedi Engine" replacement supporting Dark Forces and the mods.
+games-engines/TheForceEngine 1.15.000 1.22.200 1.22.300: Modern "Jedi Engine" replacement supporting Dark Forces and the mods.
 games-engines/fheroes2 1.1.5 1.1.6 1.1.7: Recreation of HoMM2 game engine
 games-strategy/vcmi 1.6.5 1.6.6 1.6.7: Heroes of Might and Magic III game engine rewrite
 gnome-extra/cinnamon 6.4.6 6.4.8 6.4.9: A fork of GNOME Shell with layout similar to GNOME 2
