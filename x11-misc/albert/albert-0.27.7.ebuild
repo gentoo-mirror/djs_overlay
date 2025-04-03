@@ -51,6 +51,7 @@ RDEPEND="
 		$(python_gen_cond_dep 'dev-python/urllib3[${PYTHON_USEDEP}]')
 		${PYTHON_DEPS}
 	)
+	x11-misc/copyq
 "
 
 src_unpack() {
