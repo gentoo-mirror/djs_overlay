@@ -82,5 +82,10 @@ src_prepare() {
 		eapply "${FILESDIR}/${PN}-6.30.223.271-kernel-6.13.patch"
 	fi
 
+	# This is relevant for kernel 6.14 and on
+	if kernel_is ge 6 14; then
+		eapply "${FILESDIR}/${PN}-6.30.223.271-kernel-6.14.patch"
+	fi
+
 	default
 }

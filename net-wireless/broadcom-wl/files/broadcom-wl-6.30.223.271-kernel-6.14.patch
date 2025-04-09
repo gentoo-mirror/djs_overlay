@@ -1,0 +1,38 @@
+Change signature of wl_cfg80211_get_tx_power for kernels >= 6.14
+
+In Linux v6.14 the type of the function pointer *get_tx_power
+of the stuct cfg80211_ops has been changed.
+See commit 7a53af85d3bbdb wifi: cfg80211: send MLO links tx power info in GET_INTERFACE
+
+Adjusted the signature of the function wl_cfg80211_get_tx_power accordingly
+for kernels >= 6.14.
+
+Signed-off-by: Massimiliano Pellizzer <massimiliano.pellizzer@canonical.com>
+---
+ src/wl/sys/wl_cfg80211_hybrid.c |    8 ++++++--
+ 1 file changed, 6 insertions(+), 2 deletions(-)
+
+--- a/src/wl/sys/wl_cfg80211_hybrid.c
++++ b/src/wl/sys/wl_cfg80211_hybrid.c
+@@ -98,7 +98,9 @@
+            enum tx_power_setting type, s32 mbm);
+ #endif
+ 
+-#if LINUX_VERSION_CODE >= KERNEL_VERSION(3, 8, 0)
++#if LINUX_VERSION_CODE >= KERNEL_VERSION(6, 14, 0)
++static s32 wl_cfg80211_get_tx_power(struct wiphy *wiphy, struct wireless_dev *wdev, unsigned int link_id, s32 *dbm);
++#elif LINUX_VERSION_CODE >= KERNEL_VERSION(3, 8, 0)
+ static s32 wl_cfg80211_get_tx_power(struct wiphy *wiphy, struct wireless_dev *wdev, s32 *dbm);
+ #else
+ static s32 wl_cfg80211_get_tx_power(struct wiphy *wiphy, s32 *dbm);
+@@ -1159,7 +1161,9 @@
+ 	return err;
+ }
+ 
+-#if LINUX_VERSION_CODE >= KERNEL_VERSION(3, 8, 0)
++#if LINUX_VERSION_CODE >= KERNEL_VERSION(6, 14, 0)
++static s32 wl_cfg80211_get_tx_power(struct wiphy *wiphy, struct wireless_dev *wdev, unsigned int link_id, s32 *dbm)
++#elif LINUX_VERSION_CODE >= KERNEL_VERSION(3, 8, 0)
+ static s32 wl_cfg80211_get_tx_power(struct wiphy *wiphy, struct wireless_dev *wdev, s32 *dbm)
+ #else
+ static s32 wl_cfg80211_get_tx_power(struct wiphy *wiphy, s32 *dbm)
