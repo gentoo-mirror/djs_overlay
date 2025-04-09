@@ -2,7 +2,7 @@ acct-group/keyd 0: System group: keyd
 app-editors/neovim 0.10.4 0.11.0: Vim-fork focused on extensibility and agility
 app-misc/keyd 2.4.2 2.4.3 2.5.0: A key remapping daemon for linux
 app-office/drawio-desktop-bin 26.0.16 26.1.1 26.2.2: draw.io diagramming and whiteboarding desktop app
-dev-db/dbgate-bin 6.3.0 6.3.2: Database manager for MySQL, PostgreSQL, SQL Server and MongoDB
+dev-db/dbgate-bin 6.3.0 6.3.2 6.3.3: Database manager for MySQL, PostgreSQL, SQL Server and MongoDB
 dev-libs/fuzzylite 6.0: A Fuzzy Logic Control Library in C++
 dev-libs/hyprgraphics 0.1.2 0.1.3: Hyprland graphics / resource utilities
 dev-libs/hyprland-protocols 0.6.2 0.6.3 0.6.4: Wayland protocol extensions for Hyprland
@@ -44,7 +44,7 @@ gui-libs/hyprutils 0.5.1 0.5.2 0.6.0: Hyprland utilities library used across the
 gui-libs/libadwaita 1.6.0 1.7.0: Building blocks for modern GNOME applications
 gui-libs/libpanel 1.8.0 1.9.0 1.10.0: A dock/panel library for GTK 4
 gui-libs/xdg-desktop-portal-hyprland 1.3.9: xdg-desktop-portal backend for hyprland
-gui-wm/gamescope 3.16.2 3.16.3: Efficient micro-compositor for running games
+gui-wm/gamescope 3.16.2 3.16.3 3.16.3-r1: Efficient micro-compositor for running games
 gui-wm/hyprland 0.47.2 0.48.0 0.48.1: A dynamic tiling Wayland compositor that doesn't sacrifice on its looks
 gui-wm/hyprland-contrib 0.1-r1 9999: Community-maintained extensions for hyprland
 media-libs/gst-plugins-bad 1.24.8: Less plugins for GStreamer
@@ -135,7 +135,7 @@ media-video/facetimehd-firmware 9999: Firmware for the Broadcom 1570 PCIe webcam
 net-im/ferdium-bin 7.0.0 7.0.1: Combine your favorite messaging services into one application
 net-wireless/broadcom-wl 9999: Broadcom Linux hybrid wireless driver
 sys-auth/hyprpolkitagent 0.1.2: Polkit authentication agent for Hyprland, written in Qt/QML
-www-client/brave-bin 1.76.82 1.77.95: Brave Web Browser
+www-client/brave-bin 1.76.82 1.77.95 1.77.97: Brave Web Browser
 x11-libs/pango 1.56.2 1.56.3: Internationalized text layout and rendering library
 x11-misc/albert 0.27.5 0.27.7: A fast and flexible keyboard launcher
 x11-misc/touchegg 2.0.17: Linux multi-touch gesture recognizer
