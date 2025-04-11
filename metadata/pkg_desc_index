@@ -28,7 +28,7 @@ gnome-extra/nemo 6.4.3 6.4.4 6.4.5: A file manager for Cinnamon, forked from Nau
 gui-apps/hypridle 0.1.5-r2 0.1.6: Hyprland's idle daemon
 gui-apps/hyprlock 0.7.0 0.8.0: Hyprland's GPU-accelerated screen locking utility
 gui-apps/hyprpaper 0.7.4: A blazing fast wayland wallpaper utility
-gui-apps/hyprpicker 0.4.2 0.4.3: A wlroots-compatible Wayland color picker that does not suck
+gui-apps/hyprpicker 0.4.2 0.4.3 0.4.4: A wlroots-compatible Wayland color picker that does not suck
 gui-apps/hyprsunset 0.1.0-r1 0.2.0: An application to enable a blue-light filter on Hyprland
 gui-apps/hyprswitch 3.3.2: A CLI/GUI that allows switching between windows in Hyprland
 gui-apps/hyprsysteminfo 0.1.3: Hyprland's system information GUI application
@@ -41,7 +41,7 @@ gui-libs/hyprcursor 0.1.11 0.1.12: The hyprland cursor format, library and utili
 gui-libs/hyprland-qt-support 0.1.0: Qt6 Qml style provider for hypr* apps
 gui-libs/hyprland-qtutils 0.1.3: Hyprland QT/qml utility apps
 gui-libs/hyprutils 0.5.1 0.5.2 0.6.0: Hyprland utilities library used across the ecosystem
-gui-libs/libadwaita 1.6.0 1.7.0: Building blocks for modern GNOME applications
+gui-libs/libadwaita 1.6.0 1.7.0 1.7.1: Building blocks for modern GNOME applications
 gui-libs/libpanel 1.8.0 1.9.0 1.10.0: A dock/panel library for GTK 4
 gui-libs/xdg-desktop-portal-hyprland 1.3.9: xdg-desktop-portal backend for hyprland
 gui-wm/gamescope 3.16.2 3.16.3 3.16.3-r1: Efficient micro-compositor for running games
@@ -140,6 +140,6 @@ x11-libs/pango 1.56.2 1.56.3: Internationalized text layout and rendering librar
 x11-misc/albert 0.27.5 0.27.7: A fast and flexible keyboard launcher
 x11-misc/touchegg 2.0.17: Linux multi-touch gesture recognizer
 x11-misc/ulauncher 5.15.7: Application launcher for Linux
-x11-terms/termius 9.18.0: Termius client
+x11-terms/termius 9.18.1: Termius client
 x11-terms/tilda 2.0.0: A drop down terminal, similar to the consoles found in first person shooters
 x11-wm/muffin 6.4.1: Compositing window manager forked from Mutter for use with Cinnamon
