@@ -10,9 +10,6 @@ inherit cmake python-single-r1 xdg
 DESCRIPTION="A fast and flexible keyboard launcher"
 HOMEPAGE="https://albertlauncher.github.io/"
 
-I18N_URL="https://github.com/albertlauncher/i18n.git"
-PYTHON_PLUGINS_URL="https://github.com/albertlauncher/python.git"
-
 PLUGINS=(
 	"applications"
 	"bluetooth"
@@ -77,6 +74,7 @@ SRC_URI="
 	https://github.com/albertlauncher/albert-plugin-websearch/zipball/main -> albert-plugin-websearch.zip
 	https://github.com/albertlauncher/albert-plugin-widgetsboxmodel/zipball/main -> albert-plugin-widgetsboxmodel.zip
 	https://github.com/albertlauncher/albert-plugin-widgetsboxmodel-qss/zipball/main -> albert-plugin-widgetsboxmodel-qss.zip
+	https://github.com/albertlauncher/i18n/zipball/main -> albert-languages.zip
 	https://github.com/pybind/pybind11/zipball/master -> albert-plugin-pybind11.zip
 	https://github.com/Skycoder42/QHotkey/zipball/master -> albert-lib-QHotkey.zip
 	https://github.com/QtCommunity/QNotification/zipball/main -> albert-lib-QNotification.zip
@@ -116,7 +114,7 @@ RDEPEND="
 "
 
 _make_symlink() {
-	local sourceZip="$1"
+	local sourceZip="${1}.zip"
 	local destinationPath="$2"
 	local parentSourceDir=$(unzip -l "${sourceZip}" | awk '{print $4}' | grep '/$' | awk -F/ '{print $1}' | sort -u)
 
@@ -140,13 +138,12 @@ src_prepare() {
 	# Pybind11
 	_make_symlink "${DISTDIR}/albert-plugin-pybind11" "${S}/plugins/python/pybind11"
 
+	# i18n / languages
+	_make_symlink "${DISTDIR}/albert-languages" "${S}/i18n"
+
 	# Make libs symlinks
 	for lib in "${LIBS[@]}"; do
-		local zipMainDir=$(unzip -l "${DISTDIR}/albert-lib-${lib}" | awk '{print $4}' | grep '/$' | awk -F/ '{print $1}' | sort -u)
-		if [[ -d "${S}/lib/${lib}" ]]; then
-			rm -rf "${S}/lib/${lib}"
-		fi
-		ln -s "${WORKDIR}/${zipMainDir}" "${S}/lib/${lib}"
+		_make_symlink "${DISTDIR}/albert-lib-${lib}" "${S}/lib/${lib}"
 	done
 }
 
