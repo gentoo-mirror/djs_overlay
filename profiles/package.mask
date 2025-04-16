@@ -1,1 +1,2 @@
-=x11-misc/albert-0.27.7
+# Still refactoring
+>=x11-misc/albert::dj

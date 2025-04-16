@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit fcaps meson
+inherit fcaps meson djs-functions
 
 MY_PV=$(ver_rs 3 -)
 MY_PV="${MY_PV//_/-}"
@@ -90,10 +90,6 @@ BDEPEND="
 	virtual/pkgconfig
 "
 
-#PATCHES=(
-#	"${FILESDIR}"/${PN}-deprecated-stb.patch
-#)
-
 FILECAPS=(
 	cap_sys_nice usr/bin/${PN}
 )
@@ -122,22 +118,7 @@ src_prepare() {
 	ln -snf "${ESYSROOT}"/usr/include/spirv thirdparty/SPIRV-Headers/include/ || die
 
 	# Apply package version PATCHES
-	local patch
-	local patches
-
-	# Generic patches
-	patches=$(ls "${FILESDIR}"/"${PN}"-generic*.patch)
-	for patch in ${patches}; do
-		[[ -e "${patch}" ]] || continue
-		eapply "${patch}"
-	done
-
-	# Version specific patches
-	patches=$(ls "${FILESDIR}"/"${PN}"-"${PVR}"*.patch)
-	for patch in ${patches}; do
-		[[ -e "${patch}" ]] || continue
-		eapply "${patch}"
-	done
+	patchPackage "${FILESDIR}" "${PN}" "${PVR}"
 }
 
 src_configure() {
