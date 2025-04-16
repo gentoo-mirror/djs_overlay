@@ -44,7 +44,7 @@ gui-libs/hyprutils 0.5.1 0.5.2 0.6.0: Hyprland utilities library used across the
 gui-libs/libadwaita 1.7.1 1.7.2: Building blocks for modern GNOME applications
 gui-libs/libpanel 1.8.0 1.9.0 1.10.0: A dock/panel library for GTK 4
 gui-libs/xdg-desktop-portal-hyprland 1.3.9: xdg-desktop-portal backend for hyprland
-gui-wm/gamescope 3.16.2 3.16.3 3.16.3-r1: Efficient micro-compositor for running games
+gui-wm/gamescope 3.16.3-r1 3.16.4: Efficient micro-compositor for running games
 gui-wm/hyprland 0.47.2 0.48.0 0.48.1: A dynamic tiling Wayland compositor that doesn't sacrifice on its looks
 gui-wm/hyprland-contrib 0.1-r1 9999: Community-maintained extensions for hyprland
 media-libs/gst-plugins-bad 1.24.8: Less plugins for GStreamer
@@ -137,7 +137,7 @@ net-wireless/broadcom-wl 9999: Broadcom Linux hybrid wireless driver
 sys-auth/hyprpolkitagent 0.1.2: Polkit authentication agent for Hyprland, written in Qt/QML
 www-client/brave-bin 1.76.82 1.77.95 1.77.97: Brave Web Browser
 x11-libs/pango 1.56.2 1.56.3: Internationalized text layout and rendering library
-x11-misc/albert 0.27.5 0.27.7: A fast and flexible keyboard launcher
+x11-misc/albert 0.27.8: A fast and flexible keyboard launcher
 x11-misc/touchegg 2.0.17: Linux multi-touch gesture recognizer
 x11-misc/ulauncher 5.15.7: Application launcher for Linux
 x11-terms/termius 9.18.1: Termius client
