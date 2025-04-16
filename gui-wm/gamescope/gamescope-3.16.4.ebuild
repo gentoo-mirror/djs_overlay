@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit fcaps meson
+inherit fcaps meson djs-functions
 
 MY_PV=$(ver_rs 3 -)
 MY_PV="${MY_PV//_/-}"
@@ -21,7 +21,7 @@ else
 	VKROOTS_COMMIT="5106d8a0df95de66cc58dc1ea37e69c99afc9540"
 	WLROOTS_COMMIT="4bc5333a2cbba0b0b88559f281dbde04b849e6ef"
 	SRC_URI="
-		https://github.com/ValveSoftware/${PN}/archive/refs/tags/${MY_PV}.tar.gz -> ${P}.tar.gz
+		https://github.com/ValveSoftware/${PN}/archive/refs/tags/${MY_PV}-dmemcg.tar.gz -> ${P}.tar.gz
 		https://gitlab.freedesktop.org/emersion/libliftoff/-/releases/v${LIBLIFTOFF_COMMIT}/downloads/libliftoff-${LIBLIFTOFF_COMMIT}.tar.gz
 		https://github.com/Joshua-Ashton/reshade/archive/${RESHADE_COMMIT}.tar.gz -> reshade-${RESHADE_COMMIT}.tar.gz
 		https://github.com/Joshua-Ashton/vkroots/archive/${VKROOTS_COMMIT}.tar.gz -> vkroots-${VKROOTS_COMMIT}.tar.gz
@@ -90,10 +90,6 @@ BDEPEND="
 	virtual/pkgconfig
 "
 
-PATCHES=(
-	"${FILESDIR}"/${PN}-deprecated-stb.patch
-)
-
 FILECAPS=(
 	cap_sys_nice usr/bin/${PN}
 )
@@ -120,6 +116,9 @@ src_prepare() {
 	# For 9999, this submodule is not included.
 	mkdir -p thirdparty/SPIRV-Headers/include || die
 	ln -snf "${ESYSROOT}"/usr/include/spirv thirdparty/SPIRV-Headers/include/ || die
+
+	# Apply package version PATCHES
+	patchPackage "${FILESDIR}" "${PN}" "${PVR}"
 }
 
 src_configure() {
