@@ -59,7 +59,7 @@ _patch() {
 	[[ -z "${patches}" ]] && return 0
 
 	# Process
-	for patch in ${patches}; do
+	for patch in ${patches[@]}; do
 		[[ -e "${patch}" ]] || continue
 		eapply "${patch}"
 	done
