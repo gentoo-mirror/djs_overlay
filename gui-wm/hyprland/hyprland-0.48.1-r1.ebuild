@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit meson toolchain-funcs
+inherit meson toolchain-funcs djs-functions
 
 DESCRIPTION="A dynamic tiling Wayland compositor that doesn't sacrifice on its looks"
 HOMEPAGE="https://github.com/hyprwm/Hyprland"
@@ -75,6 +75,26 @@ BDEPEND="
 	virtual/pkgconfig
 "
 
+src_prepare() {
+	# skip version.h
+	sed -i -e "s|scripts/generateVersion.sh|echo|g" meson.build || die
+	default
+
+	# Apply version patches
+	# Apply package version PATCHES
+	patchPackage "${FILESDIR}" "${PN}" "${PV}"
+}
+
+src_configure() {
+	local emesonargs=(
+		$(meson_feature legacy-renderer legacy_renderer)
+		$(meson_feature systemd)
+		$(meson_feature X xwayland)
+	)
+
+	meson_src_configure
+}
+
 pkg_setup() {
 	[[ ${MERGE_TYPE} == binary ]] && return
 
@@ -89,18 +109,3 @@ pkg_setup() {
 	fi
 }
 
-src_prepare() {
-	# skip version.h
-	sed -i -e "s|scripts/generateVersion.sh|echo|g" meson.build || die
-	default
-}
-
-src_configure() {
-	local emesonargs=(
-		$(meson_feature legacy-renderer legacy_renderer)
-		$(meson_feature systemd)
-		$(meson_feature X xwayland)
-	)
-
-	meson_src_configure
-}

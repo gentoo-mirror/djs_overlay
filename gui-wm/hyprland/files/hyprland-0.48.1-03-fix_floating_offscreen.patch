@@ -1,0 +1,79 @@
+From e05e36af38a5871322bda4014a025730a644e1df Mon Sep 17 00:00:00 2001
+From: Vaxry <vaxry@vaxry.net>
+Date: Thu, 10 Apr 2025 16:54:23 +0100
+Subject: [PATCH] fix floating offscreen
+
+---
+ src/Compositor.cpp      | 32 ++++++++++++++++++++++++++++++++
+ src/Compositor.hpp      |  1 +
+ src/helpers/Monitor.cpp |  2 ++
+ 3 files changed, 35 insertions(+)
+
+diff --git a/src/Compositor.cpp b/src/Compositor.cpp
+index 8e5202373e0..1f08aee507b 100644
+--- a/src/Compositor.cpp
++++ b/src/Compositor.cpp
+@@ -2901,6 +2901,38 @@ void CCompositor::arrangeMonitors() {
+     PROTO::xdgOutput->updateAllOutputs();
+ }
+ 
++void CCompositor::recheckFloatingWindowsOnScreen() {
++    for (auto& w : m_vWindows) {
++        if (!w->m_bIsMapped || !w->m_bIsFloating)
++            continue;
++
++        const CBox WBOX = w->getWindowMainSurfaceBox();
++
++        const bool IN = std::ranges::any_of(m_vMonitors, [w, WBOX](const auto& m) {
++            if (!m->m_bEnabled)
++                return false;
++            CBox MONBOX = m->logicalBox();
++            return !MONBOX.intersection(WBOX).empty();
++        });
++
++        if (IN)
++            continue;
++
++        auto monitor = w->m_pMonitor;
++
++        if (!monitor || !monitor->m_bEnabled)
++            monitor = getMonitorFromVector(WBOX.middle());
++
++        if (!monitor)
++            continue; // ?!?!?!
++
++        const auto NEW_POS = monitor->middle() - WBOX.size() / 2.F;
++
++        *w->m_vRealPosition = NEW_POS;
++        w->m_vPosition      = NEW_POS;
++    }
++}
++
+ void CCompositor::enterUnsafeState() {
+     if (m_bUnsafeState)
+         return;
+diff --git a/src/Compositor.hpp b/src/Compositor.hpp
+index 2393662b592..b928e582595 100644
+--- a/src/Compositor.hpp
++++ b/src/Compositor.hpp
+@@ -141,6 +141,7 @@ class CCompositor {
+     void                   moveWindowToWorkspaceSafe(PHLWINDOW pWindow, PHLWORKSPACE pWorkspace);
+     PHLWINDOW              getForceFocus();
+     void                   arrangeMonitors();
++    void                   recheckFloatingWindowsOnScreen();
+     void                   enterUnsafeState();
+     void                   leaveUnsafeState();
+     void                   setPreferredScaleForSurface(SP<CWLSurfaceResource> pSurface, double scale);
+diff --git a/src/helpers/Monitor.cpp b/src/helpers/Monitor.cpp
+index 97f74609864..3e1a77e5700 100644
+--- a/src/helpers/Monitor.cpp
++++ b/src/helpers/Monitor.cpp
+@@ -829,6 +829,8 @@ bool CMonitor::applyMonitorRule(SMonitorRule* pMonitorRule, bool force) {
+ 
+     events.modeChanged.emit();
+ 
++    g_pEventLoopManager->doLater([]() { g_pCompositor->recheckFloatingWindowsOnScreen(); });
++
+     return true;
+ }
+ 
