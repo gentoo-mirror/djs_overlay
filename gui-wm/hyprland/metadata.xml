@@ -2,16 +2,8 @@
 <!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
 	<maintainer type="person" proxied="yes">
-		<email>julien@jroy.ca</email>
-		<name>Julien Roy</name>
-	</maintainer>
-	<maintainer type="person" proxied="yes">
-		<email>johnmh@johnmh.me</email>
-		<name>John M. Harris, Jr.</name>
-	</maintainer>
-	<maintainer type="project" proxied="proxy">
-		<email>proxy-maint@gentoo.org</email>
-		<name>Proxy Maintainers</name>
+		<email>sourek.petr@gmail.com</email>
+		<name>Petr Sourek</name>
 	</maintainer>
 	<upstream>
 		<changelog>https://github.com/hyprwm/Hyprland/releases</changelog>
@@ -22,5 +14,6 @@
 	<use>
 		<flag name="legacy-renderer">Enable legacy renderer</flag>
 		<flag name="qtutils">Install Hyprland QT utility apps</flag>
+		<flag name="experimental">Experimental, not yet merged patches into main app</flag>
 	</use>
 </pkgmetadata>
