@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit meson toolchain-funcs
+inherit meson toolchain-funcs djs-functions
 
 DESCRIPTION="A dynamic tiling Wayland compositor that doesn't sacrifice on its looks"
 HOMEPAGE="https://github.com/hyprwm/Hyprland"
@@ -20,7 +20,7 @@ fi
 
 LICENSE="BSD"
 SLOT="0"
-IUSE="X legacy-renderer +qtutils systemd"
+IUSE="X legacy-renderer +qtutils systemd experimental"
 
 # hyprpm (hyprland plugin manager) requires the dependencies at runtime
 # so that it can clone, compile and install plugins.
@@ -75,6 +75,30 @@ BDEPEND="
 	virtual/pkgconfig
 "
 
+src_prepare() {
+	# skip version.h
+	sed -i -e "s|scripts/generateVersion.sh|echo|g" meson.build || die
+	default
+
+	# Apply version patches
+	# Apply package version PATCHES
+	if use experimental; then
+		patchPackage "${FILESDIR}" "${PN}" "experimental"
+	else
+		patchPackage "${FILESDIR}" "${PN}" "${PV}"
+	fi
+}
+
+src_configure() {
+	local emesonargs=(
+		$(meson_feature legacy-renderer legacy_renderer)
+		$(meson_feature systemd)
+		$(meson_feature X xwayland)
+	)
+
+	meson_src_configure
+}
+
 pkg_setup() {
 	[[ ${MERGE_TYPE} == binary ]] && return
 
@@ -89,18 +113,3 @@ pkg_setup() {
 	fi
 }
 
-src_prepare() {
-	# skip version.h
-	sed -i -e "s|scripts/generateVersion.sh|echo|g" meson.build || die
-	default
-}
-
-src_configure() {
-	local emesonargs=(
-		$(meson_feature legacy-renderer legacy_renderer)
-		$(meson_feature systemd)
-		$(meson_feature X xwayland)
-	)
-
-	meson_src_configure
-}

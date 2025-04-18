@@ -39,9 +39,10 @@ djs-functions_patchPackage() {
 	local packageName="${2}"
 	local packageVersion="${3}"
 
-	# Generic patching
+	# Generic patching - always will be patched
 	_patch "${filesDir}/${packageName}-generic*.patch"
-	# Version specific patching
+
+	# Experimental or normal is done by packageversion
 	_patch "${filesDir}/${packageName}-${packageVersion}*.patch"
 }
 
@@ -61,6 +62,7 @@ _patch() {
 	# Process
 	for patch in ${patches[@]}; do
 		[[ -e "${patch}" ]] || continue
+
 		eapply "${patch}"
 	done
 
