@@ -30,6 +30,7 @@ gui-libs/xdg-desktop-portal-hyprland:elogind - Enable support for rootless sessi
 gui-wm/gamescope:libei - Enable emulated input using dev-libs/libei
 gui-wm/gamescope:pipewire - Enable screen capture via PipeWire
 gui-wm/gamescope:wsi-layer - Enable the WSI layer (required for HDR)
+gui-wm/hyprland:experimental - Experimental, not yet merged patches into main app
 gui-wm/hyprland:legacy-renderer - Enable legacy renderer
 gui-wm/hyprland:qtutils - Install Hyprland QT utility apps
 gui-wm/hyprland-contrib:grimblast - Install grimblast, a hyprland version of grimshot
