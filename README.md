@@ -34,6 +34,9 @@ And one more thing I had raised a ticket to be added into eselect repository lis
 ### app-misc
 - **[keyd](https://github.com/rvaiya/keyd)** - Daemon, which is able to remap keys. I am using it on MacBook to map CMD as CTRL as in Mac OS you use CMD most (as on Linux/Windows CTRL key does). The main reason I like this daemon is, that its system wide so regardless of DE or plain CLI interface, keyboard behaves the same,
 
+### app-text
+- **[calibre](https://calibre-ebook.com/)** - e-book manager, version bump from gentoo repository
+
 ### dev-db
 - **[dbGate](https://dbgate.org/)** - The Smartest SQL+noSQL Database Client,
 
