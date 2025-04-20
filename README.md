@@ -37,6 +37,9 @@ And one more thing I had raised a ticket to be added into eselect repository lis
 ### app-text
 - **[calibre](https://calibre-ebook.com/)** - e-book manager, version bump from gentoo repository
 
+### dev-embedded
+- **[libftdi](https://www.intra2net.com/en/developer/libftdi/)** - FTDI USB driver, I am using it for my FTDI based devices (e.g. FTDI232RL, FTDI FT232R, etc.), used ebuild from gentoo repo, used latest commit on github to compile, because the version on Gentoo has problems with SWIG and had problems with patching,
+
 ### dev-db
 - **[dbGate](https://dbgate.org/)** - The Smartest SQL+noSQL Database Client,
 
