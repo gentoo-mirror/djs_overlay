@@ -6,6 +6,7 @@ app-editors/neovim:nvimpager - Install nvimpager symlink to less.sh macro
 app-text/calibre:font-subsetting - Enable font subsetting support
 app-text/calibre:system-mathjax - Use a system copy of mathjax
 app-text/calibre:unrar - Enable support for comic books compressed with the non-free Rar format
+dev-embedded/libftdi:tools - build ftdi_eeprom helper tool
 dev-util/sysprof:unwind - Use sys-libs/libunwind to unwind the stack
 games-engines/fheroes2:tools - Install development tools like 82m2wav and xmi2midi.
 gnome-extra/cinnamon:internal-polkit - Use Cinnamon's internal polkit agent instead of gnome-extra/polkit-gnome. This does not currently support multi-user fast switching.
