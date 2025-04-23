@@ -11,5 +11,5 @@ RDEPEND=acct-group/keyd
 RESTRICT=mirror
 SLOT=0
 SRC_URI=https://github.com/rvaiya/keyd/archive/refs/tags/v2.5.0.tar.gz -> keyd-2.5.0.tar.gz
-_eclasses_=toolchain-funcs	f9d71a6efe9d083aec750dd13968e169	systemd	54bd206bb5c4efac6ae28b6b006713b0
+_eclasses_=toolchain-funcs	f9d71a6efe9d083aec750dd13968e169	systemd	a964c0cbe818b5729da1dbfcee5be861
 _md5_=11eb5c1a9b4e9eb9234ae3ac1df6fa0b
