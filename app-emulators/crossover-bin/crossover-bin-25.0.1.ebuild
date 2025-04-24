@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
-PYTHON_COMPAT=( python3_{10..12} )
+PYTHON_COMPAT=( python3_{10..13} )
 
 inherit python-single-r1 unpacker
 
@@ -15,7 +15,7 @@ S="${WORKDIR}"
 LICENSE="CROSSOVER-3"
 SLOT="0"
 KEYWORDS="-* ~amd64 ~x86"
-IUSE="+capi +cups doc +gphoto2 +gstreamer +jpeg +lcms +mp3 +nls osmesa +openal +opencl +opengl +pcap +png +scanner +ssl +v4l +vulkan"
+IUSE="+capi +cups +gphoto2 +gstreamer +jpeg +lcms +mp3 +nls osmesa +openal +opencl +opengl +pcap +png +scanner +ssl +v4l +vulkan"
 REQUIRED_USE="${PYTHON_REQUIRED_USE}"
 
 RESTRICT="bindist test"
@@ -98,11 +98,6 @@ src_unpack() {
 
 src_prepare() {
 	default
-
-	# Remove unnecessary files, license.txt file kept as it's used by
-	# multiple files (apart of the menu to show the license)
-	rm -r guis/ || die "Could not remove files"
-	use doc || rm -r doc/ || die "Could not remove files"
 }
 
 src_install() {
