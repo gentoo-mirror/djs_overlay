@@ -137,7 +137,7 @@ media-video/facetimehd-firmware 9999: Firmware for the Broadcom 1570 PCIe webcam
 net-im/ferdium-bin 7.0.0 7.0.1: Combine your favorite messaging services into one application
 net-wireless/broadcom-wl 9999: Broadcom Linux hybrid wireless driver
 sys-auth/hyprpolkitagent 0.1.2: Polkit authentication agent for Hyprland, written in Qt/QML
-www-client/brave-bin 1.77.97 1.77.100: Brave Web Browser
+www-client/brave-bin 1.77.97 1.77.100 1.77.101: Brave Web Browser
 x11-libs/pango 1.56.2 1.56.3: Internationalized text layout and rendering library
 x11-misc/albert 0.27.8: A fast and flexible keyboard launcher
 x11-misc/touchegg 2.0.17: Linux multi-touch gesture recognizer
