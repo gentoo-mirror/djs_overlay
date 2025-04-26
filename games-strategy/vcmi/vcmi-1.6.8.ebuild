@@ -72,6 +72,7 @@ REQUIRED_USE="
 RDEPEND="
 	nullkiller-ai? ( dev-cpp/tbb )
 	dev-lang/luajit
+	dev-libs/fuzzylite
 	>=dev-libs/boost-1.70:=
 	launcher? (
 		dev-qt/qtcore:=
