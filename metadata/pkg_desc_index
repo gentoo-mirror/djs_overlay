@@ -1,7 +1,7 @@
 acct-group/keyd 0: System group: keyd
-app-editors/neovim 0.10.4 0.11.0: Vim-fork focused on extensibility and agility
+app-editors/neovim 0.11.0 0.11.1: Vim-fork focused on extensibility and agility
 app-misc/keyd 2.4.2 2.4.3 2.5.0: A key remapping daemon for linux
-app-office/drawio-desktop-bin 26.0.16 26.1.1 26.2.2: draw.io diagramming and whiteboarding desktop app
+app-office/drawio-desktop-bin 26.2.2 26.2.15: draw.io diagramming and whiteboarding desktop app
 app-text/calibre 8.3.0: Ebook management application
 dev-db/dbgate-bin 6.3.0 6.3.2 6.3.3: Database manager for MySQL, PostgreSQL, SQL Server and MongoDB
 dev-libs/fuzzylite 6.0: A Fuzzy Logic Control Library in C++
