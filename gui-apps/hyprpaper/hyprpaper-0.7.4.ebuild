@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit cmake
+inherit cmake djs-functions
 
 DESCRIPTION="A blazing fast wayland wallpaper utility"
 HOMEPAGE="https://github.com/hyprwm/hyprpaper"
@@ -36,6 +36,13 @@ BDEPEND="
 "
 
 DOCS=( README.md )
+
+src_prepare() {
+	# Default
+	cmake_src_prepare
+	# Patch
+	patchPackage "${FILESDIR}" "${PN}" "${PVR}"
+}
 
 src_compile() {
 	emake protocols
