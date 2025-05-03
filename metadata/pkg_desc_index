@@ -4,7 +4,7 @@ app-editors/sublime-text-dev 4_p4196 4_p4198: Sophisticated text editor for code
 app-misc/keyd 2.4.2 2.4.3 2.5.0: A key remapping daemon for linux
 app-office/drawio-desktop-bin 26.2.2 26.2.15: draw.io diagramming and whiteboarding desktop app
 app-text/calibre 8.3.0: Ebook management application
-dev-db/dbgate-bin 6.3.3 6.4.0: Database manager for MySQL, PostgreSQL, SQL Server and MongoDB
+dev-db/dbgate-bin 6.3.3 6.4.0 6.4.1: Database manager for MySQL, PostgreSQL, SQL Server and MongoDB
 dev-libs/fuzzylite 6.0: A Fuzzy Logic Control Library in C++
 dev-libs/hyprgraphics 0.1.2 0.1.3: Hyprland graphics / resource utilities
 dev-libs/hyprland-protocols 0.6.2 0.6.3 0.6.4: Wayland protocol extensions for Hyprland
@@ -28,7 +28,7 @@ gnome-extra/cinnamon-translations 6.4.1 6.4.2: Translation data for Cinnamon
 gnome-extra/cjs 6.4.0: Linux Mint's fork of gjs for Cinnamon
 gnome-extra/nemo 6.4.3 6.4.4 6.4.5: A file manager for Cinnamon, forked from Nautilus
 gui-apps/hypridle 0.1.5-r2 0.1.6: Hyprland's idle daemon
-gui-apps/hyprlock 0.7.0 0.8.0 0.8.1: Hyprland's GPU-accelerated screen locking utility
+gui-apps/hyprlock 0.8.1 0.8.2: Hyprland's GPU-accelerated screen locking utility
 gui-apps/hyprpaper 0.7.4: A blazing fast wayland wallpaper utility
 gui-apps/hyprpicker 0.4.4 0.4.5: A wlroots-compatible Wayland color picker that does not suck
 gui-apps/hyprsunset 0.1.0-r1 0.2.0: An application to enable a blue-light filter on Hyprland
@@ -38,7 +38,7 @@ gui-apps/uwsm 0.21.2 0.21.3: Universal Wayland Session Manager
 gui-apps/waybar 0.12.0: Highly customizable Wayland bar for Sway and Wlroots based compositors
 gui-apps/wev 1.0.0: Wayland event viewer
 gui-libs/aquamarine 0.7.2 0.8.0: Aquamarine is a very light linux rendering backend library
-gui-libs/gtk 4.18.3 4.18.4 4.19.0: GTK is a multi-platform toolkit for creating graphical user interfaces
+gui-libs/gtk 4.19.0 4.19.1: GTK is a multi-platform toolkit for creating graphical user interfaces
 gui-libs/hyprcursor 0.1.11 0.1.12: The hyprland cursor format, library and utilities
 gui-libs/hyprland-qt-support 0.1.0: Qt6 Qml style provider for hypr* apps
 gui-libs/hyprland-qtutils 0.1.3 0.1.4: Hyprland QT/qml utility apps
