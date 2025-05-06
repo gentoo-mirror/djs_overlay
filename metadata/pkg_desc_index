@@ -15,7 +15,7 @@ dev-util/sysprof-capture 47.2: Static library for sysprof capture data generatio
 dev-util/sysprof-common 47.2: Static library for sysprof capture data generation
 games-engines/OpenFodder 1.9.2: An open source port of Cannon Fodder
 games-engines/TheForceEngine 1.15.000 1.22.200 1.22.300: Modern "Jedi Engine" replacement supporting Dark Forces and the mods.
-games-engines/fheroes2 1.1.5 1.1.6 1.1.7: Recreation of HoMM2 game engine
+games-engines/fheroes2 1.1.8: Recreation of HoMM2 game engine
 games-strategy/vcmi 1.6.7 1.6.8: Heroes of Might and Magic III game engine rewrite
 gnome-extra/cinnamon 6.4.9 6.4.10: A fork of GNOME Shell with layout similar to GNOME 2
 gnome-extra/cinnamon-control-center 6.4.1: Cinnamons's main interface to configure various aspects of the desktop
@@ -86,7 +86,6 @@ media-plugins/gst-plugins-lame 1.24.8: MP3 encoder plugin for GStreamer
 media-plugins/gst-plugins-ldac 1.24.8: LDAC plugin for GStreamer
 media-plugins/gst-plugins-libav 1.24.8: FFmpeg based gstreamer plugin
 media-plugins/gst-plugins-libde265 1.24.8: H.265 decoder plugin for GStreamer
-media-plugins/gst-plugins-libnice 1.24.8: GStreamer plugin for ICE (RFC 5245) support
 media-plugins/gst-plugins-libpng 1.24.8: PNG image encoder/decoder plugin for GStreamer
 media-plugins/gst-plugins-libvisual 1.24.8: Visualization elements for GStreamer
 media-plugins/gst-plugins-lv2 1.24.8: Lv2 elements for Gstreamer
@@ -142,6 +141,6 @@ x11-libs/pango 1.56.2 1.56.3: Internationalized text layout and rendering librar
 x11-misc/albert 0.27.8: A fast and flexible keyboard launcher
 x11-misc/touchegg 2.0.17: Linux multi-touch gesture recognizer
 x11-misc/ulauncher 5.15.7: Application launcher for Linux
-x11-terms/termius 9.19.2: Termius client
+x11-terms/termius 9.19.4: Termius client
 x11-terms/tilda 2.0.0: A drop down terminal, similar to the consoles found in first person shooters
 x11-wm/muffin 6.4.1: Compositing window manager forked from Mutter for use with Cinnamon
