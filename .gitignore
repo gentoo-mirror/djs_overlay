@@ -1,3 +1,5 @@
 .README.md.swp
 djoverlay.sublime-project
 djoverlay.sublime-workspace
+
+metadata/md5-cache/**
