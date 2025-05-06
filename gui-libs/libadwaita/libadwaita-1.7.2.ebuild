@@ -21,7 +21,6 @@ RDEPEND="
 	>=gui-libs/gtk-4.13.4:4[introspection?]
 	dev-libs/appstream:=
 	dev-libs/fribidi
-	dev-lang/sassc
 	introspection? ( >=dev-libs/gobject-introspection-1.54:= )
 "
 DEPEND="${RDEPEND}
@@ -32,6 +31,7 @@ BDEPEND="
 	dev-util/glib-utils
 	sys-devel/gettext
 	virtual/pkgconfig
+	dev-lang/sassc
 	dev-libs/gobject-introspection[doctool]
 "
 
