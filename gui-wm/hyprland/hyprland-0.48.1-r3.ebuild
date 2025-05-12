@@ -8,18 +8,16 @@ inherit meson toolchain-funcs djs-functions
 DESCRIPTION="A dynamic tiling Wayland compositor that doesn't sacrifice on its looks"
 HOMEPAGE="https://github.com/hyprwm/Hyprland"
 
-if [[ "${PV}" = *9999 ]]; then
-	inherit git-r3
-	EGIT_REPO_URI="https://github.com/hyprwm/${PN^}.git"
-else
-	SRC_URI="https://github.com/hyprwm/${PN^}/releases/download/v${PV}/source-v${PV}.tar.gz -> ${P}.gh.tar.gz"
-	S="${WORKDIR}/${PN}-source"
+EXPERIMENTAL_COMMIT="1ce614dfc0eb8b323e603b76975842c1f2e6a553"
 
-	KEYWORDS="~amd64"
-fi
-
+SRC_URI="
+	https://github.com/hyprwm/Hyprland/archive/${EXPERIMENTAL_COMMIT}.tar.gz -> ${P}-${EXPERIMENTAL_COMMIT}.tar.gz
+	https://github.com/hyprwm/${PN^}/releases/download/v${PV}/source-v${PV}.tar.gz -> ${P}.gh.tar.gz
+"
 LICENSE="BSD"
 SLOT="0"
+KEYWORDS="~amd64"
+
 IUSE="X legacy-renderer +qtutils systemd experimental"
 
 # hyprpm (hyprland plugin manager) requires the dependencies at runtime
@@ -75,9 +73,26 @@ BDEPEND="
 	virtual/pkgconfig
 "
 
+src_unpack() {
+	default
+
+	# When experimental we need to adjust source a little
+	if use experimental; then
+		# LInk subprojects
+		rm -rf "${WORKDIR}/Hyprland-${EXPERIMENTAL_COMMIT}/subprojects/" || die "Could not delete subprojects directory."
+		ln -s "${WORKDIR}/hyprland-source/subprojects" "${WORKDIR}/Hyprland-${EXPERIMENTAL_COMMIT}/subprojects" ||\
+			die "Could not create symlink for subproject directory."
+
+		cp "${FILESDIR}/version.h.experimental" "${WORKDIR}/Hyprland-${EXPERIMENTAL_COMMIT}/src/version.h"
+
+		S="${WORKDIR}/Hyprland-${EXPERIMENTAL_COMMIT}"
+	else
+		# Make symlink to package name
+		S="${WORKDIR}/hyprland-source"
+	fi
+}
+
 src_prepare() {
-	# skip version.h
-	sed -i -e "s|scripts/generateVersion.sh|echo|g" meson.build || die
 	default
 
 	# Apply version patches
@@ -112,4 +127,3 @@ pkg_setup() {
 		die "Clang version is too old to compile Hyprland!"
 	fi
 }
-

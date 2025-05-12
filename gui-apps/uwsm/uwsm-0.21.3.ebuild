@@ -12,11 +12,13 @@ SRC_URI="https://github.com/Vladimir-csp/uwsm/archive/refs/tags/v${PV}.tar.gz ->
 LICENSE="MIT"
 SLOT="0"
 KEYWORDS="~amd64"
-IUSE=""
 
 DEPEND="dev-build/meson
-        dev-build/ninja
-        sys-devel/gcc"
+		dev-build/ninja
+		sys-devel/gcc
+		dev-python/dbus-python
+		dev-python/pyxdg
+"
 RDEPEND="${DEPEND}"
 
 MESON_ARGS=(
