@@ -7,19 +7,13 @@ inherit meson toolchain-funcs djs-functions
 
 DESCRIPTION="A dynamic tiling Wayland compositor that doesn't sacrifice on its looks"
 HOMEPAGE="https://github.com/hyprwm/Hyprland"
+SRC_URI="https://github.com/hyprwm/${PN^}/releases/download/v${PV}/source-v${PV}.tar.gz -> ${P}.gh.tar.gz"
 
-if [[ "${PV}" = *9999 ]]; then
-	inherit git-r3
-	EGIT_REPO_URI="https://github.com/hyprwm/${PN^}.git"
-else
-	SRC_URI="https://github.com/hyprwm/${PN^}/releases/download/v${PV}/source-v${PV}.tar.gz -> ${P}.gh.tar.gz"
-	S="${WORKDIR}/${PN}-source"
-
-	KEYWORDS="~amd64"
-fi
-
+S="${WORKDIR}/hyprland-source"
 LICENSE="BSD"
 SLOT="0"
+KEYWORDS="~amd64"
+
 IUSE="X legacy-renderer +qtutils systemd"
 
 # hyprpm (hyprland plugin manager) requires the dependencies at runtime
@@ -76,12 +70,8 @@ BDEPEND="
 "
 
 src_prepare() {
-	# skip version.h
-	sed -i -e "s|scripts/generateVersion.sh|echo|g" meson.build || die
 	default
 
-	# Apply version patches
-	# Apply package version PATCHES
 	patchPackage "${FILESDIR}" "${PN}" "${PV}"
 }
 
@@ -108,4 +98,3 @@ pkg_setup() {
 		die "Clang version is too old to compile Hyprland!"
 	fi
 }
-
