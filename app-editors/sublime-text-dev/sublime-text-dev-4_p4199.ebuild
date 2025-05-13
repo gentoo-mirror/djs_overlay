@@ -26,26 +26,20 @@ RESTRICT="bindist mirror strip"
 RDEPEND="
 	npm? ( net-libs/nodejs[npm] )
 	dev-libs/glib:2
-	sys-libs/glibc
+	elibc_glibc? ( sys-libs/glibc )
 	x11-libs/gtk+:3
 	x11-libs/libX11
 	dbus? ( sys-apps/dbus )"
 
 PATCHES=(
-        "${FILESDIR}"/remove-deprecated-key-onlyshowin-from-launcher.patch
-        "${FILESDIR}"/set-explicit-startupwmclass-in-launcher.patch
+	"${FILESDIR}"/remove-deprecated-key-onlyshowin-from-launcher.patch
+	"${FILESDIR}"/set-explicit-startupwmclass-in-launcher.patch
 )
 
 QA_PREBUILT="*"
 
 # Sublime bundles the kitchen sink, which includes python and other assorted
 # modules. Do not try to unbundle these because you are guaranteed to fail.
-
-#src_unpack() {
-#	default
-#	cd ${WORKDIR} || die "Couldn't cd into ${WORKDIR}"
-#	mv sublime_text ${MY_PN} || die "Couldn't move sublime_text to ${MY_PN}"
-#}
 
 src_install() {
 	insinto /opt/${MY_PN}
