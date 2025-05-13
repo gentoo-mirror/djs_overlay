@@ -1,6 +1,6 @@
 acct-group/keyd 0: System group: keyd
 app-editors/neovim 0.11.0 0.11.1: Vim-fork focused on extensibility and agility
-app-editors/sublime-text-dev 4_p4196 4_p4198: Sophisticated text editor for code, markup and prose.
+app-editors/sublime-text-dev 4_p4198 4_p4199: Sophisticated text editor for code, markup and prose.
 app-misc/keyd 2.4.2 2.4.3 2.5.0: A key remapping daemon for linux
 app-office/drawio-desktop-bin 26.2.15 27.0.2: draw.io diagramming and whiteboarding desktop app
 app-text/calibre 8.3.0 8.4.0: Ebook management application
