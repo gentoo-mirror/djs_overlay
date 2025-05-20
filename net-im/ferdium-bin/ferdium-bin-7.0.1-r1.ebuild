@@ -10,21 +10,20 @@ inherit desktop xdg-utils
 DESCRIPTION="Combine your favorite messaging services into one application"
 HOMEPAGE="https://ferdium.org/"
 
+SRC_URI="
+	amd64? ( https://github.com/${_PN}/${_PN}-app/releases/download/v${PV}/${_PN^}-linux-${PV}-amd64.deb )
+"
+S=${WORKDIR}
 LICENSE="Apache-2.0"
 SLOT="0"
-IUSE="wayland"
 KEYWORDS="-* ~amd64 ~arm ~arm64"
-SRC_URI="
-amd64? ( https://github.com/${_PN}/${_PN}-app/releases/download/v${PV}/${_PN^}-linux-${PV}-amd64.deb )"
+IUSE="wayland"
 
 RDEPEND="
- wayland? ( dev-libs/wayland )"
-
-DEPEND="!net-im/ferdium"
+	wayland? ( dev-libs/wayland )
+"
 
 QA_PREBUILT="*"
-
-S=${WORKDIR}
 
 src_prepare() {
 	bsdtar -x -f data.tar.xz
@@ -34,13 +33,15 @@ src_prepare() {
 	else
 		sed -E -i -e "s|Exec=/opt/${_PN^}/${_PN}|Exec=/usr/bin/${PN}|" "usr/share/applications/${_PN}.desktop"
 	fi
+
+	# Activate icon
+	sed -E -i -e "s|Icon=${_PN}|Icon=${PN}|" "usr/share/applications/${_PN}.desktop"
+
 	default
 }
 
 src_install() {
 	declare FERDIUM_HOME=/opt/${_PN^}
-
-	echo ${FERDIUM_HOME%/*}
 
 	dodir ${FERDIUM_HOME%/*}
 
