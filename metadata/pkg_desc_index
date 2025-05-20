@@ -2,9 +2,9 @@ acct-group/keyd 0: System group: keyd
 app-editors/neovim 0.11.0 0.11.1: Vim-fork focused on extensibility and agility
 app-editors/sublime-text-dev 4_p4198 4_p4199: Sophisticated text editor for code, markup and prose.
 app-misc/keyd 2.4.2 2.4.3 2.5.0: A key remapping daemon for linux
-app-office/drawio-desktop-bin 26.2.15 27.0.2: draw.io diagramming and whiteboarding desktop app
+app-office/drawio-desktop-bin 27.0.2 27.0.5: draw.io diagramming and whiteboarding desktop app
 app-text/calibre 8.3.0 8.4.0: Ebook management application
-dev-db/dbgate-bin 6.3.3 6.4.0 6.4.1: Database manager for MySQL, PostgreSQL, SQL Server and MongoDB
+dev-db/dbgate-bin 6.4.1 6.4.2: Database manager for MySQL, PostgreSQL, SQL Server and MongoDB
 dev-libs/fuzzylite 6.0: A Fuzzy Logic Control Library in C++
 dev-libs/hyprgraphics 0.1.2 0.1.3: Hyprland graphics / resource utilities
 dev-libs/hyprland-protocols 0.6.2 0.6.3 0.6.4: Wayland protocol extensions for Hyprland
@@ -136,11 +136,11 @@ media-video/facetimehd-firmware 9999: Firmware for the Broadcom 1570 PCIe webcam
 net-im/ferdium-bin 7.0.0 7.0.1: Combine your favorite messaging services into one application
 net-wireless/broadcom-wl 9999: Broadcom Linux hybrid wireless driver
 sys-auth/hyprpolkitagent 0.1.2: Polkit authentication agent for Hyprland, written in Qt/QML
-www-client/brave-bin 1.78.94 1.78.97: Brave Web Browser
+www-client/brave-bin 1.78.94 1.78.97 1.78.102: Brave Web Browser
 x11-libs/pango 1.56.2 1.56.3: Internationalized text layout and rendering library
 x11-misc/albert 0.27.8: A fast and flexible keyboard launcher
 x11-misc/touchegg 2.0.17: Linux multi-touch gesture recognizer
 x11-misc/ulauncher 6.0.0_beta18: Application launcher for Linux
-x11-terms/termius 9.19.4: Termius client
+x11-terms/termius 9.20.0: Termius client
 x11-terms/tilda 2.0.0: A drop down terminal, similar to the consoles found in first person shooters
 x11-wm/muffin 6.4.1: Compositing window manager forked from Mutter for use with Cinnamon
