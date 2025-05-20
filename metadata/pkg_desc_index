@@ -133,7 +133,7 @@ media-plugins/gst-plugins-ximagesrc 1.24.8: X11 video capture stream plugin for 
 media-plugins/gst-plugins-zbar 1.24.8: Bar codes detection in video streams for GStreamer
 media-video/bcwc_pcie 9999: Reverse engineered Linux driver for the Broadcom 1570 PCIe webcam
 media-video/facetimehd-firmware 9999: Firmware for the Broadcom 1570 PCIe webcam
-net-im/ferdium-bin 7.0.0 7.0.1: Combine your favorite messaging services into one application
+net-im/ferdium-bin 7.0.1-r1: Combine your favorite messaging services into one application
 net-wireless/broadcom-wl 9999: Broadcom Linux hybrid wireless driver
 sys-auth/hyprpolkitagent 0.1.2: Polkit authentication agent for Hyprland, written in Qt/QML
 www-client/brave-bin 1.78.94 1.78.97 1.78.102: Brave Web Browser
