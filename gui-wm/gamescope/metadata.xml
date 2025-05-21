@@ -2,11 +2,12 @@
 <!DOCTYPE pkgmetadata SYSTEM 'https://www.gentoo.org/dtd/metadata.dtd'>
 <pkgmetadata>
 	<maintainer type="person">
-		<email>chewi@gentoo.org</email>
-		<name>James Le Cuirot</name>
+		<email>sourek.petr@gmail.com</email>
+		<name>Petr Šourek</name>
 	</maintainer>
 	<upstream>
 		<remote-id type="github">ValveSoftware/gamescope</remote-id>
+		<remote-id type="freedesktop-gitlab">emersion/libliftoff</remote-id>
 	</upstream>
 	<use>
 		<flag name="libei">Enable emulated input using <pkg>dev-libs/libei</pkg></flag>
