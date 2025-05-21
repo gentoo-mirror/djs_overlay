@@ -46,7 +46,7 @@ gui-libs/hyprutils 0.7.0 0.7.1: Hyprland utilities library used across the ecosy
 gui-libs/libadwaita 1.7.2: Building blocks for modern GNOME applications
 gui-libs/libpanel 1.8.0 1.9.0 1.10.0: A dock/panel library for GTK 4
 gui-libs/xdg-desktop-portal-hyprland 1.3.9: xdg-desktop-portal backend for hyprland
-gui-wm/gamescope 3.16.3-r1 3.16.4: Efficient micro-compositor for running games
+gui-wm/gamescope 3.16.4 3.16.10: Efficient micro-compositor for running games
 gui-wm/hyprland 0.48.1-r3 0.49.0: A dynamic tiling Wayland compositor that doesn't sacrifice on its looks
 gui-wm/hyprland-contrib 0.1-r1 9999: Community-maintained extensions for hyprland
 media-libs/gst-plugins-bad 1.24.8: Less plugins for GStreamer
