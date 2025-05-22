@@ -39,6 +39,7 @@ WEBSEARCH_PLUGIN="cac15d126c550bd929a935cbc72ff4c6bbcde35b"		#v0.27
 WIDGETS_PLUGIN="17e741f93c92793a645374cddc433277b4bfe567"       #Latest
 WIDGETS_QSS_PLUGIN="35df324e14258e2f098d9b5c7a04ef001c19854d"	#0.27
 
+LANGUAGES_COMMIT="3006e87427d34b5b80e5ae4425b3aeab4d686490"
 PYBIND_VERSION="2.13.6"											#2.13.6
 
 QTHOTKEY="bb630252684d3556b79ac7a521616692f348fcf7"             #Latest (fixed qt6 crash)
@@ -109,7 +110,7 @@ SRC_URI="
 	https://github.com/albertlauncher/albert-plugin-websearch/archive/${WEBSEARCH_PLUGIN}.zip -> ${P}-plugin-websearch.zip
 	https://github.com/albertlauncher/albert-plugin-widgetsboxmodel/archive/${WIDGETS_PLUGIN}.zip -> ${P}-plugin-widgetsboxmodel.zip
 	https://github.com/albertlauncher/albert-plugin-widgetsboxmodel-qss/archive/${WIDGETS_QSS_PLUGIN}.zip -> ${P}-plugin-widgetsboxmodel-qss.zip
-	https://github.com/albertlauncher/i18n/zipball/main -> ${P}-languages.zip
+	https://github.com/albertlauncher/i18n/archive/${LANGUAGES_COMMIT}.zip -> ${P}-languages.zip
 	https://github.com/pybind/pybind11/archive/refs/tags/v${PYBIND_VERSION}.zip -> ${P}-plugin-pybind11.zip
 	https://github.com/Skycoder42/QHotkey/archive/${QTHOTKEY}.zip -> ${P}-lib-QHotkey.zip
 	https://github.com/QtCommunity/QNotification/archive/${QNOTIFICATIONS}.zip -> ${P}-lib-QNotification.zip
