@@ -1,6 +1,6 @@
 acct-group/keyd 0: System group: keyd
 app-editors/neovim 0.11.0 0.11.1: Vim-fork focused on extensibility and agility
-app-editors/sublime-text-dev 4_p4198 4_p4199: Sophisticated text editor for code, markup and prose.
+app-editors/sublime-text-dev 4_p4200: Sophisticated text editor for code, markup and prose.
 app-misc/keyd 2.4.2 2.4.3 2.5.0: A key remapping daemon for linux
 app-office/drawio-desktop-bin 27.0.2 27.0.5: draw.io diagramming and whiteboarding desktop app
 app-text/calibre 8.3.0 8.4.0: Ebook management application
@@ -133,7 +133,7 @@ media-plugins/gst-plugins-ximagesrc 1.24.8: X11 video capture stream plugin for 
 media-plugins/gst-plugins-zbar 1.24.8: Bar codes detection in video streams for GStreamer
 media-video/bcwc_pcie 9999: Reverse engineered Linux driver for the Broadcom 1570 PCIe webcam
 media-video/facetimehd-firmware 9999: Firmware for the Broadcom 1570 PCIe webcam
-net-im/ferdium-bin 7.0.1-r1: Combine your favorite messaging services into one application
+net-im/ferdium-bin 7.0.1-r1 7.1.0: Combine your favorite messaging services into one application
 net-im/teams-for-linux 2.0.14: Unofficial Microsoft Teams client for Linux. Binary precompiled version.
 net-wireless/broadcom-wl 9999: Broadcom Linux hybrid wireless driver
 sys-auth/hyprpolkitagent 0.1.2: Polkit authentication agent for Hyprland, written in Qt/QML
