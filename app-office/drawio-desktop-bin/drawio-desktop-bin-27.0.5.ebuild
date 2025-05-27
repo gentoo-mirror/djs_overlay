@@ -84,9 +84,13 @@ src_install() {
 	local IC_SIZE
 	for IC_SIZE in 16 32 48 64 96 128 192 256 512 1024
 	do
-		newicon -s "${IC_SIZE}" "usr/share/icons/hicolor/${IC_SIZE}x${IC_SIZE}/apps/drawio.png" drawio.png
-		newicon -s "${IC_SIZE}" -c mimetypes "usr/share/icons/hicolor/${IC_SIZE}x${IC_SIZE}/apps/drawio.png" \
-		application-vnd.jgraph.mxfile.png
+		if [ -d "${WORKDIR}/usr/share/icons/hicolor/${IC_SIZE}x${IC_SIZE}/apps" ]; then
+			newicon -s "${IC_SIZE}" "usr/share/icons/hicolor/${IC_SIZE}x${IC_SIZE}/apps/drawio.png" drawio.png
+			newicon -s "${IC_SIZE}" -c mimetypes "usr/share/icons/hicolor/${IC_SIZE}x${IC_SIZE}/apps/drawio.png" \
+			application-vnd.jgraph.mxfile.png
+		else
+			einfo "Skipping icon size ${IC_SIZE}x${IC_SIZE} (dir not found)"
+		fi
 	done
 	newicon -s scalable "${DISTDIR}/drawio-icon.svg" drawio.svg
 	newicon -s scalable -c mimetypes "${DISTDIR}/drawio-icon.svg" application-vnd.jgraph.mxfile.svg
