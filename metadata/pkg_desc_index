@@ -43,10 +43,10 @@ gui-libs/hyprcursor 0.1.11 0.1.12: The hyprland cursor format, library and utili
 gui-libs/hyprland-qt-support 0.1.0: Qt6 Qml style provider for hypr* apps
 gui-libs/hyprland-qtutils 0.1.3 0.1.4: Hyprland QT/qml utility apps
 gui-libs/hyprutils 0.7.0 0.7.1: Hyprland utilities library used across the ecosystem
-gui-libs/libadwaita 1.7.2 1.7.3: Building blocks for modern GNOME applications
+gui-libs/libadwaita 1.7.3 1.7.4: Building blocks for modern GNOME applications
 gui-libs/libpanel 1.8.0 1.9.0 1.10.0: A dock/panel library for GTK 4
 gui-libs/xdg-desktop-portal-hyprland 1.3.9: xdg-desktop-portal backend for hyprland
-gui-wm/gamescope 3.16.4 3.16.10: Efficient micro-compositor for running games
+gui-wm/gamescope 3.16.4 3.16.10 3.16.11: Efficient micro-compositor for running games
 gui-wm/hyprland 0.48.1-r3 0.49.0: A dynamic tiling Wayland compositor that doesn't sacrifice on its looks
 gui-wm/hyprland-contrib 0.1-r1 9999: Community-maintained extensions for hyprland
 media-libs/gst-plugins-bad 1.24.8: Less plugins for GStreamer
@@ -140,7 +140,7 @@ sys-auth/hyprpolkitagent 0.1.2: Polkit authentication agent for Hyprland, writte
 www-client/brave-bin 1.78.94 1.78.97 1.78.102: Brave Web Browser
 x11-libs/pango 1.56.2 1.56.3: Internationalized text layout and rendering library
 x11-misc/albert 0.27.8-r1: A fast and flexible keyboard launcher
-x11-misc/touchegg 2.0.17: Linux multi-touch gesture recognizer
+x11-misc/touchegg 2.0.17 2.0.18: Linux multi-touch gesture recognizer
 x11-misc/ulauncher 6.0.0_beta18: Application launcher for Linux
 x11-terms/termius 9.21.1: Termius client
 x11-terms/tilda 2.0.0: A drop down terminal, similar to the consoles found in first person shooters
