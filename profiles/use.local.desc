@@ -9,6 +9,11 @@ app-text/calibre:system-mathjax - Use a system copy of mathjax
 app-text/calibre:unrar - Enable support for comic books compressed with the non-free Rar format
 dev-util/sysprof:unwind - Use sys-libs/libunwind to unwind the stack
 games-engines/fheroes2:tools - Install development tools like 82m2wav and xmi2midi.
+games-strategy/vcmi:editor - Build level editor.
+games-strategy/vcmi:erm - Build ERM scripting support.
+games-strategy/vcmi:launcher - Build with launcher support.
+games-strategy/vcmi:nullkiller-ai - Build Nullkiller AI.
+games-strategy/vcmi:translations - Enable translations supported languages, more here: https://github.com/vcmi/vcmi/blob/develop/docs/translators/Translations.md
 gnome-extra/cinnamon:internal-polkit - Use Cinnamon's internal polkit agent instead of gnome-extra/polkit-gnome. This does not currently support multi-user fast switching.
 gnome-extra/cinnamon-control-center:modemmanager - Enable support for mobile broadband devices using net-misc/modemmanager
 gnome-extra/cjs:sysprof - Enable profiling data capture support using dev-util/sysprof-capture
