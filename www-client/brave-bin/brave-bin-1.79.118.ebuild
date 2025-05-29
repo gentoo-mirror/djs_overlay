@@ -165,7 +165,7 @@ src_install() (
 	newicon -s 128 "${FILESDIR}/braveAbout.png" "${PN}.png" || die
 
 	# install-xattr doesnt approve using domenu or doins from FILESDIR
-	make_desktop_entry brave-bin Brave brave-bin 'Network;WebBrowser'
+	make_desktop_entry 'brave-bin %u' Brave brave-bin 'Network;WebBrowser'
 	#cp "${FILESDIR}"/${PN}.desktop "${S}"
 	#domenu "${S}"/${PN}.desktop
 )
