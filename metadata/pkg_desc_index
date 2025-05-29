@@ -138,7 +138,7 @@ net-im/ferdium-bin 7.0.1-r1 7.1.0: Combine your favorite messaging services into
 net-im/teams-for-linux 2.0.14: Unofficial Microsoft Teams client for Linux. Binary precompiled version.
 net-wireless/broadcom-wl 9999: Broadcom Linux hybrid wireless driver
 sys-auth/hyprpolkitagent 0.1.2: Polkit authentication agent for Hyprland, written in Qt/QML
-www-client/brave-bin 1.78.94 1.78.97 1.78.102: Brave Web Browser
+www-client/brave-bin 1.79.118: Brave Web Browser
 x11-libs/pango 1.56.2 1.56.3: Internationalized text layout and rendering library
 x11-misc/albert 0.27.8-r1: A fast and flexible keyboard launcher
 x11-misc/touchegg 2.0.17 2.0.18: Linux multi-touch gesture recognizer
