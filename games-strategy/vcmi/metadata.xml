@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+  <maintainer type="person" proxied="yes">
+    <email>sourek.petr@gmail.com</email>
+    <name>Petr Sourek</name>
+  </maintainer>
+  <upstream>
+    <changelog>https://github.com/vcmi/vcmi/releases</changelog>
+    <doc>https://github.com/vcmi/vcmi/tree/develop/docs</doc>
+    <bugs-to>https://github.com/vcmi/vcmi/issues</bugs-to>
+    <remote-id type="github">vcmi/vcmi</remote-id>
+  </upstream>
+  <use>
+    <flag name="editor">Build level editor.</flag>
+    <flag name="erm">Build ERM scripting support.</flag>
+    <flag name="launcher">Build with launcher support.</flag>
+    <flag name="nullkiller-ai">Build Nullkiller AI.</flag>
+    <flag name="translations">Enable translations supported languages, more here: https://github.com/vcmi/vcmi/blob/develop/docs/translators/Translations.md</flag>
+  </use>
+</pkgmetadata>

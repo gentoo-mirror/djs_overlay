@@ -6,11 +6,18 @@ EAPI=8
 LUA_COMPAT=(luajit)
 # TODO: other targets (buildsystem is crazy and needs patches)
 
-inherit cmake lua-single git-r3
+inherit cmake lua-single
 
 DESCRIPTION="Heroes of Might and Magic III game engine rewrite"
 HOMEPAGE="http://forum.vcmi.eu/index.php"
 INSTALL_PATH="/opt/vcmi"
+
+SRC_URI="
+	https://github.com/vcmi/vcmi/archive/refs/tags/${PACKAGE_VERSION}.tar.gz -> ${P}.tar.gz
+	https://github.com/fuzzylite/fuzzylite/archive/refs/tags/v${FUZZYLITE_VERSION}.tar.gz -> vcmi-fuzzylite.tar.gz
+	https://github.com/google/googletest/archive/refs/tags/v${GOOGLETEST_VERSION}.tar.gz -> vcmi-googletest.tar.gz
+	https://github.com/vcmi/innoextract/archive/${INNOEXTRACT_COMMIT}.tar.gz -> vcmi-innoextract.tar.gz
+"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -26,44 +33,11 @@ if [[ ${PACKAGE_VERSION} == *_p* ]]; then
 	PACKAGE_NAME="${PN}-${PACKAGE_VERSION}"
 fi
 
-PATCHES=(
-	# Patches to current git state
-	#"${FILESDIR}/${P}-AI.patch"
-	#"${FILESDIR}/${P}-CI.patch"
-	#"${FILESDIR}/${P}-basic_files.patch"
-	#"${FILESDIR}/${P}-client.patch"
-	#"${FILESDIR}/${P}-global.patch"
-	#"${FILESDIR}/${P}-include.patch"
-	#"${FILESDIR}/${P}-launcher.patch"
-	#"${FILESDIR}/${P}-lib.patch"
-	#"${FILESDIR}/${P}-lobby.patch"
-	#"${FILESDIR}/${P}-mapeditor.patch"
-	#"${FILESDIR}/${P}-Mods.patch"
-	#"${FILESDIR}/${P}-scripting.patch"
-	#"${FILESDIR}/${P}-scripts.patch"
-	#"${FILESDIR}/${P}-server.patch"
-	#"${FILESDIR}/${P}-serverapp.patch"
-	#"${FILESDIR}/${P}-test.patch"
-	#"${FILESDIR}/${P}-vcmiqt.patch"
-
-	# Boost 1.87
-	#"${FILESDIR}/${P}-boost-1.87.patch"
-)
-
 FUZZYLITE_VERSION="6.0"
 GOOGLETEST_VERSION="1.15.2"
 
-if [[ ${PACKAGE_VERSION} == *9999* ]]; then
-	EGIT_REPO_URI="https://github.com/vcmi/vcmi.git"
-	EGIT_BRANCH="develop"
-else
-	SRC_URI="
-		https://github.com/vcmi/vcmi/archive/refs/tags/${PACKAGE_VERSION}.tar.gz -> ${P}.tar.gz
-		https://github.com/fuzzylite/fuzzylite/archive/refs/tags/v${FUZZYLITE_VERSION}.tar.gz -> fuzzylite.tar.gz
-		https://github.com/google/googletest/archive/refs/tags/v${GOOGLETEST_VERSION}.tar.gz -> googletest.tar.gz
-		"
-	EGIT_REPO_URI="https://github.com/vcmi/innoextract.git"
-fi
+INNOEXTRACT_COMMIT="9977089412ebafe9f79936aa65a2edf16a84ae3e"
+
 REQUIRED_USE="
 	erm? ( lua )
 	lua? ( ${LUA_REQUIRED_USE} )
@@ -72,6 +46,7 @@ REQUIRED_USE="
 RDEPEND="
 	nullkiller-ai? ( dev-cpp/tbb )
 	dev-lang/luajit
+	dev-libs/fuzzylite
 	>=dev-libs/boost-1.70:=
 	launcher? (
 		dev-qt/qtcore:=
@@ -97,7 +72,6 @@ RDEPEND="
 
 DEPEND="${RDEPEND}"
 
-if [[ ${PACKAGE_VERSION} != *9999* ]]; then
 src_unpack() {
 	# Unpack ALL Packages
 	unpack ${A}
@@ -107,32 +81,19 @@ src_unpack() {
 		mv "${WORKDIR}/${PACKAGE_NAME}" "${WORKDIR}/${P}"
 	fi
 
-	# Clone innoextract
-	git clone "https://github.com/vcmi/innoextract.git" "${WORKDIR}/innoextract"
-
 	# Delete target directories
 	rmdir "${WORKDIR}/${P}/AI/FuzzyLite" || die "FuzzyLite dir not deleted"
 	rmdir "${WORKDIR}/${P}/launcher/lib/innoextract" || die "innoextract dir not deleted"
 	rmdir "${WORKDIR}/${P}/test/googletest" || die "Googletest dir not deleted"
 
 	# Make symlinks, mostly mv is used, but I will try to go using ln -s, dosym doesnt work here
-	ln -s "${WORKDIR}/fuzzylite-${FUZZYLITE_VERSION}" "${WORKDIR}/${P}/AI/FuzzyLite" || die "FuzzyLite symlink not created"
-	ln -s "${WORKDIR}/googletest-${GOOGLETEST_VERSION}" "${WORKDIR}/${P}/test/googletest" || die "Googletest symlink not created"
-	ln -s "${WORKDIR}/innoextract" "${WORKDIR}/${P}/launcher/lib/innoextract" || die "innoextract symlink not created"
-
-	# Unpack icons
-	#tar -xzvf "${FILESDIR}/${P}-launcher-icons.tar.gz" -C "${WORKDIR}/${P}/launcher/icons/" || die "Failed to extract launcher/icons"
-	#tar -xzvf "${FILESDIR}/${P}-mapeditor-icons.tar.gz" -C "${WORKDIR}/${P}/mapeditor/icons/" || die "Failed to extract mapeditor/icons"
+	ln -s "${WORKDIR}/fuzzylite-${FUZZYLITE_VERSION}" "${WORKDIR}/${P}/AI/FuzzyLite"\
+		|| die "FuzzyLite symlink not created"
+	ln -s "${WORKDIR}/googletest-${GOOGLETEST_VERSION}" "${WORKDIR}/${P}/test/googletest"\
+		|| die "Googletest symlink not created"
+	ln -s "${WORKDIR}/innoextract-${INNOEXTRACT_COMMIT}" "${WORKDIR}/${P}/launcher/lib/innoextract"\
+		|| die "innoextract symlink not created"
 }
-fi
-
-#src_prepare() {
-#	cmake_src_prepare
-
-	# Clientapp folder doesnt exits so I need to apply patch and then unpack
-	#eapply "${FILESDIR}/${P}-clientapp.patch" || die "Failed to apply clientapp.patch"
-	#tar -xzvf "${FILESDIR}/${P}-clientapp-icons.tar.gz" -C "${WORKDIR}/${P}/clientapp/icons/" || die "Failed to extract clientapp/icons"
-#}
 
 src_configure() {
 	local mycmakeargs=(
@@ -149,18 +110,11 @@ src_configure() {
 		-DENABLE_GITVERSION=OFF
 		-DBoost_NO_BOOST_CMAKE=ON
 	)
-#	export CCACHE_SLOPPINESS="time_macros"
+
 	cmake_src_configure
 }
 
 pkg_postinst() {
-	# Save actual commit version
-	if [[ ${PACKAGE_VERSION} == *9999* ]]; then
-		local vdb_commit_file="/var/db/pkg/games-strategy/${P}/.installed_commit"
-		local current_commit=$(git rev-parse HEAD)
-		echo "${current_commit}" > "${vdb_commit_file}"
-	fi
-
 	elog "For the game to work properly, please copy your"
 	elog 'Heroes Of Might and Magic ("The Wake Of Gods" or'
 	elog '"Shadow of Death" or "Complete edition")'
