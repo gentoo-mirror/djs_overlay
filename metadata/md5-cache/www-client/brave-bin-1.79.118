@@ -11,4 +11,4 @@ RDEPEND=>=app-accessibility/at-spi2-core-2.46.0 app-arch/bzip2 app-arch/zstd app
 SLOT=0
 SRC_URI=https://github.com/brave/brave-browser/releases/download/v1.79.118/brave-browser-1.79.118-linux-amd64.zip -> brave-bin-1.79.118.zip
 _eclasses_=toolchain-funcs	f9d71a6efe9d083aec750dd13968e169	linux-info	ea4122ba1d8791a12b78e53f9510a2e3	chromium-2	3bebf8c71f3acd4070d63b098c45a7f1	xdg-utils	42869b3c8d86a70ef3cf75165a395e09	desktop	3a72ffe0d8e1dd73af3a1c8c15a59fed
-_md5_=191da56b113c4cf61f40b56c193ab61d
+_md5_=90d900bdc62f0f1b4281bb572e1635c5
