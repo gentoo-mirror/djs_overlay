@@ -1,6 +1,6 @@
 acct-group/keyd 0: System group: keyd
 app-admin/winbox 4.0_beta21: Management Software for MikroTik RouterOS
-app-editors/neovim 0.11.0 0.11.1: Vim-fork focused on extensibility and agility
+app-editors/neovim 0.11.0 0.11.1 0.11.2: Vim-fork focused on extensibility and agility
 app-editors/sublime-text-dev 4_p4200: Sophisticated text editor for code, markup and prose.
 app-misc/keyd 2.4.2 2.4.3 2.5.0: A key remapping daemon for linux
 app-office/drawio-desktop-bin 27.0.5 27.0.9: draw.io diagramming and whiteboarding desktop app
