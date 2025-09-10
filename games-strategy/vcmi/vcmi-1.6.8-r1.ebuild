@@ -20,6 +20,11 @@ if [[ ${PACKAGE_VERSION} == *_p* ]]; then
 	PACKAGE_NAME="${PN}-${PACKAGE_VERSION}"
 fi
 
+FUZZYLITE_VERSION="6.0"
+GOOGLETEST_VERSION="1.15.2"
+
+INNOEXTRACT_COMMIT="9977089412ebafe9f79936aa65a2edf16a84ae3e"
+
 SRC_URI="
 	https://github.com/vcmi/vcmi/archive/refs/tags/${PACKAGE_VERSION}.tar.gz -> ${P}.tar.gz
 	https://github.com/fuzzylite/fuzzylite/archive/refs/tags/v${FUZZYLITE_VERSION}.tar.gz -> vcmi-fuzzylite.tar.gz
@@ -32,11 +37,6 @@ SLOT="0"
 KEYWORDS="~amd64"
 # TODO: other arches
 IUSE="+editor debug erm +launcher lua +nullkiller-ai +translations"
-
-FUZZYLITE_VERSION="6.0"
-GOOGLETEST_VERSION="1.15.2"
-
-INNOEXTRACT_COMMIT="9977089412ebafe9f79936aa65a2edf16a84ae3e"
 
 REQUIRED_USE="
 	erm? ( lua )
