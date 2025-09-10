@@ -11,6 +11,6 @@ LICENSE=GPL-2
 RDEPEND=nullkiller-ai? ( dev-cpp/tbb ) dev-lang/luajit dev-libs/fuzzylite >=dev-libs/boost-1.70:= launcher? ( dev-qt/qtcore:= dev-qt/qtgui:= dev-qt/qtnetwork:= dev-qt/qtwidgets:= translations? ( dev-qt/linguist-tools ) ) editor? ( dev-qt/qtcore:= dev-qt/qtgui:= dev-qt/qtnetwork:= dev-qt/qtwidgets translations? ( dev-qt/linguist-tools ) ) sys-libs/zlib:=[minizip] media-video/ffmpeg:= media-libs/libsdl2:=[X] media-libs/sdl2-image:= media-libs/sdl2-mixer:= media-libs/sdl2-ttf:=
 REQUIRED_USE=erm? ( lua ) lua? ( ^^ ( lua_single_target_luajit ) )
 SLOT=0
-SRC_URI=https://github.com/vcmi/vcmi/archive/refs/tags/1.6.8.tar.gz -> vcmi-1.6.8.tar.gz https://github.com/fuzzylite/fuzzylite/archive/refs/tags/v.tar.gz -> vcmi-fuzzylite.tar.gz https://github.com/google/googletest/archive/refs/tags/v.tar.gz -> vcmi-googletest.tar.gz https://github.com/vcmi/innoextract/archive/.tar.gz -> vcmi-innoextract.tar.gz
+SRC_URI=https://github.com/vcmi/vcmi/archive/refs/tags/1.6.8.tar.gz -> vcmi-1.6.8.tar.gz https://github.com/fuzzylite/fuzzylite/archive/refs/tags/v6.0.tar.gz -> vcmi-fuzzylite.tar.gz https://github.com/google/googletest/archive/refs/tags/v1.15.2.tar.gz -> vcmi-googletest.tar.gz https://github.com/vcmi/innoextract/archive/9977089412ebafe9f79936aa65a2edf16a84ae3e.tar.gz -> vcmi-innoextract.tar.gz
 _eclasses_=toolchain-funcs	a0b29008c671a362b505f96fa80ce9c0	flag-o-matic	a7afe42e95fb46ce9691605acfb24672	multiprocessing	1e32df7deee68372153dca65f4a7c21f	ninja-utils	2df4e452cea39a9ec8fb543ce059f8d6	xdg-utils	42869b3c8d86a70ef3cf75165a395e09	cmake	460729dc36f68cf03b044bc1d367e34a	lua-utils	7c89927eda6f21c4c48136247077ab37	lua-single	75fe955a36b18e199213c8739eaebdbb
-_md5_=46a45d15c420f26a0f0fba9523762e95
+_md5_=513a638fecc00f975e1237006ee352d8
