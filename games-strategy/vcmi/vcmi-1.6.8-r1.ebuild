@@ -12,6 +12,14 @@ DESCRIPTION="Heroes of Might and Magic III game engine rewrite"
 HOMEPAGE="http://forum.vcmi.eu/index.php"
 INSTALL_PATH="/opt/vcmi"
 
+# Get package version, get default values, if not underscore keep them
+PACKAGE_VERSION=${PV}
+PACKAGE_NAME=${P}
+if [[ ${PACKAGE_VERSION} == *_p* ]]; then
+	PACKAGE_VERSION="${PV%%_*}"
+	PACKAGE_NAME="${PN}-${PACKAGE_VERSION}"
+fi
+
 SRC_URI="
 	https://github.com/vcmi/vcmi/archive/refs/tags/${PACKAGE_VERSION}.tar.gz -> ${P}.tar.gz
 	https://github.com/fuzzylite/fuzzylite/archive/refs/tags/v${FUZZYLITE_VERSION}.tar.gz -> vcmi-fuzzylite.tar.gz
@@ -24,14 +32,6 @@ SLOT="0"
 KEYWORDS="~amd64"
 # TODO: other arches
 IUSE="+editor debug erm +launcher lua +nullkiller-ai +translations"
-
-# Get package version, get default values, if not underscore keep them
-PACKAGE_VERSION=${PV}
-PACKAGE_NAME=${P}
-if [[ ${PACKAGE_VERSION} == *_p* ]]; then
-	PACKAGE_VERSION="${PV%%_*}"
-	PACKAGE_NAME="${PN}-${PACKAGE_VERSION}"
-fi
 
 FUZZYLITE_VERSION="6.0"
 GOOGLETEST_VERSION="1.15.2"
